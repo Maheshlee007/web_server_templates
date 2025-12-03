@@ -1,6 +1,6 @@
-# {{projectName}}
+# 
 
-A modern React application built with Vite, TypeScript, TailwindCSS{{#if hasShadcn}}, and shadcn/ui{{/if}}.
+A modern React application built with Vite, TypeScript, TailwindCSS, and shadcn/ui.
 
 ## Features
 
@@ -8,13 +8,13 @@ A modern React application built with Vite, TypeScript, TailwindCSS{{#if hasShad
 - ⚛️ **React 18** - Latest React with concurrent features
 - 🔷 **TypeScript** - Type safety and better developer experience
 - 🎨 **TailwindCSS** - Utility-first CSS framework
-{{#if hasShadcn}}
+
 - 🧩 **shadcn/ui** - Beautiful, accessible component library
-{{/if}}
+
 - 🚀 **React Router** - Declarative routing for React
-{{#if hasDarkMode}}
+{
 - 🌙 **Dark Mode** - Theme switching with system preference detection
-{{/if}}
+
 - 📱 **Responsive Design** - Mobile-first approach
 
 ## Getting Started
@@ -46,9 +46,9 @@ npm run preview
 src/
 ├── components/          # Reusable UI components
 │   ├── layout/         # Layout components (Header, Sidebar, Layout)
-{{#if hasShadcn}}
+
 │   └── ui/             # shadcn/ui components
-{{/if}}
+
 ├── pages/              # Page components
 ├── lib/                # Utility functions
 └── main.tsx            # Application entry point
@@ -67,7 +67,7 @@ The development server runs on `http://localhost:3000` with hot module replaceme
 
 ## Customization
 
-{{#if hasShadcn}}
+
 ### Adding shadcn/ui Components
 
 This template includes a basic set of shadcn/ui components. To add more:
@@ -83,9 +83,9 @@ Edit `tailwind.config.js` to customize the design system:
 - Colors: Update the color palette in the `theme.extend.colors` section
 - Spacing: Modify spacing values
 - Typography: Customize font families and sizes
-{{/if}}
 
-{{#if hasDarkMode}}
+
+{
 ### Dark Mode
 
 Dark mode is handled by `next-themes`. The theme toggle is available in the navigation.
@@ -93,7 +93,7 @@ Dark mode is handled by `next-themes`. The theme toggle is available in the navi
 - System theme detection
 - Manual theme switching
 - Persistent theme preference
-{{/if}}
+
 
 ## Deployment
 

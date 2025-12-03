@@ -5,5 +5,9 @@
   "workspaces": [
     "packages/*",
     "packages/templates/*"
-  ]
+  ],
+  "scripts":{
+    "dev:react-tailwind": "pnpm --filter ./packages/templates/react-tailwind run dev"
+  }
+
 }

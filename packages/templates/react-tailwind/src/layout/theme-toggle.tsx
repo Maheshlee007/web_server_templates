@@ -1,10 +1,11 @@
-{{#if hasDarkMode}}
+
 import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+// import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
+import { useState } from "react"
 
 export function ThemeToggle() {
-  const { setTheme, theme } = useTheme()
+  const [theme,setTheme]= useState('dark')
 
   return (
     <Button
@@ -19,4 +20,3 @@ export function ThemeToggle() {
     </Button>
   )
 }
-{{/if}}
