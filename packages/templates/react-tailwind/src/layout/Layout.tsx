@@ -40,12 +40,12 @@ export default function Layout({ children }: LayoutProps) {
       />
       
       {/* Main content */}
-      <div className="flex flex-1 overflow-hidden relative">
+      <div className="flex flex-1 overflow-hidden relative" >
         {/* Sidebar */}
         <aside
           className={`${
             isMobile 
-              ? `fixed left-0 top-[calc(4rem+3.25rem)] h-[calc(100vh-7.25rem)] z-50 transform transition-transform duration-300 ${
+              ? `fixed left-0 top-[calc(4rem)] h-[calc(100vh-1rem)] z-50 transform transition-transform duration-300 ${
                   sidebarOpen ? 'translate-x-0' : '-translate-x-full'
                 } w-64 shadow-xl`
               : `${sidebarOpen ? 'w-64' : 'w-16'} transition-all duration-300`

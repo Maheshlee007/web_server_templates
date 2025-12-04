@@ -7,7 +7,7 @@ export default function About() {
           About <span className="text-gradient bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">MyApp</span>
         </h1>
         <p className="page-subtitle text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-          Learn more about our mission, technology stack, and the team behind this project.
+          Learn more about our mission, technology stack, and the team behind this project.it's just a long back todo list Now spending time on it.
         </p>
       </div>
 
@@ -16,11 +16,11 @@ export default function About() {
         {/* Mission Section */}
         <section className="content-section bg-surface-primary rounded-2xl border border-border-primary p-8 space-y-6">
           <div className="section-header space-y-3">
-            <h2 className="section-title text-2xl font-bold text-foreground">Our Mission</h2>
+            <h2 className="section-title text-2xl font-bold text-foreground">My Mission</h2>
             <div className="section-divider w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"></div>
           </div>
           <p className="section-content text-text-secondary leading-relaxed">
-            We're dedicated to creating exceptional web experiences that combine modern design principles 
+            We're dedicated(probably Me & AI 😁) to creating exceptional web experiences that combine modern design principles 
             with cutting-edge technology. Our goal is to build applications that are not only functional 
             but also delightful to use, accessible to everyone, and built to last.
           </p>
@@ -65,7 +65,7 @@ export default function About() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground">Tailwind CSS</h3>
+                <h3 className="font-semibold text-foreground">Tailwind CSS v3</h3>
                 <p className="text-sm text-text-secondary">Utility-first CSS framework</p>
               </div>
             </div>
@@ -77,7 +77,7 @@ export default function About() {
           <div className="section-header text-center space-y-3">
             <h2 className="section-title text-2xl font-bold text-foreground">Get In Touch</h2>
             <p className="section-subtitle text-text-secondary max-w-2xl mx-auto">
-              Have questions or want to collaborate? We'd love to hear from you.
+              Have questions or want to collaborate? I'd love to hear from you.
             </p>
           </div>
           
@@ -85,9 +85,9 @@ export default function About() {
             <button className="contact-button px-6 py-3 bg-primary-600 hover:bg-primary-700 text-primary-foreground rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl">
               Send Message
             </button>
-            <button className="contact-button px-6 py-3 bg-surface-primary hover:bg-surface-secondary text-foreground border border-border-primary rounded-xl font-semibold transition-all duration-200 hover:shadow-md">
+            <a href="https://github.com/Maheshlee007/web_server_templates" target="_blank" className="contact-button px-6 py-3 bg-surface-primary hover:bg-surface-secondary text-foreground border border-border-primary rounded-xl font-semibold transition-all duration-200 hover:shadow-md">
               View GitHub
-            </button>
+            </a>
           </div>
         </section>
       </div>

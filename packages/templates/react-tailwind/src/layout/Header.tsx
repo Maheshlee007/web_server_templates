@@ -8,7 +8,7 @@ interface HeaderProps {
 export default function Header({ onMenuToggle, isMobile }: HeaderProps) {
   return (
     <>
-      <header className="bg-brand-50 border-b border-border-primary h-16 flex items-center px-4 sm:px-6 shadow-sm z-30 relative">
+      <header className="bg-white border-b border-border-primary h-16 flex items-center px-4 sm:px-6 shadow-sm z-30 relative">
         <div className="flex items-center justify-between w-full gap-4">
           {/* Left section - Mobile menu + Logo */}
           <div className="flex items-center gap-3 min-w-fit">
@@ -70,30 +70,7 @@ export default function Header({ onMenuToggle, isMobile }: HeaderProps) {
             </div>
           </div>
         </div>
-      </header>
-
-      {/* Breadcrumbs Bar */}
-      <div className="bg-surface-secondary border-b border-border-primary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <nav className="flex items-center space-x-2 text-sm overflow-x-auto" aria-label="Breadcrumb">
-            <a 
-              href="#" 
-              className="text-text-secondary hover:text-primary-600 transition-colors whitespace-nowrap font-medium hover:underline"
-            >
-              Home
-            </a>
-            <span className="text-border-accent">/</span>
-            <a 
-              href="#" 
-              className="text-text-secondary hover:text-primary-600 transition-colors whitespace-nowrap font-medium hover:underline"
-            >
-              Dashboard
-            </a>
-            <span className="text-border-accent">/</span>
-            <span className="text-text-muted whitespace-nowrap">Current Page</span>
-          </nav>
-        </div>
-      </div>
+      </header>     
     </>
   )
 }

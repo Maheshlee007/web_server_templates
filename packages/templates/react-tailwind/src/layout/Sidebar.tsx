@@ -17,9 +17,9 @@ export default function Sidebar({ sidebarOpen = true, onToggleSidebar, isMobile 
   const location = useLocation()
 
   return (
-    <div className="flex flex-col h-full bg-brand-50 border-r border-border-primary">
+    <div className="flex flex-col h-full bg-white border-r border-border-primary">
       {/* Sidebar Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border-primary bg-primary-50">
+      <div className="flex items-center justify-between p-4 border-b border-border-primary bg-white">
         {isMobile ? (
           <>
             <span className="text-sm font-semibold text-foreground">Menu</span>
@@ -39,10 +39,10 @@ export default function Sidebar({ sidebarOpen = true, onToggleSidebar, isMobile 
             aria-label="Toggle sidebar"
           >
             {sidebarOpen ? (
-              <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between w-full">
+                <p className="text-sm font-medium ml-2">Navigation</p>
                 <ChevronLeft className="h-5 w-5" />
-                <span className="text-sm font-medium">Collapse</span>
-              </div>
+                </div>
             ) : (
               <ChevronRight className="h-5 w-5" />
             )}
@@ -62,8 +62,8 @@ export default function Sidebar({ sidebarOpen = true, onToggleSidebar, isMobile 
                 to={item.href}
                 title={!sidebarOpen ? item.name : undefined}
                 onClick={isMobile ? onToggleSidebar : undefined}
-                className={`navigation-item group flex items-center gap-3 rounded-xl transition-all duration-200 ${
-                  sidebarOpen ? 'px-4 py-3' : 'px-3 py-3 justify-center'
+                className={`navigation-item group flex items-center gap-3 rounded-full transition-all duration-200 ${
+                  sidebarOpen ? 'px-4 py-3' : 'px-4 py-2 justify-center'
                 } ${
                   isActive
                     ? 'navigation-item--active bg-primary-600 text-primary-foreground border border-primary-600 shadow-md'
@@ -76,9 +76,9 @@ export default function Sidebar({ sidebarOpen = true, onToggleSidebar, isMobile 
                     {item.name}
                   </span>
                 )}
-                {isActive && sidebarOpen && (
+                {/* {isActive && sidebarOpen && (
                   <div className="ml-auto w-2 h-2 bg-secondary-500 rounded-full"></div>
-                )}
+                )} */}
               </Link>
             )
           })}
@@ -86,7 +86,7 @@ export default function Sidebar({ sidebarOpen = true, onToggleSidebar, isMobile 
       </div>
 
       {/* Sidebar Footer */}
-      <div className="border-t border-border-primary bg-primary-50 space-y-1 p-4">
+      <div className="border-t border-border-primary bg-white space-y-1 p-4">
         <button
           title={!sidebarOpen ? 'Settings' : undefined}
           className={`sidebar-action w-full flex items-center gap-3 rounded-xl text-sm font-medium text-primary-700 hover:bg-primary-100 hover:text-primary-900 transition-all duration-200 group ${

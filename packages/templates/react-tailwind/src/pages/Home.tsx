@@ -9,8 +9,11 @@ export default function Home() {
               Welcome to <span className="text-gradient bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">MyApp</span>
             </h1>
             <p className="hero-description text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-              A modern, responsive web application built with React, TypeScript, and Tailwind CSS.
+              A modern, responsive Basic web application Stater Template built with React, TypeScript, and Tailwind CSS.
             </p>
+            🚀 <span className="hero-description md:text-xl text-text-secondary font-medium bg-gradient-to-r from-secondary-500 to-primary-500 bg-clip-text text-transparent">
+              Hi there!<strong> Happy Coding.</strong> 
+            </span>💫
           </div>
           
           <div className="action-buttons flex flex-col sm:flex-row gap-4 justify-center">
