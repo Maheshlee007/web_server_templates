@@ -3,11 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "workspaces": [
-    "packages/*",
+    "packages/cli/*",
     "packages/templates/*"
   ],
-  "scripts":{
-    "dev:react-tailwind": "pnpm --filter ./packages/templates/react-tailwind run dev"
+  "scripts": {
+    "dev:cli":"pnpm --filter ./packages/cli dev",
+    "dev:tail3":"pnpm --filter ./packages/templates/react-tailwind run  dev",
+    "dev:react19":"pnpm --filter ./packages/templates/react19-ts-basic run dev"
   }
-
 }

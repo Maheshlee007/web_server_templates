@@ -146,7 +146,7 @@ importers:
         specifier: ^5.4.10
         version: 5.4.21(@types/node@24.10.1)(lightningcss@1.30.2)
 
-  packages/templates/react-ts-basic:
+  packages/templates/react19-ts-basic:
     dependencies:
       react:
         specifier: ^19.2.0
