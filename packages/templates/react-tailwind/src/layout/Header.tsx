@@ -1,52 +1,68 @@
-import { Bell, Settings } from 'lucide-react'
+import { Bell, Settings, Menu } from 'lucide-react'
 
 interface HeaderProps {
-  minimized?: boolean
+  onMenuToggle?: () => void
+  isMobile?: boolean
 }
 
-export default function Header({ minimized }: HeaderProps) {
+export default function Header({ onMenuToggle, isMobile }: HeaderProps) {
   return (
     <>
-      <header className="bg-background border-b border-border h-16 flex items-center px-6 shadow-sm">
+      <header className="bg-brand-50 border-b border-border-primary h-16 flex items-center px-4 sm:px-6 shadow-sm z-30 relative">
         <div className="flex items-center justify-between w-full gap-4">
-          {/* Left section - Logo */}
+          {/* Left section - Mobile menu + Logo */}
           <div className="flex items-center gap-3 min-w-fit">
-            <div className="h-8 w-8 bg-gradient-to-br from-primary to-blue-700 rounded-lg flex items-center justify-center flex-shrink-0">
-              <span className="text-primary-foreground font-bold text-sm">P</span>
+            {/* Mobile menu button */}
+            {isMobile && (
+              <button
+                onClick={onMenuToggle}
+                className="p-2 rounded-lg text-foreground hover:bg-interactive-hover transition-colors md:hidden"
+                aria-label="Toggle menu"
+              >
+                <Menu className="h-5 w-5" />
+              </button>
+            )}
+            
+            {/* Logo */}
+              <div className="h-9 w-9 bg-gradient-to-br from-primary-600 to-brand-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border-2 border-primary-600">
+                <span className="text-primary-foreground font-bold text-base">P</span>
+              </div>
+            <div className="hidden sm:block">
+              <h1 className="font-bold text-xl text-foreground">Project</h1>
+              <p className="text-xs text-text-muted -mt-1">Professional Dashboard</p>
             </div>
-            <span className="font-bold text-lg text-foreground hidden sm:inline whitespace-nowrap">Project</span>
           </div>
 
           {/* Right section - Actions & Avatar */}
-          <div className="flex items-center justify-end gap-2 ml-auto">
+          <div className="flex items-center justify-end gap-1 ml-auto">
             {/* Notifications */}
             <button
-              className="p-2 rounded-lg text-foreground hover:bg-accent transition-colors"
+              className="relative p-2.5 rounded-xl text-foreground hover:bg-interactive-hover transition-all duration-200 group"
               aria-label="Notifications"
             >
-              <Bell className="h-5 w-5" />
-              <span className="absolute top-3 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+              <Bell className="h-5 w-5 group-hover:scale-110 transition-transform" />
+              <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-danger-500 rounded-full ring-2 ring-surface-primary"></span>
             </button>
 
             {/* Settings */}
             <button
-              className="p-2 rounded-lg text-foreground hover:bg-accent transition-colors"
+              className="p-2.5 rounded-xl text-foreground hover:bg-interactive-hover transition-all duration-200 group"
               aria-label="Settings"
             >
-              <Settings className="h-5 w-5" />
+              <Settings className="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" />
             </button>
 
             {/* Divider */}
-            <div className="h-6 w-px bg-border mx-2"></div>
+            <div className="h-8 w-px bg-border-primary mx-3 hidden sm:block"></div>
 
-            {/* Avatar */}
+            {/* User Profile */}
             <div className="flex items-center gap-3">
-              <div className="text-right hidden sm:block">
-                <div className="text-sm font-medium text-foreground">Mahesh Lee</div>
-                <div className="text-xs text-gray-500">Admin</div>
+              <div className="text-right hidden md:block">
+                <div className="text-sm font-semibold text-foreground">Mahesh Lee</div>
+                <div className="text-xs text-text-muted">Administrator</div>
               </div>
               <button
-                className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground font-bold text-sm hover:opacity-80 transition-opacity flex-shrink-0"
+                className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-600 to-brand-500 flex items-center justify-center text-primary-foreground font-bold text-sm hover:shadow-lg hover:scale-105 transition-all duration-200 flex-shrink-0 border-2 border-primary-600"
                 aria-label="User menu"
               >
                 ML
@@ -56,29 +72,28 @@ export default function Header({ minimized }: HeaderProps) {
         </div>
       </header>
 
-      {/* Breadcrumbs & Title bar - shown only when not minimized */}
-      {!minimized && (
-        <div className="bg-background border-b border-border px-6 py-3 flex items-center">
-          <nav className="flex items-center space-x-2 text-sm">
-            <a href="#" className="text-foreground hover:text-primary transition-colors">
+      {/* Breadcrumbs Bar */}
+      <div className="bg-surface-secondary border-b border-border-primary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <nav className="flex items-center space-x-2 text-sm overflow-x-auto" aria-label="Breadcrumb">
+            <a 
+              href="#" 
+              className="text-text-secondary hover:text-primary-600 transition-colors whitespace-nowrap font-medium hover:underline"
+            >
               Home
             </a>
-            <span className="text-border">/</span>
-            <a href="#" className="text-foreground hover:text-primary transition-colors">
+            <span className="text-border-accent">/</span>
+            <a 
+              href="#" 
+              className="text-text-secondary hover:text-primary-600 transition-colors whitespace-nowrap font-medium hover:underline"
+            >
               Dashboard
             </a>
-            <span className="text-border">/</span>
-            <span className="text-gray-500">Current Page</span>
+            <span className="text-border-accent">/</span>
+            <span className="text-text-muted whitespace-nowrap">Current Page</span>
           </nav>
         </div>
-      )}
-
-      {/* Page Title bar - shown when minimized */}
-      {minimized && (
-        <div className="bg-background border-b border-border px-6 py-4 flex items-center">
-          <h1 className="text-lg font-semibold text-foreground">Current Page</h1>
-        </div>
-      )}
+      </div>
     </>
   )
 }

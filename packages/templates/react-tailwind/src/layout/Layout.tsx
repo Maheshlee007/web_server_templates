@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode, useState, useEffect } from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
@@ -7,29 +7,63 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
-  const [minimized, setMinimized] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false) // Start closed on mobile
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Check if screen is mobile size
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768
+      setIsMobile(mobile)
+      // Auto-close sidebar on mobile, auto-open on desktop
+      setSidebarOpen(!mobile)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Close sidebar when clicking outside on mobile
+  const handleOverlayClick = () => {
+    if (isMobile && sidebarOpen) {
+      setSidebarOpen(false)
+    }
+  }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
-      {/* Sidebar */}
-      <aside
-        className={`${
-          sidebarOpen ? 'w-64' : 'w-20'
-        } bg-card border-r border-border transition-all duration-300 overflow-hidden flex-shrink-0`}
-      >
-        <Sidebar sidebarOpen={sidebarOpen} onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
-      </aside>
-
+    <div className="flex flex-col w-full h-screen overflow-hidden bg-app-background">
+      {/* Header */}
+      <Header 
+        onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
+        isMobile={isMobile}
+      />
+      
       {/* Main content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <Header minimized={minimized} />
+      <div className="flex flex-1 overflow-hidden relative">
+        {/* Sidebar */}
+        <aside
+          className={`${
+            isMobile 
+              ? `fixed left-0 top-[calc(4rem+3.25rem)] h-[calc(100vh-7.25rem)] z-50 transform transition-transform duration-300 ${
+                  sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+                } w-64 shadow-xl`
+              : `${sidebarOpen ? 'w-64' : 'w-16'} transition-all duration-300`
+          } bg-surface-primary border-r border-border-primary overflow-hidden flex-shrink-0`}
+        >
+          <Sidebar 
+            sidebarOpen={sidebarOpen} 
+            onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+            isMobile={isMobile}
+          />
+        </aside>
 
-        {/* Main area */}
-        <main className="flex-1 overflow-y-auto bg-information-25">
-          <div className="container mx-auto px-4 py-8">
-            <div className="max-w-7xl mx-auto">{children}</div>
+        {/* Main content area */}
+        <main className="flex-1 overflow-y-auto bg-content-area">
+          <div className="p-4 sm:p-6 lg:p-8">
+            <div className="max-w-7xl mx-auto">
+              {children}
+            </div>
           </div>
         </main>
       </div>
