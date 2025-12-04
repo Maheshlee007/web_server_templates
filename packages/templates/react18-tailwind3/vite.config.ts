@@ -16,6 +16,6 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false, // Disable for production - set to true only for debugging
   },
 })
