@@ -1,12 +1,12 @@
 Phase 1: Foundation Setup
 ├── 1. Fix package.json & Install dependencies - done
 ├── 2. Configure Tailwind v4 properly - done
-├── 3. Set up design tokens (colors, spacing, typography)
-└── 4. Create base CSS structure
+├── 3. Set up design tokens (colors, spacing, typography)-done
+└── 4. Create base CSS structure -done
 
 Phase 2: Core UI Components
-├── 5. Button component (learn CVA pattern)
-├── 6. Card component
+├── 5. Button component (learn CVA pattern) - done
+├── 6. Card component -done
 ├── 7. Input & Form components
 └── 8. Modal/Dialog component
 
@@ -69,3 +69,20 @@ import cn from './utilCN';  // cn is always bundled
 
 // Named export - can be tree-shaken if unused
 import { cn } from './utilCN';  // Only bundled if actually used
+
+_________________
+y giving alias in both tsconfig(compile time) as well as vite (build time)is required
+"paths": {
+  "@config/*": [
+    "src/config/local/*",    // Priority 1: Local overrides
+    "src/config/default/*"   // Priority 2: Default configs
+  ]
+}"paths": {
+  "@shared/*": [
+    "../../packages/shared/src/*",  // Shared package
+    "src/shared/*"                   // Local fallback
+  ]
+}
+
+
+Why gradients don't work: Native <option> elements are rendered by the operating system (not the browser), so they only support basic CSS properties like background-color and color. Gradients, borders, padding variations, and complex styling are not supported by the OS-level dropdown rendering.

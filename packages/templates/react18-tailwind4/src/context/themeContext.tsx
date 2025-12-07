@@ -1,5 +1,5 @@
  import {createContext,useContext,useEffect,useState ,type ReactNode} from 'react';
- import { Theme,ThemeContextType } from '../types/theme';
+ import { Theme, ThemeContextType, ResolvedTheme } from '../types/theme';
 
  const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
@@ -8,28 +8,28 @@
      initialTheme?: Theme;
  }
 
- const getSystemTheme = (): 'light' | 'dark' => {
-    if(typeof window === 'undefined') return 'light';
+ const getSystemTheme = (): ResolvedTheme => {
+    if(typeof window === 'undefined') return 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';    
  }
 
 
 
- export function ThemeProvider({ children, initialTheme = 'system' }: ThemeProviderProps) {
+ export function ThemeProvider({ children, initialTheme = 'light' }: ThemeProviderProps) {
         const [theme, setThemeState] = useState<Theme>(initialTheme);
-        const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>(getSystemTheme());
+        const [systemTheme, setSystemTheme] = useState<ResolvedTheme>(getSystemTheme());
 
-        const resolvedTheme = theme=== 'system' ? systemTheme : theme;
+        const resolvedTheme = theme === 'system' ? systemTheme : theme;
 
-        const isDarkMode = resolvedTheme === 'dark';
+        const isDarkMode = resolvedTheme !== 'light' && resolvedTheme !== 'glass-light';
          // Apply theme to document
 
         useEffect(() => {
         const root = document.documentElement;
 
-        // Remove old theme
+        // Remove old theme classes
         root.removeAttribute('data-theme');
-        root.classList.remove('light', 'dark');
+        root.classList.remove('light', 'dark', 'glass-dark', 'glass-light', 'midnight', 'slate');
 
         // Apply new theme
         root.setAttribute('data-theme', resolvedTheme);
@@ -40,19 +40,32 @@
         }, [theme, resolvedTheme]);
 
         useEffect(()=>{
-            const mediaQuery = window.matchMedia('(prefers-color-scheme:dark');
-            const handgleChange=(e:MediaQueryListEvent)=>{
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            const handleChange = (e: MediaQueryListEvent) => {
                  setSystemTheme(e.matches ? 'dark' : 'light');
             }
-             mediaQuery.addEventListener('change',handgleChange);
+             mediaQuery.addEventListener('change', handleChange);
 
-            return ()=> mediaQuery.removeEventListener('change',handgleChange)
+            return () => mediaQuery.removeEventListener('change', handleChange)
         },[]);
           const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
   };
-       const toggleTheme = () => {
-    setThemeState((prevTheme) => (prevTheme === 'light')?'dark':'light');
+  
+  const toggleTheme = () => {
+    // Cycle through: dark -> light -> glass-dark -> dark
+    setThemeState((prevTheme) => {
+      const resolved = prevTheme === 'system' ? systemTheme : prevTheme;
+      switch (resolved) {
+        case 'dark': return 'light';
+        case 'light': return 'glass-dark';
+        case 'glass-dark': return 'glass-light';
+        case 'glass-light': return 'midnight';
+        case 'midnight': return 'slate';
+        case 'slate': return 'dark';
+        default: return 'dark';
+      }
+    });
   };
 
   const value:ThemeContextType = {

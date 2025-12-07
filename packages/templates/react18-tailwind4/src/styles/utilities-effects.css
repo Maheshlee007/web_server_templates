@@ -1,0 +1,236 @@
+/* ============================================
+   VISUAL EFFECTS & UTILITIES
+   WHY: Glow, gradient, spotlight, shimmer effects
+   USAGE: .glow, .text-gradient, .spotlight, .shimmer
+   ============================================ */
+
+/* ============================================
+   GLOW EFFECTS
+   ============================================ */
+@utility glow {
+  box-shadow: 0 0 20px var(--glow-primary),
+              0 0 40px var(--glow-primary);
+  transition: box-shadow var(--transition-normal);
+}
+
+@utility glow-accent {
+  box-shadow: 0 0 20px var(--glow-accent),
+              0 0 40px var(--glow-accent);
+  transition: box-shadow var(--transition-normal);
+}
+
+/* ============================================
+   TEXT & GRADIENT EFFECTS
+   ============================================ */
+@utility text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-brand),
+    var(--color-accent)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================
+   GRADIENT BORDER EFFECTS
+   ============================================ */
+@utility glow-border-before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    var(--color-brand),
+    var(--color-accent),
+    var(--color-brand)
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  animation: gradient-rotate 3s linear infinite;
+}
+
+@utility glow-border {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  &::before {
+    @apply glow-border-before;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Simple gradient border */
+.gradient-border {
+  position: relative;
+  isolation: isolate;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--color-brand),
+    var(--color-accent),
+    var(--color-brand)
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* Gradient border with glow + animation on hover */
+.gradient-border-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.gradient-border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--color-brand),
+    var(--color-accent),
+    var(--color-brand)
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.gradient-border-glow::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    var(--color-brand),
+    var(--color-accent),
+    var(--color-brand)
+  );
+  background-size: 200% 200%;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -2;
+}
+
+.gradient-border-glow:hover::before {
+  opacity: 1;
+  animation: gradient-shift 3s linear infinite;
+}
+
+.gradient-border-glow:hover::after {
+  opacity: 0.4;
+  animation: gradient-shift 3s linear infinite;
+}
+
+/* ============================================
+   SPOTLIGHT EFFECT
+   WHY: Highlight content area on hover
+   ============================================ */
+.spotlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    300px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+/* ============================================
+   SHIMMER EFFECT
+   WHY: Loading/highlight animation without continuous running
+   ============================================ */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.shimmer:hover::after {
+  animation: shimmer-slide 0.8s ease;
+}
+
+/* ============================================
+   ANIMATIONS FOR EFFECTS
+   ============================================ */
+@keyframes gradient-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer-slide {
+  to { left: 100%; }
+}

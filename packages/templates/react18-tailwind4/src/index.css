@@ -1,6 +1,17 @@
 @import "tailwindcss";
 
 /* ============================================
+   MODULAR UTILITY IMPORTS
+   WHY: Separate concerns, easy to maintain
+   HOW: Comment/uncomment to enable/disable features
+   ============================================ */
+@import "./styles/utilities-glass.css";
+@import "./styles/utilities-effects.css";
+@import "./styles/utilities-decorative.css";
+
+
+
+/* ============================================
    @theme - DESIGN TOKENS (Tailwind Utilities)
    WHY: These become Tailwind classes with autocomplete
    Usage: bg-primary-500, text-accent-600, etc.
@@ -98,28 +109,29 @@
    Reference @theme tokens for consistency
    ============================================ */
 :root {
-  /* ========== LIGHT THEME (Default) ========== */
+  /* ========== PROFESSIONAL LIGHT THEME (Default) ========== */
+  /* Clean white for daytime use */
 
   /* Mouse position for gradient follow (set via JS) */
   --mouse-x: 50%;
   --mouse-y: 50%;
 
-  /* Backgrounds - Layered hierarchy */
+  /* Backgrounds - Pure white with subtle grays */
   --color-bg: #ffffff;
-  --color-bg-secondary: #f8fafc;
-  --color-bg-tertiary: #f1f5f9;
+  --color-bg-secondary: #f8fafc; /* slate-50 */
+  --color-bg-tertiary: #f1f5f9; /* slate-100 */
 
-  /* Text - Clear hierarchy */
-  --color-text: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-muted: #94a3b8;
+  /* Text - Dark grays for readability */
+  --color-text: #0f172a; /* slate-900 */
+  --color-text-secondary: #475569; /* slate-600 */
+  --color-text-muted: #94a3b8; /* slate-400 */
 
   /* Borders */
-  --color-border: #e2e8f0;
-  --color-border-light: #f1f5f9;
+  --color-border: #e2e8f0; /* slate-200 */
+  --color-border-light: #f1f5f9; /* slate-100 */
 
   /* Brand Colors - Reference @theme */
-  --color-brand: var(--color-primary-500); /* #3b82f6 */
+  --color-brand: var(--color-primary-500);
   --color-brand-hover: var(--color-primary-600);
   --color-brand-active: var(--color-primary-700);
   --color-brand-light: var(--color-primary-50);
@@ -131,22 +143,27 @@
   --color-secondary-light: var(--color-secondary-100);
   --color-secondary-foreground: #ffffff;
 
-  /* Accent - Rose gold */
+  /* Accent */
   --color-accent: var(--color-accent-500);
   --color-accent-hover: var(--color-accent-600);
   --color-accent-light: var(--color-accent-50);
+  --color-accent-foreground: #ffffff;
 
   /* Status Colors */
   --color-success: var(--color-success-500);
   --color-success-light: var(--color-success-100);
+  --color-success-foreground: #ffffff;
   --color-warning: var(--color-warning-500);
   --color-warning-light: var(--color-warning-100);
+  --color-warning-foreground: #ffffff;
   --color-error: var(--color-error-500);
   --color-error-light: var(--color-error-100);
+  --color-error-foreground: #ffffff;
   --color-info: var(--color-info-500);
   --color-info-light: var(--color-info-100);
+  --color-info-foreground: #ffffff;
 
-  /* Glass Effect - Subtle in light mode */
+  /* Glass Effect - Subtle */
   --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(255, 255, 255, 0.3);
   --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
@@ -162,59 +179,65 @@
   --header-height: 4rem;
 }
 
-/* ========== DARK THEME (Glassmorphism) ========== */
+/* ========== DARK THEME ========== */
+/* Professional solid dark - high contrast */
 [data-theme="dark"] {
-  /* Backgrounds - Deep blue-black with gradient feel */
-  --color-bg: oklch(0.12 0.02 250.06 / 0.8); /* #0a0e1a */
-  --color-bg-secondary: oklch(0.16 0.028 250); /* #0f1419 */
-  --color-bg-tertiary: oklch(0.20 0.032 250); /* #141a25 */
+  /* Backgrounds - Deep blue-black solid colors */
+  --color-bg: #0f172a; /* slate-900 */
+  --color-bg-secondary: #1e293b; /* slate-800 */
+  --color-bg-tertiary: #334155; /* slate-700 */
 
-  /* Text - Soft white with slight warmth */
-  --color-text: oklch(0.96 0.006 240); /* #f1f5f9 */
-  --color-text-secondary: oklch(0.68 0.024 240); /* #94a3b8 */
-  --color-text-muted: oklch(0.52 0.024 240); /* #64748b */
+  /* Text - Clear hierarchy with warm whites */
+  --color-text: #f1f5f9; /* slate-100 */
+  --color-text-secondary: #cbd5e1; /* slate-300 */
+  --color-text-muted: #94a3b8; /* slate-400 */
 
-  /* Borders - Glass-like subtle edges */
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-light: rgba(255, 255, 255, 0.04);
+  /* Borders - Visible but subtle */
+  --color-border: rgba(148, 163, 184, 0.2); /* slate-400 20% */
+  --color-border-light: rgba(148, 163, 184, 0.1);
 
-  /* Brand Colors - Brighter for dark */
+  /* Brand Colors - Bright blue for dark bg */
   --color-brand: var(--color-primary-400); /* #60a5fa */
   --color-brand-hover: var(--color-primary-500);
   --color-brand-active: var(--color-primary-600);
   --color-brand-light: rgba(96, 165, 250, 0.15);
-  --color-brand-foreground: oklch(0.12 0.024 250);
+  --color-brand-foreground: #ffffff;
 
   /* Secondary */
   --color-secondary: var(--color-secondary-400);
   --color-secondary-hover: var(--color-secondary-300);
   --color-secondary-light: rgba(148, 163, 184, 0.1);
-  --color-secondary-foreground: oklch(0.12 0.024 250);
+  --color-secondary-foreground: #0f172a;
 
-  /* Accent - Rose gold glow */
-  --color-accent: var(--color-accent-400); /* #fb7185 */
+  /* Accent - Rose/Pink */
+  --color-accent: var(--color-accent-400);
   --color-accent-hover: var(--color-accent-500);
-  --color-accent-light: rgba(251, 113, 133, 0.15);
+  --color-accent-light: rgba(244, 63, 94, 0.15);
+  --color-accent-foreground: #ffffff;
 
-  /* Status Colors - Vivid for dark */
-  --color-success: oklch(0.72 0.162 155); /* #4ade80 */
-  --color-success-light: rgba(74, 222, 128, 0.15);
-  --color-warning: oklch(0.78 0.142 75); /* #fbbf24 */
-  --color-warning-light: rgba(251, 191, 36, 0.15);
-  --color-error: oklch(0.68 0.198 25); /* #f87171 */
-  --color-error-light: rgba(248, 113, 113, 0.15);
+  /* Status Colors */
+  --color-success: var(--color-success-500);
+  --color-success-light: rgba(34, 197, 94, 0.15);
+  --color-success-foreground: #ffffff;
+  --color-warning: var(--color-warning-500);
+  --color-warning-light: rgba(245, 158, 11, 0.15);
+  --color-warning-foreground: #ffffff;
+  --color-error: var(--color-error-500);
+  --color-error-light: rgba(239, 68, 68, 0.15);
+  --color-error-foreground: #ffffff;
   --color-info: var(--color-info-500);
   --color-info-light: rgba(14, 165, 233, 0.15);
+  --color-info-foreground: #ffffff;
 
-  /* Glass Effect - Prominent frosted glass */
-  --glass-bg: rgba(255, 255, 255, 0.05);
+  /* Glass Effect - Minimal (for optional use) */
+  --glass-bg: rgba(30, 41, 59, 0.6);
   --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  --glass-blur: 16px;
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-blur: 12px;
 
-  /* Glow colors - Vibrant for dark mode */
-  --glow-primary: rgba(96, 165, 250, 0.6);
-  --glow-accent: rgba(251, 113, 133, 0.6);
+  /* Glow colors */
+  --glow-primary: rgba(96, 165, 250, 0.5);
+  --glow-accent: rgba(244, 63, 94, 0.5);
 }
 
 /* ============================================
@@ -247,435 +270,13 @@
   }
 }
 
-/* ============================================
-   CUSTOM UTILITIES - Tailwind v4 Syntax
-   WHY: @utility instead of @layer utility
-   ============================================ */
-
-/* Glass Effect - Standard (no border - add separately if needed) */
-@utility glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  box-shadow: var(--glass-shadow);
-}
-
-/* Glass with default border - use when you want the standard glass look */
-@utility glass-bordered {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-}
-
-/* Glass Effect - Strong (more visible) */
-/* Glass Effect - Strong (more blur, more visible) */
-@utility glass-strong {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-/* Glass Effect - Light mode specific */
-@utility glass-light {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 
-    0 4px 24px rgba(0, 0, 0, 0.08),
-    0 1px 2px rgba(0, 0, 0, 0.04);
-}
-
-/* Glow Effect - Soft primary */
-@utility glow {
-  box-shadow: 0 0 20px var(--glow-primary),
-              0 0 40px var(--glow-primary);
-  transition: box-shadow var(--transition-normal);
-}
-
-/* Glow Effect - Accent (rose gold) */
-@utility glow-accent {
-  box-shadow: 0 0 20px var(--glow-accent),
-              0 0 40px var(--glow-accent);
-  transition: box-shadow var(--transition-normal);
-}
-
-/* Text Gradient */
-@utility text-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--color-brand),
-    var(--color-accent)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Animated Gradient Border */
-
-@utility glow-border-before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(
-    135deg,
-    var(--color-brand),
-    var(--color-accent),
-    var(--color-brand)
-  );
-  background-size: 200% 200%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  animation: gradient-rotate 3s linear infinite;
-}
-
-@utility glow-border {
-  position: relative;
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  &::before {
-    @apply glow-border-before;
-  }
-  &:hover::before {
-    opacity: 1;
-  }
-
-}
-
-
-@keyframes gradient-rotate {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Scrollbar utilities */
-@utility scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-
-
-@utility scrollbar-thin {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-brand) var(--color-bg-secondary);
-}
-
-@layer utilities { 
-  .scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
- .scrollbar-thin::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
-  border-radius: 3px;
-}
-
- .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--color-brand);
-  border-radius: 3px;
-}
-
- .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: var(--color-brand-hover);
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
 
 /* ============================================
-   ANIMATED GRADIENTS & DECORATIVE ELEMENTS
-   WHY: These provide background for glass effect visibility
+   OPTIONAL THEME IMPORTS
+   WHY: Modular themes - comment out unused themes
+   HOW: Uncomment the themes you want to use
    ============================================ */
-
-/* Animated Mesh Gradient Background */
-.bg-mesh {
-  background: 
-    radial-gradient(at 40% 20%, var(--color-primary-500) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, var(--color-accent-500) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, var(--color-primary-400) 0px, transparent 50%),
-    radial-gradient(at 80% 50%, var(--color-accent-400) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, var(--color-primary-600) 0px, transparent 50%),
-    radial-gradient(at 80% 100%, var(--color-accent-600) 0px, transparent 50%);
-}
-
-/* Animated Gradient Background */
-.bg-gradient-animated {
-  background: linear-gradient(
-    -45deg,
-    var(--color-primary-600),
-    var(--color-accent-500),
-    var(--color-primary-400),
-    var(--color-accent-600)
-  );
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Floating Blob - Decorative Gradient Orb */
-.blob {
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-  position: absolute;
-  animation: blob-float 7s ease-in-out infinite;
-}
-
-.blob-primary {
-  background: var(--color-primary-500);
-}
-
-.blob-accent {
-  background: var(--color-accent-500);
-}
-
-.blob-secondary {
-  background: var(--color-secondary-400);
-}
-
-@keyframes blob-float {
-  0%, 100% { 
-    transform: translate(0, 0) scale(1); 
-  }
-  33% { 
-    transform: translate(30px, -20px) scale(1.1); 
-  }
-  66% { 
-    transform: translate(-20px, 20px) scale(0.9); 
-  }
-}
-
-/* Staggered blob animations */
-.blob-delay-2s { animation-delay: 2s; }
-.blob-delay-4s { animation-delay: 4s; }
-
-/* ============================================
-   MOUSE-FOLLOW GRADIENT BACKGROUND
-   WHY: Creates dynamic, interactive background
-   Usage: Add .mouse-gradient to container, use JS to update --mouse-x/y
-   ============================================ */
-.mouse-gradient {
-  position: relative;
-}
-
-.mouse-gradient::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(96, 165, 250, 0.15),
-    transparent 40%
-  );
-  pointer-events: none;
-  z-index: 0;
-  transition: opacity 0.3s ease;
-}
-
-[data-theme="dark"] .mouse-gradient::before {
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(96, 165, 250, 0.1),
-    transparent 40%
-  );
-}
-
-/* ============================================
-   GRADIENT BORDER - With Animated Rotation
-   WHY: Smooth rotating gradient effect on hover
-   ============================================ */
-.gradient-border {
-  position: relative;
-  isolation: isolate;
-}
-
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    var(--color-brand),
-    var(--color-accent),
-    var(--color-brand)
-  );
-  background-size: 200% 200%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
-}
-
-/* Gradient border with glow + animation on hover */
-.gradient-border-glow {
-  position: relative;
-  isolation: isolate;
-}
-
-.gradient-border-glow::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    var(--color-brand),
-    var(--color-accent),
-    var(--color-brand)
-  );
-  background-size: 200% 200%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-
-/* Glow layer - blurred version behind */
-.gradient-border-glow::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    var(--color-brand),
-    var(--color-accent),
-    var(--color-brand)
-  );
-  background-size: 200% 200%;
-  filter: blur(8px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -2;
-}
-
-.gradient-border-glow:hover::before {
-  opacity: 1;
-  animation: gradient-shift 3s linear infinite;
-}
-
-.gradient-border-glow:hover::after {
-  opacity: 0.4;
-  animation: gradient-shift 3s linear infinite;
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Animated Gradient Border */
-
-
-
-/* ============================================
-   GRADIENT CARD BACKGROUNDS (from Reference 1)
-   WHY: Premium card look with diagonal gradients
-   ============================================ */
-.bg-card-gradient {
-  background: linear-gradient(to top right, rgb(7, 16, 45), rgb(58, 60, 84));
-  border: 1px solid rgb(84, 90, 106);
-}
-
-.bg-card-gradient-dark {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* ============================================
-   SPOTLIGHT EFFECT
-   WHY: Highlight content area on hover
-   ============================================ */
-.spotlight {
-  position: relative;
-  overflow: hidden;
-}
-
-.spotlight::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    300px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.06),
-    transparent 40%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.spotlight:hover::after {
-  opacity: 1;
-}
-
-/* ============================================
-   SHIMMER EFFECT
-   WHY: Loading/highlight animation without continuous running
-   ============================================ */
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.shimmer::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  pointer-events: none;
-}
-
-.shimmer:hover::after {
-  animation: shimmer-slide 0.8s ease;
-}
-
-@keyframes shimmer-slide {
-  to { left: 100%; }
-}
-}
+@import "./styles/themes/glass-dark.css";
+@import "./styles/themes/glass-light.css";
+@import "./styles/themes/midnight.css";
+@import "./styles/themes/slate.css";

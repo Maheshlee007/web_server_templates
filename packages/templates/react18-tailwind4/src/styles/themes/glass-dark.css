@@ -1,0 +1,60 @@
+/* ========== GLASS DARK THEME ========== */
+/* Glassmorphism with blue-black transparency - eye candy */
+[data-theme="glass-dark"] {
+  /* Backgrounds - Translucent blue-black */
+  --color-bg: rgba(10, 14, 26, 0.8); /* Semi-transparent dark blue */
+  --color-bg-secondary: rgba(15, 20, 25, 0.85);
+  --color-bg-tertiary: rgba(20, 26, 37, 0.9);
+
+  /* Text - Soft whites */
+  --color-text: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+
+  /* Borders - Glass-like */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.04);
+
+  /* Brand Colors - Bright blue */
+  --color-brand: var(--color-primary-400);
+  --color-brand-hover: var(--color-primary-500);
+  --color-brand-active: var(--color-primary-600);
+  --color-brand-light: rgba(96, 165, 250, 0.15);
+  --color-brand-foreground: #ffffff;
+
+  /* Secondary */
+  --color-secondary: var(--color-secondary-400);
+  --color-secondary-hover: var(--color-secondary-300);
+  --color-secondary-light: rgba(148, 163, 184, 0.1);
+  --color-secondary-foreground: #0f172a;
+
+  /* Accent - Rose glow */
+  --color-accent: var(--color-accent-400);
+  --color-accent-hover: var(--color-accent-500);
+  --color-accent-light: rgba(251, 113, 133, 0.15);
+  --color-accent-foreground: #ffffff;
+
+  /* Status Colors */
+  --color-success: #4ade80;
+  --color-success-light: rgba(74, 222, 128, 0.15);
+  --color-success-foreground: #ffffff;
+  --color-warning: #fbbf24;
+  --color-warning-light: rgba(251, 191, 36, 0.15);
+  --color-warning-foreground: #ffffff;
+  --color-error: #f87171;
+  --color-error-light: rgba(248, 113, 113, 0.15);
+  --color-error-foreground: #ffffff;
+  --color-info: var(--color-info-500);
+  --color-info-light: rgba(14, 165, 233, 0.15);
+  --color-info-foreground: #ffffff;
+
+  /* Glass Effect - Prominent */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --glass-blur: 16px;
+
+  /* Glow colors - Vibrant */
+  --glow-primary: rgba(96, 165, 250, 0.6);
+  --glow-accent: rgba(251, 113, 133, 0.6);
+}

@@ -1,0 +1,60 @@
+/* ========== MIDNIGHT THEME ========== */
+/* True black OLED-friendly with purple accent */
+[data-theme="midnight"] {
+  /* Backgrounds - Pure black for OLED */
+  --color-bg: #000000;
+  --color-bg-secondary: #0a0a0a;
+  --color-bg-tertiary: #141414;
+
+  /* Text - Soft white/gray */
+  --color-text: #e5e7eb; /* gray-200 */
+  --color-text-secondary: #9ca3af; /* gray-400 */
+  --color-text-muted: #6b7280; /* gray-500 */
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-light: rgba(255, 255, 255, 0.05);
+
+  /* Brand Colors - Purple/Violet instead of blue */
+  --color-brand: #a78bfa; /* violet-400 */
+  --color-brand-hover: #8b5cf6; /* violet-500 */
+  --color-brand-active: #7c3aed; /* violet-600 */
+  --color-brand-light: rgba(167, 139, 250, 0.15);
+  --color-brand-foreground: #ffffff;
+
+  /* Secondary */
+  --color-secondary: #6b7280; /* gray-500 */
+  --color-secondary-hover: #9ca3af; /* gray-400 */
+  --color-secondary-light: rgba(107, 114, 128, 0.15);
+  --color-secondary-foreground: #ffffff;
+
+  /* Accent - Cyan */
+  --color-accent: #22d3ee; /* cyan-400 */
+  --color-accent-hover: #06b6d4; /* cyan-500 */
+  --color-accent-light: rgba(34, 211, 238, 0.15);
+  --color-accent-foreground: #000000;
+
+  /* Status Colors */
+  --color-success: #34d399; /* emerald-400 */
+  --color-success-light: rgba(52, 211, 153, 0.15);
+  --color-success-foreground: #000000;
+  --color-warning: #fbbf24; /* amber-400 */
+  --color-warning-light: rgba(251, 191, 36, 0.15);
+  --color-warning-foreground: #000000;
+  --color-error: #f87171; /* red-400 */
+  --color-error-light: rgba(248, 113, 113, 0.15);
+  --color-error-foreground: #ffffff;
+  --color-info: #38bdf8; /* sky-400 */
+  --color-info-light: rgba(56, 189, 248, 0.15);
+  --color-info-foreground: #000000;
+
+  /* Glass Effect - Minimal (not main feature) */
+  --glass-bg: rgba(20, 20, 20, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --glass-blur: 12px;
+
+  /* Glow colors - Purple/Cyan */
+  --glow-primary: rgba(167, 139, 250, 0.6);
+  --glow-accent: rgba(34, 211, 238, 0.6);
+}

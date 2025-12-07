@@ -4,6 +4,7 @@ import  {ThemeProvider} from '@/context/themeContext'
 
 import './index.css'
 import App from './App.tsx'
+// import "./styles/themes/slate.css";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,0 +1,60 @@
+/* ========== GLASS LIGHT THEME ========== */
+/* Light glassmorphism with soft transparency */
+[data-theme="glass-light"] {
+  /* Backgrounds - Soft white with transparency */
+  --color-bg: rgba(255, 255, 255, 0.7);
+  --color-bg-secondary: rgba(248, 250, 252, 0.8);
+  --color-bg-tertiary: rgba(241, 245, 249, 0.85);
+
+  /* Text */
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+
+  /* Borders */
+  --color-border: rgba(226, 232, 240, 0.6);
+  --color-border-light: rgba(241, 245, 249, 0.4);
+
+  /* Brand Colors */
+  --color-brand: var(--color-primary-600);
+  --color-brand-hover: var(--color-primary-700);
+  --color-brand-active: var(--color-primary-800);
+  --color-brand-light: rgba(59, 130, 246, 0.1);
+  --color-brand-foreground: #ffffff;
+
+  /* Secondary */
+  --color-secondary: var(--color-secondary-600);
+  --color-secondary-hover: var(--color-secondary-700);
+  --color-secondary-light: rgba(100, 116, 139, 0.1);
+  --color-secondary-foreground: #ffffff;
+
+  /* Accent */
+  --color-accent: var(--color-accent-600);
+  --color-accent-hover: var(--color-accent-700);
+  --color-accent-light: rgba(244, 63, 94, 0.1);
+  --color-accent-foreground: #ffffff;
+
+  /* Status Colors */
+  --color-success: var(--color-success-600);
+  --color-success-light: rgba(22, 163, 74, 0.1);
+  --color-success-foreground: #ffffff;
+  --color-warning: var(--color-warning-600);
+  --color-warning-light: rgba(217, 119, 6, 0.1);
+  --color-warning-foreground: #ffffff;
+  --color-error: var(--color-error-600);
+  --color-error-light: rgba(220, 38, 38, 0.1);
+  --color-error-foreground: #ffffff;
+  --color-info: var(--color-info-600);
+  --color-info-light: rgba(2, 132, 199, 0.1);
+  --color-info-foreground: #ffffff;
+
+  /* Glass Effect - Strong blur */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  --glass-blur: 14px;
+
+  /* Glow colors */
+  --glow-primary: rgba(37, 99, 235, 0.4);
+  --glow-accent: rgba(225, 29, 72, 0.4);
+}

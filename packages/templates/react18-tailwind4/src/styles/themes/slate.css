@@ -1,0 +1,60 @@
+/* ========== SLATE THEME ========== */
+/* Warm gray corporate with amber accent */
+[data-theme="slate"] {
+  /* Backgrounds - Warm neutral grays */
+  --color-bg: #1c1917; /* stone-900 */
+  --color-bg-secondary: #292524; /* stone-800 */
+  --color-bg-tertiary: #44403c; /* stone-700 */
+
+  /* Text - Warm whites */
+  --color-text: #fafaf9; /* stone-50 */
+  --color-text-secondary: #d6d3d1; /* stone-300 */
+  --color-text-muted: #a8a29e; /* stone-400 */
+
+  /* Borders */
+  --color-border: rgba(168, 162, 158, 0.2);
+  --color-border-light: rgba(168, 162, 158, 0.1);
+
+  /* Brand Colors - Amber/Orange warm tones */
+  --color-brand: #fbbf24; /* amber-400 */
+  --color-brand-hover: #f59e0b; /* amber-500 */
+  --color-brand-active: #d97706; /* amber-600 */
+  --color-brand-light: rgba(251, 191, 36, 0.15);
+  --color-brand-foreground: #1c1917;
+
+  /* Secondary */
+  --color-secondary: #a8a29e; /* stone-400 */
+  --color-secondary-hover: #d6d3d1; /* stone-300 */
+  --color-secondary-light: rgba(168, 162, 158, 0.15);
+  --color-secondary-foreground: #1c1917;
+
+  /* Accent - Teal */
+  --color-accent: #2dd4bf; /* teal-400 */
+  --color-accent-hover: #14b8a6; /* teal-500 */
+  --color-accent-light: rgba(45, 212, 191, 0.15);
+  --color-accent-foreground: #1c1917;
+
+  /* Status Colors */
+  --color-success: #34d399; /* emerald-400 */
+  --color-success-light: rgba(52, 211, 153, 0.15);
+  --color-success-foreground: #1c1917;
+  --color-warning: #fb923c; /* orange-400 */
+  --color-warning-light: rgba(251, 146, 60, 0.15);
+  --color-warning-foreground: #1c1917;
+  --color-error: #f87171; /* red-400 */
+  --color-error-light: rgba(248, 113, 113, 0.15);
+  --color-error-foreground: #ffffff;
+  --color-info: #60a5fa; /* blue-400 */
+  --color-info-light: rgba(96, 165, 250, 0.15);
+  --color-info-foreground: #1c1917;
+
+  /* Glass Effect - Minimal */
+  --glass-bg: rgba(41, 37, 36, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --glass-blur: 12px;
+
+  /* Glow colors - Warm tones */
+  --glow-primary: rgba(251, 191, 36, 0.5);
+  --glow-accent: rgba(45, 212, 191, 0.5);
+}
