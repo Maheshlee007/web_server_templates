@@ -27,6 +27,8 @@
   --color-secondary-hover: #d6d3d1; /* stone-300 */
   --color-secondary-light: rgba(168, 162, 158, 0.15);
   --color-secondary-foreground: #1c1917;
+  --color-surface: rgba(30, 41, 59, 0.95); /* Dropdown/popover background with slight transparency */
+  --color-surface-hover: #334155; /* slate-700 - hover state for menu items */
 
   /* Accent - Teal */
   --color-accent: #2dd4bf; /* teal-400 */

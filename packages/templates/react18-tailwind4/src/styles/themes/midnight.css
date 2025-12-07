@@ -27,6 +27,9 @@
   --color-secondary-hover: #9ca3af; /* gray-400 */
   --color-secondary-light: rgba(107, 114, 128, 0.15);
   --color-secondary-foreground: #ffffff;
+--color-surface: rgba(30, 41, 59, 0.95); /* Dropdown/popover background with slight transparency */
+  --color-surface-hover: #334155; /* slate-700 - hover state for menu items */
+
 
   /* Accent - Cyan */
   --color-accent: #22d3ee; /* cyan-400 */

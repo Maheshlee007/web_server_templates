@@ -27,6 +27,8 @@
   --color-secondary-hover: var(--color-secondary-300);
   --color-secondary-light: rgba(148, 163, 184, 0.1);
   --color-secondary-foreground: #0f172a;
+    --color-surface: rgba(30, 41, 59, 0.95); /* Dropdown/popover background with slight transparency */
+  --color-surface-hover: #334155; /* slate-700 - hover state for menu items */
 
   /* Accent - Rose glow */
   --color-accent: var(--color-accent-400);

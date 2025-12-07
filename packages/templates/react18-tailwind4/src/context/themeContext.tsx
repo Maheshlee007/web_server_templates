@@ -48,7 +48,8 @@
 
             return () => mediaQuery.removeEventListener('change', handleChange)
         },[]);
-          const setTheme = (newTheme: Theme) => {
+
+const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
   };
   
