@@ -86,3 +86,19 @@ y giving alias in both tsconfig(compile time) as well as vite (build time)is req
 
 
 Why gradients don't work: Native <option> elements are rendered by the operating system (not the browser), so they only support basic CSS properties like background-color and color. Gradients, borders, padding variations, and complex styling are not supported by the OS-level dropdown rendering.
+
+src/components/Layout/
+├── AppLayout/
+│   ├── AppLayout.tsx           ← Main wrapper (orchestrator)
+│   ├── AppLayoutProvider.tsx   ← Context for layout state
+│   └── useLayout.ts            ← Custom hook
+├── TopNav/
+│   ├── TopNavBar.tsx           ← All top nav logic (logo, menu, user)
+│   └── TopNavUser.tsx          ← User dropdown (extracted for clarity)
+├── SideNav/
+│   ├── SideNavBar.tsx          ← Single sidebar (handles open/closed/mini)
+│   ├── SideNavItem.tsx         ← Nav item with children support
+│   └── SideNavMobile.tsx       ← Mobile drawer (uses SideNavBar internally)
+├── Breadcrumbs/
+│   └── Breadcrumbs.tsx         ← Separate component
+└── types.ts                    ← Shared TypeScript types

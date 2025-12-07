@@ -120,6 +120,8 @@
   --color-bg: #ffffff;
   --color-bg-secondary: #f8fafc; /* slate-50 */
   --color-bg-tertiary: #f1f5f9; /* slate-100 */
+  --color-surface: rgba(255, 255, 255, 0.95); /* Dropdown/popover background with slight transparency */
+  --color-surface-hover: #f1f5f9; /* slate-100 - hover state for menu items */
 
   /* Text - Dark grays for readability */
   --color-text: #0f172a; /* slate-900 */
@@ -186,6 +188,8 @@
   --color-bg: #0f172a; /* slate-900 */
   --color-bg-secondary: #1e293b; /* slate-800 */
   --color-bg-tertiary: #334155; /* slate-700 */
+  --color-surface: rgba(30, 41, 59, 0.95); /* Dropdown/popover background with slight transparency */
+  --color-surface-hover: #334155; /* slate-700 - hover state for menu items */
 
   /* Text - Clear hierarchy with warm whites */
   --color-text: #f1f5f9; /* slate-100 */

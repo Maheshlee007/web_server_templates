@@ -1,6 +1,6 @@
 import { forwardRef, useState, ReactNode, InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { cn } from '@/utils/utilCN';
+import { cn } from '@/utils/utilsCN';
 
 type InputType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url';
 

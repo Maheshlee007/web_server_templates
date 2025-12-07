@@ -9,6 +9,7 @@ import Layout from "./layout/Layout";
 import Referencepage from "./pages/Referencepage";
 import TestComp from "./pages/test";
 import ComponentTest from "./pages/ComponentTest";
+import { AppLayoutProvider } from "./layout/AppLayout/AppLayoutProvider";
 
 function App() {
   // const { theme, resolvedTheme, setTheme } = useTheme();
@@ -33,6 +34,8 @@ function App() {
       </div>
 
       <Router>
+      <AppLayoutProvider variant="top-only" sidebarBehavior="push" nestedNavStyle="accordion">
+        {/* <TopNavBar/> */}
         <Layout>
           <Routes>
             <Route path="/" element={<ComponentTest/>} />
@@ -40,6 +43,7 @@ function App() {
             <Route path="/reference" element={<Referencepage />} />
           </Routes>
         </Layout>
+        </AppLayoutProvider>
       </Router>
     </>
   );

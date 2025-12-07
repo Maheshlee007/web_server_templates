@@ -1,7 +1,7 @@
 // filepath: d:\web_server_templates\packages\templates\react18-tailwind4\src\components\UI\Card\Card.tsx
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/utils/utilCN';
+import { cn } from '@/utils/utilsCN';
 
 const cardStyles = cva(
   // Base styles

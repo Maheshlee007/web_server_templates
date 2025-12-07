@@ -1,7 +1,7 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import { ReactNode } from 'react';
-import { cn } from '@/utils/utilCN';
+import { cn } from '@/utils/utilsCN';
 
 type DialogPosition = 'center' | 'top' | 'bottom' | 'left' | 'right';
 type DialogSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';

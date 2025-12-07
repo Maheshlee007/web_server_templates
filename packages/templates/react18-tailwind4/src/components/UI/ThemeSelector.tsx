@@ -1,6 +1,6 @@
 import { useTheme } from '../../context/themeContext';
 import type { Theme } from '../../types/theme';
-import { Select, SelectOption } from './radix';
+import { Dropdown, SelectOption } from './radix';
 
 const themeOptions: SelectOption[] = [
   { 
@@ -55,7 +55,7 @@ export function ThemeSelector() {
   };
 
   return (
-    <Select
+    <Dropdown
       value={theme}
       onValueChange={handleChange}
       options={themeOptions}

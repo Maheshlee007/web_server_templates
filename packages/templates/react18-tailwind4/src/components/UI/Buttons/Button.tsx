@@ -1,6 +1,6 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/utils/utilCN';
+import { cn } from '@/utils/utilsCN';
 
 // CVA: Define all button variants in one place
 const buttonStyles = cva(
