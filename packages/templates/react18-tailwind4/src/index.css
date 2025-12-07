@@ -248,6 +248,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: none !important;
   }
 
   body {
@@ -280,3 +281,8 @@
 @import "./styles/themes/glass-light.css";
 @import "./styles/themes/midnight.css";
 @import "./styles/themes/slate.css";
+
+* ,.scrollbar-thin >* {
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--color-brand) var(--color-bg-secondary);
+}
