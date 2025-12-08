@@ -35,6 +35,8 @@ function App() {
 
       <Router>
       <AppLayoutProvider variant="top-only" sidebarBehavior="push" nestedNavStyle="accordion">
+      {/* <AppLayoutProvider variant="sidebar-hidden" sidebarBehavior="overlay" nestedNavStyle="popover"> */}
+      {/* <AppLayoutProvider variant="sidebar-persistent" sidebarBehavior="overlay" nestedNavStyle="accordion"> */}
         {/* <TopNavBar/> */}
         <Layout>
           <Routes>

@@ -290,3 +290,13 @@
   scrollbar-width: thin !important;
   scrollbar-color: var(--color-brand) var(--color-bg-secondary);
 }
+
+/* Hidden scrollbar utility - maintains functionality but hides visual scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}

@@ -44,6 +44,7 @@ export function TopNavBar({
   const handleMenuToggle = () => {
     // Mobile: toggle mobile menu
     if (window.innerWidth < 1024) {
+      // debugger
       toggleMobileMenu();
     } else {
       // Desktop: toggle sidebar
@@ -81,7 +82,7 @@ export function TopNavBar({
               {logo}
               
             </Link>
-          ) : <div className="h-8 w-8 rounded-full bg-(--color-brand) flex items-center justify-center text-white text-sm font-medium bg-gradient-to-br from-purple-500 to-indigo-600">
+          ) : <div className="h-8 w-8 rounded-full bg-(--color-brand) flex items-center justify-center text-white text-sm font-medium bg-gradient-to-br from-(--color-bg) to-(--color-accent)">
           {title?.charAt(0).toUpperCase()}
         </div>}
         {title && (

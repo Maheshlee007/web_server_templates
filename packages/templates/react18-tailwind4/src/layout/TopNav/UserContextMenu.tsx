@@ -6,6 +6,7 @@ import { LogOut } from "lucide-react";
 /**
  * UserContextMenu - Specialized context menu for user profiles
  */
+
 export function UserContextMenu({
   user,
   menuItems = [],

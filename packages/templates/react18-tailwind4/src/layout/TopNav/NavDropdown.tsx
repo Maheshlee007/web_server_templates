@@ -142,7 +142,7 @@ export function NavDropdown({ item, level = 0 }: NavDropdownProps) {
   if (isTopLevel) {
     return (
       <DropdownMenu.Root>
-        <div className="flex items-center">
+        <div className="flex items-center ">
           {/* Main button - navigates to route */}
           {item.path ? (
             <Link

@@ -68,7 +68,7 @@ export type SidebarBehavior = "push" | "overlay";
 /**
  * Nested navigation style
  */
-export type NestedNavStyle = "accordion" | "popover";
+export type NestedNavStyle = "accordion" | "popover" |"hybrid";
 
 /**
  * Main AppLayout props
