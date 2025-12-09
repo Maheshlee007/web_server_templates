@@ -1,23 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useTheme } from "@/context/themeContext";
 
-import { useMousePosition } from "@/hooks/useMousePosition";
-import { Moon, Sun, Monitor } from "lucide-react";
 
-import Layout from "./layout/Layout";
 import Referencepage from "./pages/Referencepage";
 import TestComp from "./pages/test";
 import ComponentTest from "./pages/ComponentTest";
 import { AppLayoutProvider } from "./layout/AppLayout/AppLayoutProvider";
+import { AppLayout } from "./layout/AppLayout";
 
 function App() {
-  // const { theme, resolvedTheme, setTheme } = useTheme();
-
-  const themeIcons = {
-    light: <Sun size={18} />,
-    dark: <Moon size={18} />,
-    system: <Monitor size={18} />,
+  const handleLogout = () => {
+    console.log('Logging out...');
+    // Add your logout logic here
   };
 
   return (
@@ -34,17 +28,25 @@ function App() {
       </div>
 
       <Router>
-      <AppLayoutProvider variant="top-only" sidebarBehavior="push" nestedNavStyle="accordion">
-      {/* <AppLayoutProvider variant="sidebar-hidden" sidebarBehavior="overlay" nestedNavStyle="popover"> */}
-      {/* <AppLayoutProvider variant="sidebar-persistent" sidebarBehavior="overlay" nestedNavStyle="accordion"> */}
-        {/* <TopNavBar/> */}
-        <Layout>
-          <Routes>
-            <Route path="/" element={<ComponentTest/>} />
-            <Route path="/basic" element={<TestComp/>} />
-            <Route path="/reference" element={<Referencepage />} />
-          </Routes>
-        </Layout>
+        <AppLayoutProvider 
+          variant="sidebar-persistent"          
+          title="My Project"
+          user={{ name: 'Mahesh Lee', email: 'ML@info.com' }}
+          onLogout={handleLogout}
+        >
+          {/* 
+            Variant options:
+            - "top-only": Only top navigation (center nav items)
+            - "sidebar-hidden": Sidebar toggleable with menu icon  
+            - "sidebar-persistent": Sidebar always visible with mini mode
+          */}
+          <AppLayout>
+            <Routes>
+              <Route path="/" element={<ComponentTest/>} />
+              <Route path="/basic" element={<TestComp/>} />
+              <Route path="/reference" element={<Referencepage />} />
+            </Routes>
+          </AppLayout>
         </AppLayoutProvider>
       </Router>
     </>

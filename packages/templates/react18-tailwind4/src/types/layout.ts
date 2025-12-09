@@ -78,7 +78,7 @@ export interface AppLayoutProps {
   variant: LayoutVariant;
 
   // Navigation
-  navItems: NavItem[];
+  navItems?: NavItem[];
   topNavItems?: NavItem[];
 
   // Sidebar configuration
@@ -89,6 +89,8 @@ export interface AppLayoutProps {
 
   // Top navigation
   logo?: ReactNode;
+  title?: string;
+  description?: string;
   showTopNavMenu?: boolean;
   showSearch?: boolean;
 
@@ -96,6 +98,10 @@ export interface AppLayoutProps {
   user?: UserConfig;
   userMenuItems?: MenuItem[];
   onLogout?: () => void;
+
+  // Custom sections
+  sidebarHeader?: ReactNode;
+  sidebarFooter?: ReactNode;
 
   // Content
   children: ReactNode;
@@ -118,15 +124,19 @@ export interface LayoutContextState {
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (open: boolean) => void;
 
-  //togglestate
+  // Toggle actions
   toggleSidebar: () => void;
   toggleSidebarMini: () => void;
   toggleMobileMenu: () => void;
 
-  // Variant
+  // Layout config
   variant: LayoutVariant;
-
-  // Sidebar config
-  sidebarBehavior: SidebarBehavior;
   nestedNavStyle: NestedNavStyle;
+  sidebarCollapsible: boolean;
+  sidebarBehavior: SidebarBehavior;
+  // App-specific config
+  logo?: ReactNode;
+  title?: string;
+  user?: UserConfig;
+  onLogout?: () => void;
 }

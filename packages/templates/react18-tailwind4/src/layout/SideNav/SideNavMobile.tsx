@@ -1,15 +1,13 @@
 import { X } from 'lucide-react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { cn } from '@/utils/utilsCN';
+import { useLayout } from '../AppLayout/AppLayoutProvider';
 import { SideNavItem } from './SideNavItem';
+import { SidebarFooter } from './SidebarFooter';
 import type { NavItem } from '@/types/layout';
 
 interface SideNavMobileProps {
-  items: NavItem[];
-  isOpen: boolean;
-  onClose: () => void;
-  header?: React.ReactNode;
-  footer?: React.ReactNode;
+  items?: NavItem[];
   position?: 'left' | 'right';
 }
 
@@ -20,19 +18,19 @@ interface SideNavMobileProps {
  * - Full-screen drawer on mobile
  * - Always uses accordion style (no popover on mobile)
  * - Scrollable navigation with hidden scrollbar
- * - Custom header/footer sections
+ * - Built-in header and footer
  * - Backdrop overlay
  */
 export function SideNavMobile({
   items,
-  isOpen,
-  onClose,
-  header,
-  footer,
   position = 'left',
 }: SideNavMobileProps) {
+  const { mobileMenuOpen, toggleMobileMenu } = useLayout();
+  
+  const navigationItems = items || [];
+
   return (
-    <Dialog.Root open={isOpen} onOpenChange={onClose}>
+    <Dialog.Root open={mobileMenuOpen} onOpenChange={toggleMobileMenu}>
       <Dialog.Portal>
         {/* Backdrop */}
         <Dialog.Overlay
@@ -60,10 +58,8 @@ export function SideNavMobile({
           )}
         >
           {/* Header Section */}
-          <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 border-b border-(--color-border)">
-            {header || (
-              <h2 className="text-lg font-semibold text-(--color-text)">Menu</h2>
-            )}
+          <div className="shrink-0 flex items-center justify-between px-4 py-4 border-b border-(--color-border)">
+            <h2 className="text-lg font-semibold text-(--color-text)">Menu</h2>
             <Dialog.Close asChild>
               <button
                 className={cn(
@@ -87,24 +83,22 @@ export function SideNavMobile({
               'py-4 px-3 space-y-1'
             )}
           >
-            {items.map(item => (
+            {navigationItems.map(item => (
               <SideNavItem
                 key={item.id}
                 item={item}
                 level={0}
                 nestedNavStyle="accordion" // Always accordion on mobile
                 isMini={false}
-                onItemClick={onClose} // Close drawer on navigation
+                onItemClick={toggleMobileMenu} // Close drawer on navigation
               />
             ))}
           </nav>
 
-          {/* Footer Section - Settings, Logout, etc. */}
-          {footer && (
-            <div className="flex-shrink-0 px-4 py-4 border-t border-(--color-border)">
-              {footer}
-            </div>
-          )}
+          {/* Footer Section */}
+          <div className="shrink-0 px-4 py-4 border-t border-(--color-border)">
+            <SidebarFooter />
+          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

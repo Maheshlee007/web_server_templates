@@ -1,5 +1,6 @@
-import { Menu, Search, MoonStar, Sun } from 'lucide-react';
+import { Menu, MoonStar, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { cn } from '@/utils/utilsCN';
 import { useLayout } from '../AppLayout/AppLayoutProvider';
 import { useTheme } from '@/context/themeContext';
@@ -13,61 +14,85 @@ interface TopNavBarProps {
   topNavItems?: NavItem[];
   showTopNavMenu?: boolean;
   title?: string;
-  description?: string;
   
   // User config
   user?: UserConfig;
   userMenuItems?: MenuItem[];
   onLogout?: () => void;
-  
-  // Features
-  showSearch?: boolean;
-  
-  // Mobile menu toggle
-  showMenuToggle?: boolean;
 }
 
 export function TopNavBar({
   logo,
   title,
-  description,
   topNavItems = [],
   showTopNavMenu = false,
-  user={name:'Mahesh Lee', email:'ML@info.com'},
+  user,
   userMenuItems = [],
   onLogout,
-  showSearch = true,
-  showMenuToggle = false,
 }: TopNavBarProps) {
-  const { variant, toggleMobileMenu, toggleSidebar, isSidebarOpen } = useLayout();
+  const { variant, toggleMobileMenu, toggleSidebar } = useLayout();
   const { setTheme, isDarkMode } = useTheme();
-  const handleMenuToggle = () => {
-    // Mobile: toggle mobile menu
-    if (window.innerWidth < 1024) {
-      // debugger
-      toggleMobileMenu();
-    } else {
-      // Desktop: toggle sidebar
-      toggleSidebar();
-    }
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  
+  // Track screen size for proper mobile/desktop detection
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  // Mobile handler: Always opens mobile drawer
+  const handleMobileMenuToggle = () => {
+    // alert('handleMobileMenuToggle called');
+    toggleMobileMenu();
   };
+  
+  // Desktop handler: Toggles sidebar (for sidebar-hidden only)
+  const handleDesktopMenuToggle = () => {
+    toggleSidebar();
+  };
+
+  // Determine when to show menu icons
+  // Mobile: Always show menu icon for drawer (all variants)
+  const showMobileIcon = isMobile && (variant === 'sidebar-hidden' || variant === 'sidebar-persistent' || variant === 'top-only');
+  // Desktop: Show menu icon only for sidebar-hidden variant
+  const showDesktopIcon = !isMobile && variant === 'sidebar-hidden';
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-(--color-border) bg-(--color-bg) backdrop-blur supports-[backdrop-filter]:bg-(--color-bg)/95">
       <div className="flex h-16 justify-between items-center gap-4 px-4 lg:px-6">
         {/* Left Section: Menu Toggle + Logo */}
         <div className="flex items-center gap-3">
-          {/* Menu Toggle (only show if sidebar exists) */}
-          {showMenuToggle && (
+          {/* Mobile Menu Toggle - Always opens mobile drawer */}
+          {showMobileIcon && (
             <button
-              onClick={handleMenuToggle}
+              onClick={handleMobileMenuToggle}
               className={cn(
-                "inline-flex items-center justify-center rounded-lg p-2",
+                "lg:hidden inline-flex items-center justify-center rounded-lg p-2",
                 "text-(--color-text-secondary) hover:text-(--color-text)",
                 "hover:bg-(--color-bg-secondary) transition-colors",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--color-brand)"
               )}
-              aria-label="Toggle menu"
+              aria-label="Open mobile menu"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          )}
+          
+          {/* Desktop Menu Toggle - Only for sidebar-hidden variant */}
+          {showDesktopIcon && (
+            <button
+              onClick={handleDesktopMenuToggle}
+              className={cn(
+                "hidden lg:inline-flex items-center justify-center rounded-lg p-2",
+                "text-(--color-text-secondary) hover:text-(--color-text)",
+                "hover:bg-(--color-bg-secondary) transition-colors",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--color-brand)"
+              )}
+              aria-label="Toggle sidebar"
             >
               <Menu className="h-5 w-5" />
             </button>
@@ -88,11 +113,6 @@ export function TopNavBar({
         {title && (
                 <div className="flex flex-col">
                   <span className="text-base font-semibold">{title}</span>
-                  {description && (
-                    <span className="text-xs text-(--color-text-tertiary) font-normal">
-                      {description}
-                    </span>
-                  )}
                 </div>
               )}
         </div>
@@ -131,23 +151,8 @@ export function TopNavBar({
           </nav>
         )}
 
-        {/* Right Section: Search + Theme + User */}
+        {/* Right Section: Theme + User */}
         <div className="ml-auto flex items-center gap-2">
-          {/* Search Button */}
-          {showSearch && (
-            <button
-              className={cn(
-                "inline-flex items-center justify-center rounded-lg p-2",
-                "text-(--color-text-secondary) hover:text-(--color-text)",
-                "hover:bg-(--color-bg-secondary) transition-colors",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--color-brand)"
-              )}
-              aria-label="Search"
-            >
-              <Search className="h-5 w-5" />
-            </button>
-          )}
-
           {/* Dark/Light Mode Toggle */}
           <button
             onClick={() => setTheme(isDarkMode ? 'light' : 'dark')}

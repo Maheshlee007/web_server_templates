@@ -1,9 +1,12 @@
 import { createContext, useState, useEffect, type ReactNode, useContext } from "react";
-import {
+import type {
   LayoutContextState,
   LayoutVariant,
   SidebarBehavior,
   NestedNavStyle,
+  NavItem,
+  MenuItem,
+  UserConfig,
 } from "@/types/layout";
 
 export const AppLayoutContext = createContext<LayoutContextState | undefined>(
@@ -11,18 +14,33 @@ export const AppLayoutContext = createContext<LayoutContextState | undefined>(
 );
 
 interface AppLayoutProviderProps {
+  // Layout config
   variant: LayoutVariant;
   sidebarDefaultOpen?: boolean;
-  sidebarBehavior: SidebarBehavior;
-  nestedNavStyle: NestedNavStyle;
+  nestedNavStyle?: NestedNavStyle;
+  sidebarCollapsible?: boolean;
+  sidebarBehavior?: SidebarBehavior;
+  // App-specific config
+  title?: string;
+  logo?: ReactNode;
+  
+  // User config
+  user?: UserConfig;
+  onLogout?: () => void;
+
   children: ReactNode;
 }
 
 export function AppLayoutProvider({
   variant,
-  sidebarDefaultOpen = false,
-  sidebarBehavior,
-  nestedNavStyle,
+  sidebarDefaultOpen = true,
+  nestedNavStyle = 'hybrid',
+  sidebarBehavior = 'push',
+  sidebarCollapsible = true,
+  title,
+  logo,
+  user,
+  onLogout,
   children,
 }: AppLayoutProviderProps) {
   const [isSidebarOpen, setIsSidebarOpen] =
@@ -30,16 +48,38 @@ export function AppLayoutProvider({
   const [sidebarMini, setSidebarMini] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Close mobile menu on route change
-  // useEffect(() => {
-  // const handleRouteChange = () => setMobileMenuOpen(false);
-  // window.addEventListener('popstate', handleRouteChange);
-  // return () => window.removeEventListener('popstate', handleRouteChange);
-  // }, []);
-
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleSidebarMini = () => setSidebarMini(!sidebarMini);
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
+  // Handle screen resize: reset states when switching between mobile/desktop
+  useEffect(() => {
+    const handleResize = () => {
+      const isDesktop = window.innerWidth >= 1024;
+      
+      if (isDesktop) {
+        // On desktop: close mobile drawer
+        if (mobileMenuOpen) {
+          setMobileMenuOpen(false);
+        }
+      } else {
+        // On mobile: close desktop sidebar and reset mini mode
+        if (isSidebarOpen && variant !== 'top-only') {
+          setIsSidebarOpen(false);
+        }
+        if (sidebarMini) {
+          setSidebarMini(false);
+        }
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [mobileMenuOpen, isSidebarOpen, sidebarMini, variant]);
 
   const value: LayoutContextState = {
     isSidebarOpen,
@@ -49,8 +89,13 @@ export function AppLayoutProvider({
     mobileMenuOpen,
     setMobileMenuOpen,
     variant,
-    sidebarBehavior,
     nestedNavStyle,
+    sidebarBehavior,
+    sidebarCollapsible,
+    logo,
+    title,
+    user,
+    onLogout,
     toggleSidebar,
     toggleSidebarMini,
     toggleMobileMenu,

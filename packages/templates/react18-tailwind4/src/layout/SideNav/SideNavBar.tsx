@@ -1,6 +1,8 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/utils/utilsCN';
+import { useLayout } from '../AppLayout/AppLayoutProvider';
 import { SideNavItem } from './SideNavItem';
+import { SidebarFooter } from './SidebarFooter';
 import type { NavItem } from '@/types/layout';
 
 interface SideNavBarProps {
@@ -11,8 +13,6 @@ interface SideNavBarProps {
   position?: 'left' | 'right';
   collapsible?: boolean;
   onCollapse?: () => void;
-  header?: React.ReactNode;
-  footer?: React.ReactNode;
   className?: string;
 }
 
@@ -22,8 +22,8 @@ interface SideNavBarProps {
  * Features:
  * - 3 nested navigation styles: hybrid, popover, accordion
  * - Mini mode (icons only)
- * - Collapsible
- * - Custom header/footer
+ * - Collapsible with chevron toggle in header
+ * - Built-in footer with settings/logout
  * - Hidden scrollbar for accordion overflow
  */
 export function SideNavBar({
@@ -32,46 +32,64 @@ export function SideNavBar({
   isMini = false,
   nestedNavStyle = 'hybrid',
   position = 'left',
-  collapsible = true,
+  collapsible = false,
   onCollapse,
-  header,
-  footer,
   className,
 }: SideNavBarProps) {
+  const { variant } = useLayout();
+  
   if (!isOpen) return null;
 
   const width = isMini ? 'w-16' : 'w-60';
   const positionClass = position === 'left' ? 'left-0' : 'right-0';
+  
+  // Chevron logic:
+  // - sidebar-persistent: Show chevron in header (collapsible mini mode)
+  // - sidebar-hidden: No chevron (controlled by menu toggle, always full width)
+  const showChevron = collapsible && variant === 'sidebar-persistent';
 
   return (
     <aside
       className={cn(
-        'fixed top-16 h-[calc(100vh-4rem)] z-40',
+        'hidden  fixed top-16 z-40',
+        'h-[calc(100vh-4rem)] max-h-[calc(100vh-4rem)]',
         'border-(--color-border) bg-(--color-bg)',
         'transition-all duration-300 ease-in-out',
         'flex flex-col',
+        'overflow-hidden', // Hide overflow for scrollbar
         width,
         positionClass,
         position === 'left' ? 'border-r' : 'border-l',
         className
       )}
     >
-      {/* Header Section */}
-      {header && (
-        <div
-          className={cn(
-            'flex-shrink-0 px-3 py-4 border-b border-(--color-border)',
-            isMini && 'px-2'
-          )}
-        >
-          {header}
+      {/* Collapsible Toggle Button in Header (only for sidebar-persistent) */}
+      {showChevron && (
+        <div className="shrink-0 px-3 py-2 border-b border-(--color-border) flex justify-end">
+          <button
+            onClick={onCollapse}
+            className={cn(
+              'inline-flex items-center justify-center rounded-lg p-2',
+              'text-(--color-text-secondary) hover:text-(--color-text)',
+              'hover:bg-(--color-bg-secondary) transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--color-brand)'
+            )}
+            aria-label={isMini ? 'Expand sidebar' : 'Collapse sidebar'}
+          >
+             
+            {isMini ? (
+              position === 'left' ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />
+            ) : (
+              position === 'left' ? <ChevronLeft className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />
+            )}
+          </button>
         </div>
       )}
 
       {/* Navigation Items - Scrollable with hidden scrollbar */}
       <nav
         className={cn(
-          'flex-1 overflow-y-auto overflow-x-hidden',
+          'flex-1 min-h-0 overflow-y-auto overflow-x-hidden',
           'scrollbar-thin scrollbar-hide',
           'py-4 px-2 space-y-1'
         )}
@@ -87,46 +105,15 @@ export function SideNavBar({
         ))}
       </nav>
 
-      {/* Footer Section */}
-      {footer && (
-        <div
-          className={cn(
-            'flex-shrink-0 px-3 py-4 border-t border-(--color-border)',
-            isMini && 'px-2'
-          )}
-        >
-          {footer}
-        </div>
-      )}
-
-      {/* Collapse Toggle Button */}
-      {collapsible && onCollapse && (
-        <button
-          onClick={onCollapse}
-          className={cn(
-            'absolute -right-3 top-20 z-50',
-            'w-6 h-6 rounded-full',
-            'bg-(--color-bg) border border-(--color-border)',
-            'flex items-center justify-center',
-            'hover:bg-(--color-bg-secondary)',
-            'shadow-md transition-colors',
-            position === 'right' && '-left-3'
-          )}
-          aria-label={isMini ? 'Expand sidebar' : 'Collapse sidebar'}
-        >
-          {position === 'left' ? (
-            isMini ? (
-              <ChevronRight className="w-4 h-4 text-(--color-text-secondary)" />
-            ) : (
-              <ChevronLeft className="w-4 h-4 text-(--color-text-secondary)" />
-            )
-          ) : isMini ? (
-            <ChevronLeft className="w-4 h-4 text-(--color-text-secondary)" />
-          ) : (
-            <ChevronRight className="w-4 h-4 text-(--color-text-secondary)" />
-          )}
-        </button>
-      )}
+      {/* Footer Section - Always at bottom */}
+      <div
+        className={cn(
+          'shrink-0 px-3 py-4 border-t border-(--color-border)',
+          isMini && 'px-2'
+        )}
+      >
+        <SidebarFooter />
+      </div>
     </aside>
   );
 }
