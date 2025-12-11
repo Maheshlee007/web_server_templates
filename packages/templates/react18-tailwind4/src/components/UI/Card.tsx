@@ -140,6 +140,9 @@ export const CardContent = forwardRef<HTMLDivElement, CardSectionProps>(
 );
 CardContent.displayName = 'CardContent';
 
+// Alias for CardContent
+export const CardBody = CardContent;
+
 export const CardFooter = forwardRef<HTMLDivElement, CardSectionProps>(
   ({ className, children, ...props }, ref) => (
     <div

@@ -107,7 +107,7 @@ export function TopNavBar({
               {logo}
               
             </Link>
-          ) : <div className="h-8 w-8 rounded-full bg-(--color-brand) flex items-center justify-center text-white text-sm font-medium bg-gradient-to-br from-(--color-bg) to-(--color-accent)">
+          ) : <div className="h-8 w-8 rounded-full bg-(--color-brand) flex items-center justify-center text-white text-sm font-medium bg-linear-to-br from-(--color-bg) to-(--color-accent)">
           {title?.charAt(0).toUpperCase()}
         </div>}
         {title && (

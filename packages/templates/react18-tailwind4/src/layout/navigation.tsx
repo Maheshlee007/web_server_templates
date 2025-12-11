@@ -6,13 +6,15 @@ import type { NavItem, MenuItem } from '@/types/layout';
  * Used for both top navigation (top-only variant) and sidebar navigation
  */
 export const navItems: NavItem[] = [
-  { id: 'dashboard', label: 'Dashboard', icon: <Home className="w-5 h-5" />, path: '/' },
+  { id: 'home', label: 'Home', icon: <Home className="w-5 h-5" />, path: '/' },
+  { id: 'components', label: 'Components', icon: <Code className="w-5 h-5" />, path: '/components' },
+  { id: 'feedback', label: 'Feedback', icon: <BookOpen className="w-5 h-5" />, path: '/feedback' },
   { 
-    id: 'projects', 
-    label: 'Projects', 
+    id: 'multi-step-nav', 
+    label: 'Multi-Step Nav (Demo)', 
     icon: <FileText className="w-5 h-5" />, 
     path: '/basic',
-    badge: '8',
+    badge: 'Demo',
     children: [
       { id: 'active', label: 'Active Projects', icon: <Zap className="w-4 h-4" />, path: '/basic/docs' },
       { id: 'archived', label: 'Archived', icon: <Package className="w-4 h-4" />, path: '/basic/examples' },
@@ -38,7 +40,6 @@ export const navItems: NavItem[] = [
       },
     ]
   },
-  { id: 'components', label: 'Components', icon: <Code className="w-5 h-5" />, path: '/reference' },
   { id: 'themes', label: 'Themes', icon: <Palette className="w-5 h-5" />, path: '/themes', badge: '6' },
 ];
 

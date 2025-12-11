@@ -1,10 +1,12 @@
 import { TopNavBar } from './TopNav/TopNavBar';
 import { SideNavBar } from './SideNav/SideNavBar';
 import { SideNavMobile } from './SideNav/SideNavMobile';
+import { Breadcrumbs } from './Breadcrumbs';
 import { useLayout } from './AppLayout/AppLayoutProvider';
 import { cn } from '@/utils/utilsCN';
 import type { AppLayoutProps } from '@/types/layout';
 import { topNavItems, sideNavItems, userMenuItems } from './navigation';
+import { ThemeSelector } from '@/components/UI/ThemeSelector';
 
 /**
  * AppLayout - Main layout orchestrator
@@ -83,7 +85,14 @@ export function AppLayout({ children }: Pick<AppLayoutProps, 'children'>) {
           showSidebar && isSidebarOpen && effectiveMini && 'lg:pl-16'
         )}
       >
-        <div className="pt-16">{children}</div>
+        <div className="pt-3 border-none">
+          {/* Breadcrumbs - Auto-generates from current route */}
+          <div className="flex items-center justify-between sticky top-16 z-60 bg-(--color-bg) pb-2">
+          <Breadcrumbs navItems={sideNavItems} className={'border-none sticky top-16 z-60'}/>
+          <ThemeSelector />
+          </div>
+          {children}
+        </div>
       </main>
     </div>
   );

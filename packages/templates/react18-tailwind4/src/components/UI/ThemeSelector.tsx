@@ -59,10 +59,10 @@ export function ThemeSelector() {
       value={theme}
       onValueChange={handleChange}
       options={themeOptions}
-      label="Theme"
+      label=""
       placeholder="Select a theme"
-      maxHeight="400px"
-      className="max-w-sm"
+      // maxHeight="400px"
+      className="max-w-xs mr-6"
     />
   );
 }

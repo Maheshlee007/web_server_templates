@@ -1,0 +1,192 @@
+{
+  "carousel": {
+    "name": "Carousel",
+    "description": "Feature-rich carousel with 5 variants, auto-rotation, smart stacking, and mobile touch support",
+    "category": "Display",
+    "variants": [
+      { "id": "basic", "label": "Basic", "description": "Simple carousel with slide transitions" },
+      { "id": "dots-below", "label": "Dots Below", "description": "Navigation dots positioned below content" },
+      { "id": "stack", "label": "3D Stack", "description": "Stacked cards with 3D perspective effect" },
+      { "id": "auto", "label": "Auto-Rotate", "description": "Automatic slide rotation with configurable interval" }
+    ],
+    "props": [
+      { "name": "items", "type": "ReactNode[]", "default": "required", "description": "Array of carousel slides/cards" },
+      { "name": "variant", "type": "'basic' | 'dots-below' | 'dots-beside' | 'auto' | 'stack'", "default": "'basic'", "description": "Visual style of the carousel" },
+      { "name": "showArrows", "type": "boolean", "default": "true", "description": "Show navigation arrows (hidden on mobile, touch enabled)" },
+      { "name": "showDots", "type": "boolean", "default": "true", "description": "Show dot indicators" },
+      { "name": "enableAutoRotate", "type": "boolean", "default": "false", "description": "Enable automatic slide rotation" },
+      { "name": "autoPlayInterval", "type": "number", "default": "3000", "description": "Auto-play interval in milliseconds" },
+      { "name": "maxStackedCards", "type": "number", "default": "3", "description": "Maximum cards visible on each side (stack variant)" },
+      { "name": "cardWidth", "type": "string | number", "default": "'max-w-xl'", "description": "Custom card width (responsive classes supported)" },
+      { "name": "stackSpacing", "type": "number", "default": "120", "description": "Horizontal spacing between stacked cards (px)" },
+      { "name": "stackOffset", "type": "number", "default": "30", "description": "Vertical offset for depth effect (px)" },
+      { "name": "centerCard", "type": "boolean", "default": "true", "description": "Center the active card" },
+      { "name": "stackScale", "type": "number", "default": "0.85", "description": "Scale factor for non-active cards (0-1)" },
+      { "name": "onSlideChange", "type": "(index: number) => void", "default": "undefined", "description": "Callback when slide changes" }
+    ]
+  },
+  "button": {
+    "name": "Button",
+    "description": "Versatile buttons with 10+ variants, 8 sizes, loading states, and icon support",
+    "category": "Form",
+    "variants": [
+      { "id": "primary", "label": "Primary", "description": "Primary action button with brand colors" },
+      { "id": "secondary", "label": "Secondary", "description": "Secondary action with subtle styling" },
+      { "id": "outline", "label": "Outline", "description": "Outlined button with transparent background" },
+      { "id": "ghost", "label": "Ghost", "description": "Minimal button with no background" },
+      { "id": "danger", "label": "Danger", "description": "Destructive actions in red" },
+      { "id": "success", "label": "Success", "description": "Success/confirm actions in green" },
+      { "id": "warning", "label": "Warning", "description": "Warning actions in amber" },
+      { "id": "glass", "label": "Glass", "description": "Glassmorphism effect" },
+      { "id": "link", "label": "Link", "description": "Underlined text link style" },
+      { "id": "gradient", "label": "Gradient", "description": "Gradient background from brand to accent" },
+      { "id": "gradient-border", "label": "Gradient Border", "description": "Gradient border with glow effect" }
+    ],
+    "sizes": ["xs", "sm", "md", "lg", "xl", "icon", "icon-sm", "icon-lg"],
+    "props": [
+      { "name": "variant", "type": "'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success' | 'warning' | 'glass' | 'link' | 'gradient' | 'gradient-border'", "default": "'primary'", "description": "Visual style variant" },
+      { "name": "size", "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon' | 'icon-sm' | 'icon-lg'", "default": "'md'", "description": "Button size" },
+      { "name": "fullWidth", "type": "boolean", "default": "false", "description": "Expand to full container width" },
+      { "name": "loading", "type": "boolean", "default": "false", "description": "Show loading spinner" },
+      { "name": "disabled", "type": "boolean", "default": "false", "description": "Disable button interaction" },
+      { "name": "leftIcon", "type": "ReactNode", "default": "undefined", "description": "Icon to display on the left" },
+      { "name": "rightIcon", "type": "ReactNode", "default": "undefined", "description": "Icon to display on the right" }
+    ]
+  },
+  "card": {
+    "name": "Card",
+    "description": "Versatile card container with multiple variants, compound components, and gradient borders",
+    "category": "Layout",
+    "variants": [
+      { "id": "basic", "label": "Basic", "description": "Simple card with default styling" },
+      { "id": "compound", "label": "Header/Body/Footer", "description": "Structured card with sections" },
+      { "id": "badge", "label": "With Badge", "description": "Card with status badge overlay" },
+      { "id": "gradient", "label": "Gradient", "description": "Premium gradient background" },
+      { "id": "gradient-border", "label": "Gradient Border", "description": "Glowing gradient border effect" },
+      { "id": "glass", "label": "Glass", "description": "Glassmorphism frosted effect" }
+    ],
+    "props": [
+      { "name": "variant", "type": "'default' | 'elevated' | 'outline' | 'glass' | 'glass-strong' | 'gradient'", "default": "'default'", "description": "Visual style variant" },
+      { "name": "padding", "type": "'none' | 'sm' | 'md' | 'lg'", "default": "'md'", "description": "Internal padding" },
+      { "name": "size", "type": "'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | 'full' | 'auto'", "default": "'auto'", "description": "Maximum width constraint" },
+      { "name": "hoverable", "type": "boolean", "default": "false", "description": "Add hover scale effect" }
+    ]
+  },
+  "input": {
+    "name": "Input",
+    "description": "Flexible input fields with labels, icons, validation states, and character counter",
+    "category": "Form",
+    "variants": [
+      { "id": "text", "label": "Text", "description": "Standard text input" },
+      { "id": "email", "label": "Email", "description": "Email input with validation" },
+      { "id": "password", "label": "Password", "description": "Password with show/hide toggle" },
+      { "id": "with-icons", "label": "With Icons", "description": "Input with left and right icons" },
+      { "id": "error", "label": "Error State", "description": "Input with error message" },
+      { "id": "textarea", "label": "Textarea", "description": "Multi-line text input" }
+    ],
+    "props": [
+      { "name": "type", "type": "'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url'", "default": "'text'", "description": "Input type" },
+      { "name": "label", "type": "string", "default": "undefined", "description": "Field label" },
+      { "name": "error", "type": "string", "default": "undefined", "description": "Error message to display" },
+      { "name": "helperText", "type": "string", "default": "undefined", "description": "Helper text below input" },
+      { "name": "leftIcon", "type": "ReactNode", "default": "undefined", "description": "Icon on the left side" },
+      { "name": "rightIcon", "type": "ReactNode", "default": "undefined", "description": "Icon on the right side" },
+      { "name": "maxLength", "type": "number", "default": "undefined", "description": "Maximum character length" },
+      { "name": "showCharCount", "type": "boolean", "default": "false", "description": "Show character counter" },
+      { "name": "multiline", "type": "boolean", "default": "false", "description": "Enable multiline textarea" },
+      { "name": "rows", "type": "number", "default": "3", "description": "Textarea rows (when multiline)" }
+    ]
+  },
+  "drawer": {
+    "name": "Drawer",
+    "description": "Slide-out panels from any edge with customizable sizes and animations",
+    "category": "Overlay",
+    "variants": [
+      { "id": "left", "label": "Left", "description": "Slide from left edge" },
+      { "id": "right", "label": "Right", "description": "Slide from right edge" },
+      { "id": "top", "label": "Top", "description": "Slide from top edge" },
+      { "id": "bottom", "label": "Bottom", "description": "Slide from bottom edge" }
+    ],
+    "sizes": ["small", "medium", "large", "xl", "full", "auto"],
+    "props": [
+      { "name": "open", "type": "boolean", "default": "required", "description": "Controlled open state" },
+      { "name": "onOpenChange", "type": "(open: boolean) => void", "default": "required", "description": "Callback when open state changes" },
+      { "name": "position", "type": "'left' | 'right' | 'top' | 'bottom'", "default": "'right'", "description": "Edge to slide from" },
+      { "name": "size", "type": "'small' | 'medium' | 'large' | 'xl' | 'full' | 'auto'", "default": "'medium'", "description": "Drawer dimensions" },
+      { "name": "title", "type": "string", "default": "undefined", "description": "Header title" },
+      { "name": "description", "type": "string", "default": "undefined", "description": "Header description" },
+      { "name": "showCloseButton", "type": "boolean", "default": "true", "description": "Show close X button" }
+    ]
+  },
+  "dialog": {
+    "name": "Dialog",
+    "description": "Modal dialogs with multiple positions, sizes, and animations",
+    "category": "Overlay",
+    "variants": [
+      { "id": "center", "label": "Center", "description": "Centered modal dialog" },
+      { "id": "top", "label": "Top", "description": "Slide from top" },
+      { "id": "bottom", "label": "Bottom", "description": "Slide from bottom" }
+    ],
+    "sizes": ["sm", "md", "lg", "xl", "full"],
+    "props": [
+      { "name": "open", "type": "boolean", "default": "required", "description": "Controlled open state" },
+      { "name": "onOpenChange", "type": "(open: boolean) => void", "default": "required", "description": "Callback when open state changes" },
+      { "name": "title", "type": "string", "default": "undefined", "description": "Dialog title" },
+      { "name": "description", "type": "string", "default": "undefined", "description": "Dialog description" },
+      { "name": "position", "type": "'center' | 'top' | 'bottom' | 'left' | 'right'", "default": "'center'", "description": "Dialog position" },
+      { "name": "size", "type": "'sm' | 'md' | 'lg' | 'xl' | 'full'", "default": "'md'", "description": "Dialog size" },
+      { "name": "showClose", "type": "boolean", "default": "true", "description": "Show close button" },
+      { "name": "closeOnOverlayClick", "type": "boolean", "default": "true", "description": "Close when clicking outside" }
+    ]
+  },
+  "combobox": {
+    "name": "Combobox",
+    "description": "Searchable dropdown with icons, descriptions, and keyboard navigation",
+    "category": "Form",
+    "variants": [
+      { "id": "basic", "label": "Basic", "description": "Simple searchable dropdown" },
+      { "id": "with-icons", "label": "With Icons", "description": "Options with custom icons" },
+      { "id": "with-descriptions", "label": "With Descriptions", "description": "Options with secondary text" }
+    ],
+    "props": [
+      { "name": "value", "type": "string", "default": "required", "description": "Selected value" },
+      { "name": "onValueChange", "type": "(value: string) => void", "default": "required", "description": "Callback when value changes" },
+      { "name": "options", "type": "ComboboxOption[]", "default": "required", "description": "Array of options" },
+      { "name": "placeholder", "type": "string", "default": "'Select an option'", "description": "Placeholder text" },
+      { "name": "searchPlaceholder", "type": "string", "default": "'Search...'", "description": "Search input placeholder" },
+      { "name": "label", "type": "string", "default": "undefined", "description": "Field label" },
+      { "name": "disabled", "type": "boolean", "default": "false", "description": "Disable the combobox" },
+      { "name": "maxHeight", "type": "string", "default": "'384px'", "description": "Maximum dropdown height" }
+    ]
+  },
+  "contextMenu": {
+    "name": "Context Menu / Dropdown",
+    "description": "Dropdown menus with nested items, separators, and custom content",
+    "category": "Navigation",
+    "variants": [
+      { "id": "basic", "label": "Basic", "description": "Simple dropdown menu" },
+      { "id": "nested", "label": "Nested", "description": "Menu with submenus" },
+      { "id": "with-icons", "label": "With Icons", "description": "Menu items with icons" }
+    ],
+    "props": [
+      { "name": "trigger", "type": "ReactNode", "default": "required", "description": "Element that triggers the menu" },
+      { "name": "menuItems", "type": "MenuItem[]", "default": "required", "description": "Array of menu items" },
+      { "name": "align", "type": "'start' | 'center' | 'end'", "default": "'end'", "description": "Menu alignment" },
+      { "name": "sideOffset", "type": "number", "default": "8", "description": "Distance from trigger" }
+    ]
+  },
+  "colorPalette": {
+    "name": "Color Palette",
+    "description": "Interactive color palette showing theme colors with copy functionality",
+    "category": "Display",
+    "variants": [
+      { "id": "grid", "label": "Grid View", "description": "Colors in grid layout" },
+      { "id": "swatches", "label": "Swatches", "description": "Grouped by category with labels" },
+      { "id": "compact", "label": "Compact", "description": "Minimal inline display" }
+    ],
+    "props": [
+      { "name": "variant", "type": "'grid' | 'swatches' | 'compact'", "default": "'grid'", "description": "Display style" },
+      { "name": "showLabels", "type": "boolean", "default": "true", "description": "Show color names" }
+    ]
+  }
+}

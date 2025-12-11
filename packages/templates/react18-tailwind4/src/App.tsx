@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-
-import Referencepage from "./pages/Referencepage";
-import TestComp from "./pages/test";
-import ComponentTest from "./pages/ComponentTest";
+import { Home } from "./pages/Home";
+import { ComponentsDemo } from "./pages/ComponentsDemo";
+import { NotFound } from "./pages/NotFound";
 import { AppLayoutProvider } from "./layout/AppLayout/AppLayoutProvider";
 import { AppLayout } from "./layout/AppLayout";
+import FeedbackDemo from "./pages/FeedbackDemo";
 
 function App() {
   const handleLogout = () => {
@@ -42,9 +42,13 @@ function App() {
           */}
           <AppLayout>
             <Routes>
-              <Route path="/" element={<ComponentTest/>} />
-              <Route path="/basic" element={<TestComp/>} />
-              <Route path="/reference" element={<Referencepage />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/components" element={<ComponentsDemo />} />
+              <Route path="/feedback" element={<FeedbackDemo />} /> 
+              <Route path="/themes" element={<div className="p-6"><h1 className="text-2xl font-bold">Themes Page</h1><p className="text-(--color-text-secondary)">Theme selector coming soon...</p></div>} />
+              
+              {/* 404 Catch-all */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </AppLayout>
         </AppLayoutProvider>
