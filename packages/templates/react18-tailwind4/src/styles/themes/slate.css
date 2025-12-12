@@ -1,62 +1,70 @@
-/* ========== SLATE THEME ========== */
-/* Warm gray corporate with amber accent */
+/* ========== CITRUS WHITE (Crisp & High Contrast) ========== */
+/* A strictly pure white theme. Orange is ONLY used for interactive elements. */
 [data-theme="slate"] {
-  /* Backgrounds - Warm neutral grays */
-  --color-bg: #1c1917; /* stone-900 */
-  --color-bg-secondary: #292524; /* stone-800 */
-  --color-bg-tertiary: #44403c; /* stone-700 */
+  /* ===== BACKGROUNDS (Pure & Neutral) ===== */
+  --color-bg: oklch(1.0 0 0);                    /* #ffffff - Absolute Pure White */
+  --color-bg-secondary: oklch(0.98 0.002 240);   /* #f8fafc - Slate 50 (Neutral Cool Gray) */
+  --color-bg-tertiary: oklch(0.96 0.006 240);    /* #f1f5f9 - Slate 100 */
+  --color-surface: oklch(1.0 0 0);               /* #ffffff - Dropdowns are white */
+  --color-surface-hover: oklch(0.97 0.004 240);  /* #f4f6f8 - Hover is gray, NOT orange */
 
-  /* Text - Warm whites */
-  --color-text: #fafaf9; /* stone-50 */
-  --color-text-secondary: #d6d3d1; /* stone-300 */
-  --color-text-muted: #a8a29e; /* stone-400 */
+  /* ===== TEXT (Deep Slate - High Legibility) ===== */
+  /* We use Slate (Cool Gray) to contrast sharply with the Warm Orange buttons */
+  --color-text: oklch(0.20 0.03 240);            /* #1e293b - Slate 800 */
+  --color-text-secondary: oklch(0.45 0.03 240);  /* #475569 - Slate 600 */
+  --color-text-muted: oklch(0.70 0.02 240);      /* #94a3b8 - Slate 400 */
 
-  /* Borders */
-  --color-border: rgba(168, 162, 158, 0.2);
-  --color-border-light: rgba(168, 162, 158, 0.1);
+  /* ===== BORDERS (Neutral) ===== */
+  --color-border: oklch(0.92 0.01 240);          /* #e2e8f0 - Light Gray */
+  --color-border-light: oklch(0.96 0.005 240);   /* #f1f5f9 */
 
-  /* Brand Colors - Amber/Orange warm tones */
-  --color-brand: #fbbf24; /* amber-400 */
-  --color-brand-hover: #f59e0b; /* amber-500 */
-  --color-brand-active: #d97706; /* amber-600 */
-  --color-brand-light: rgba(251, 191, 36, 0.15);
-  --color-brand-foreground: #1c1917;
+  /* ===== BRAND (The Only Orange) ===== */
+  /* This is the ONLY place orange appears - ensuring maximum impact */
+  --color-brand: oklch(0.62 0.22 40);            /* #f97316 - Vibrant Orange */
+  --color-brand-hover: oklch(0.55 0.22 40);      /* #ea580c - Deep Orange */
+  --color-brand-active: oklch(0.48 0.22 40);     /* #c2410c */
+  /* Light brand bg is very subtle, almost white, to avoid "tinting" the page */
+  --color-brand-light: oklch(0.98 0.02 40);      /* #fff7ed - Very faint orange bg */
+  --color-brand-foreground: oklch(1.0 0 0);      /* #ffffff - Text on buttons */
 
-  /* Secondary */
-  --color-secondary: #a8a29e; /* stone-400 */
-  --color-secondary-hover: #d6d3d1; /* stone-300 */
-  --color-secondary-light: rgba(168, 162, 158, 0.15);
-  --color-secondary-foreground: #1c1917;
-  --color-surface: rgba(30, 41, 59, 0.95); /* Dropdown/popover background with slight transparency */
-  --color-surface-hover: #334155; /* slate-700 - hover state for menu items */
+  /* ===== SECONDARY (Neutral) ===== */
+  --color-secondary: oklch(0.60 0.02 240);       /* #64748b */
+  --color-secondary-hover: oklch(0.40 0.02 240); /* #334155 */
+  --color-secondary-light: oklch(0.96 0.01 240); /* #f1f5f9 */
+  --color-secondary-foreground: oklch(1.0 0 0);
 
-  /* Accent - Teal */
-  --color-accent: #2dd4bf; /* teal-400 */
-  --color-accent-hover: #14b8a6; /* teal-500 */
-  --color-accent-light: rgba(45, 212, 191, 0.15);
-  --color-accent-foreground: #1c1917;
+  /* ===== ACCENT (Charcoal/Black) ===== */
+  /* We use Black as the accent to keep the "White/Orange/Black" modern look */
+  --color-accent: oklch(0.20 0.02 240);          /* #1e293b - Dark Slate/Black */
+  --color-accent-hover: oklch(0.10 0.02 240);    /* #0f172a */
+  --color-accent-light: oklch(0.96 0.01 240);    /* #f1f5f9 */
+  --color-accent-foreground: oklch(1.0 0 0);
 
-  /* Status Colors */
-  --color-success: #34d399; /* emerald-400 */
-  --color-success-light: rgba(52, 211, 153, 0.15);
-  --color-success-foreground: #1c1917;
-  --color-warning: #fb923c; /* orange-400 */
-  --color-warning-light: rgba(251, 146, 60, 0.15);
-  --color-warning-foreground: #1c1917;
-  --color-error: #f87171; /* red-400 */
-  --color-error-light: rgba(248, 113, 113, 0.15);
-  --color-error-foreground: #ffffff;
-  --color-info: #60a5fa; /* blue-400 */
-  --color-info-light: rgba(96, 165, 250, 0.15);
-  --color-info-foreground: #1c1917;
+  /* ===== STATUS COLORS (Standard) ===== */
+  --color-success: oklch(0.65 0.18 150);         /* Green */
+  --color-success-light: oklch(0.98 0.02 150);
+  --color-success-foreground: #fff;
+  
+  --color-warning: oklch(0.80 0.16 85);          /* Yellow (Distinct from Orange) */
+  --color-warning-light: oklch(0.98 0.04 85);
+  --color-warning-foreground: #000;
+  
+  --color-error: oklch(0.60 0.20 25);            /* Red */
+  --color-error-light: oklch(0.98 0.02 25);
+  --color-error-foreground: #fff;
+  
+  --color-info: oklch(0.60 0.15 240);            /* Blue */
+  --color-info-light: oklch(0.98 0.02 240);
+  --color-info-foreground: #fff;
 
-  /* Glass Effect - Minimal */
-  --glass-bg: rgba(41, 37, 36, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  /* ===== GLASS EFFECT (Crystal Clear) ===== */
+  /* No orange tint in the glass. Just pure frosted white. */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(226, 232, 240, 0.6);      /* Light gray border */
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06); /* Soft black shadow */
   --glass-blur: 12px;
 
-  /* Glow colors - Warm tones */
-  --glow-primary: rgba(251, 191, 36, 0.5);
-  --glow-accent: rgba(45, 212, 191, 0.5);
+  /* ===== GLOW EFFECTS ===== */
+  --glow-primary: rgba(249, 115, 22, 0.2);       /* Subtle Orange Glow around active inputs */
+  --glow-accent: rgba(30, 41, 59, 0.1);          /* Gray glow */
 }

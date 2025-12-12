@@ -1,62 +1,63 @@
-/* ========== GLASS DARK THEME ========== */
-/* Glassmorphism with blue-black transparency - eye candy */
+/* ========== COSMIC THEME (Dark) ========== */
+/* Deep space with purple accents - premium & sophisticated */
 [data-theme="glass-dark"] {
-  /* Backgrounds - Translucent blue-black */
-  --color-bg: rgba(10, 14, 26, 0.8); /* Semi-transparent dark blue */
-  --color-bg-secondary: rgba(15, 20, 25, 0.85);
-  --color-bg-tertiary: rgba(20, 26, 37, 0.9);
+  /* Backgrounds - Dark blue-gray base (less purple) */
+  --color-bg: #0f172a; /* slate-900 - deep neutral dark */
+  --color-bg-secondary: #1e293b; /* slate-800 - neutral dark */
+  --color-bg-tertiary: #334155; /* slate-700 - elevated surfaces */
+  --color-surface: #1e293b; /* slate-800 - solid dropdown bg */
+  --color-surface-hover: #334155; /* slate-700 */
 
-  /* Text - Soft whites */
-  --color-text: #f1f5f9;
-  --color-text-secondary: #cbd5e1;
-  --color-text-muted: #94a3b8;
+  /* Text - Clean whites (no purple tint) */
+  --color-text: #f1f5f9; /* slate-100 - bright clean text */
+  --color-text-secondary: #cbd5e1; /* slate-300 - secondary text */
+  --color-text-muted: #94a3b8; /* slate-400 - muted text */
 
-  /* Borders - Glass-like */
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-light: rgba(255, 255, 255, 0.04);
+  /* Borders - Subtle neutral borders */
+  --color-border: rgba(148, 163, 184, 0.2); /* slate-400 20% */
+  --color-border-light: rgba(148, 163, 184, 0.1);
 
-  /* Brand Colors - Bright blue */
-  --color-brand: var(--color-primary-400);
-  --color-brand-hover: var(--color-primary-500);
-  --color-brand-active: var(--color-primary-600);
-  --color-brand-light: rgba(96, 165, 250, 0.15);
+  /* Brand Colors - Bright purple */
+  --color-brand: #a78bfa; /* violet-400 - vibrant purple */
+  --color-brand-hover: #8b5cf6; /* violet-500 */
+  --color-brand-active: #7c3aed; /* violet-600 */
+  --color-brand-light: rgba(167, 139, 250, 0.15);
   --color-brand-foreground: #ffffff;
 
-  /* Secondary */
-  --color-secondary: var(--color-secondary-400);
-  --color-secondary-hover: var(--color-secondary-300);
-  --color-secondary-light: rgba(148, 163, 184, 0.1);
+  /* Secondary - Neutral slate */
+  --color-secondary: #94a3b8; /* slate-400 */
+  --color-secondary-hover: #cbd5e1; /* slate-300 */
+  --color-secondary-light: rgba(148, 163, 184, 0.15);
   --color-secondary-foreground: #0f172a;
-    --color-surface: rgba(30, 41, 59, 0.95); /* Dropdown/popover background with slight transparency */
-  --color-surface-hover: #334155; /* slate-700 - hover state for menu items */
 
-  /* Accent - Rose glow */
-  --color-accent: var(--color-accent-400);
-  --color-accent-hover: var(--color-accent-500);
-  --color-accent-light: rgba(251, 113, 133, 0.15);
-  --color-accent-foreground: #ffffff;
+  /* Accent - Bright cyan contrast */
+  --color-accent: #22d3ee; /* cyan-400 - electric contrast */
+  --color-accent-hover: #06b6d4; /* cyan-500 */
+  --color-accent-light: rgba(34, 211, 238, 0.15);
+  --color-accent-foreground: #000000;
 
-  /* Status Colors */
-  --color-success: #4ade80;
+  /* Status Colors - Vibrant cosmic colors */
+  --color-success: #4ade80; /* green-400 */
   --color-success-light: rgba(74, 222, 128, 0.15);
-  --color-success-foreground: #ffffff;
-  --color-warning: #fbbf24;
+  --color-success-foreground: #000000;
+  --color-warning: #fbbf24; /* amber-400 */
   --color-warning-light: rgba(251, 191, 36, 0.15);
-  --color-warning-foreground: #ffffff;
-  --color-error: #f87171;
+  --color-warning-foreground: #000000;
+  --color-error: #f87171; /* red-400 */
   --color-error-light: rgba(248, 113, 113, 0.15);
   --color-error-foreground: #ffffff;
-  --color-info: var(--color-info-500);
-  --color-info-light: rgba(14, 165, 233, 0.15);
-  --color-info-foreground: #ffffff;
+  --color-info: #60a5fa; /* blue-400 */
+  --color-info-light: rgba(96, 165, 250, 0.15);
+  --color-info-foreground: #000000;
 
-  /* Glass Effect - Prominent */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  --glass-blur: 16px;
+  /* Glass Effect - Subtle dark glass with purple accent */
+  --glass-bg: rgba(30, 41, 59, 0.7); /* slate-800 with transparency */
+  --glass-border: rgba(167, 139, 250, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(139, 92, 246, 0.3);
+  --glass-blur: 14px;
 
-  /* Glow colors - Vibrant */
-  --glow-primary: rgba(96, 165, 250, 0.6);
-  --glow-accent: rgba(251, 113, 133, 0.6);
+  /* Glow colors - Purple and cyan space glows */
+  --glow-primary: rgba(167, 139, 250, 0.7);
+  --glow-accent: rgba(34, 211, 238, 0.7);
 }
+

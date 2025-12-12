@@ -15,7 +15,7 @@ This documentation is divided into multiple focused guides:
 - **[Quick Start](./QUICK_START.md)** - Build your first page in 5 minutes
 - **[Component Guide](./COMPONENTS.md)** - Complete component reference with all props
 - **[Layout Guide](./LAYOUT.md)** - Navigation, breadcrumbs, and layout variants
-- **[Theme Guide](./THEMES.md)** - Theming system and customization
+- **[Theme Customization](./THEME_CUSTOMIZATION.md)** - Complete theme system and color customization guide
 
 ### **For Developers (Advanced)**
 - **[Component Examples](./EXAMPLES.md)** - Real-world component combinations
@@ -45,7 +45,10 @@ This documentation is divided into multiple focused guides:
 - **Theme Switcher** - 6 beautiful themes
 
 #### **Theme System**
-- **6 Built-in Themes** - Light, Dark, Glass Light, Glass Dark, Midnight, Slate
+- **6 Distinct Professional Themes** - Ocean Light, Ocean Deep, Forest, Cosmic, Milky Mist, Midnight
+- **Equal Light/Dark Balance** - 2 light themes + 4 dark themes
+- **Unique Color Palettes** - Each theme has completely different character
+- **OLED Support** - True black theme for OLED displays
 - **Full TypeScript** - Type-safe props and IntelliSense
 - **Accessible** - ARIA labels, keyboard navigation
 - **Mobile First** - Responsive on all devices

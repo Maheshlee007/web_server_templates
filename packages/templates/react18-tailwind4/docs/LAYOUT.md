@@ -351,18 +351,27 @@ Breadcrumbs automatically match your theme:
 
 ## Theme System
 
-6 built-in themes with instant switching.
+**6 completely distinct, professional themes** with equal light/dark representation.
 
 ### Available Themes
 
-| Theme | Description |
-|-------|-------------|
-| `light` | Clean white background, professional |
-| `dark` | Dark mode with blue accent |
-| `glass-light` | Glassmorphism light variant |
-| `glass-dark` | Glassmorphism dark variant |
-| `midnight` | Deep blue-black, developer-friendly |
-| `slate` | Neutral gray, enterprise feel |
+| Theme | Type | Description | Primary Colors |
+|-------|------|-------------|----------------|
+| **Ocean Light** | Light | Professional blue - Clean & modern default | Blue, Rose, Green |
+| **Ocean Deep** | Dark | Deep blue-gray - Excellent contrast & eye comfort | Bright Blue, Rose, Green |
+| **Forest** | Dark | Deep forest with green accents - Nature premium | Green, Teal, Amber |
+| **Cosmic** | Dark | Dark slate with purple accents - Modern premium | Purple, Cyan, Slate |
+| **Milky Mist** | Light | Soft purple-gray pastels - Dreamy & elegant | Purple, Pink, Violet |
+| **Midnight** | Dark | True black OLED - Purple neon, power-efficient | Violet, Cyan, Neon |
+
+### Theme Features
+
+✅ **3 Light + 3 Dark** - Equal representation  
+✅ **Distinct Color Palettes** - Each theme has unique character  
+✅ **Professional Colors** - Carefully selected for readability  
+✅ **Complete Color System** - Background, text, borders, status colors  
+✅ **OLED Support** - Midnight theme uses true black (#000000)  
+✅ **Accessibility** - High contrast ratios in all themes
 
 ### Theme Hook
 
@@ -370,7 +379,7 @@ Breadcrumbs automatically match your theme:
 import { useTheme } from '@/context/themeContext';
 
 function MyComponent() {
-  const { theme, setTheme, isDarkMode, resolvedTheme } = useTheme();
+  const { theme, setTheme, toggleTheme, isDarkMode, resolvedTheme } = useTheme();
   
   return (
     <div>
@@ -378,12 +387,16 @@ function MyComponent() {
       <p>Is dark mode: {isDarkMode ? 'Yes' : 'No'}</p>
       <p>Resolved theme: {resolvedTheme}</p>
       
-      <button onClick={() => setTheme('dark')}>
-        Dark Mode
-      </button>
-      <button onClick={() => setTheme('light')}>
-        Light Mode
-      </button>
+      {/* Set specific theme */}
+      <button onClick={() => setTheme('dark')}>Ocean Deep</button>
+      <button onClick={() => setTheme('light')}>Ocean Light</button>
+      <button onClick={() => setTheme('glass-light')}>Forest (Dark)</button>
+      <button onClick={() => setTheme('glass-dark')}>Cosmic</button>
+      <button onClick={() => setTheme('slate')}>Milky Mist</button>
+      <button onClick={() => setTheme('midnight')}>Midnight</button>
+      
+      {/* Cycle through all themes */}
+      <button onClick={toggleTheme}>Next Theme</button>
     </div>
   );
 }
@@ -391,12 +404,12 @@ function MyComponent() {
 
 ### ThemeSelector Component
 
-Pre-built theme switcher:
+Pre-built theme switcher with visual preview:
 
 ```tsx
 import { ThemeSelector } from '@/components/UI/ThemeSelector';
 
-// Shows all 6 themes in a dropdown
+// Shows all 6 themes in a dropdown with color palettes
 <ThemeSelector />
 ```
 
@@ -416,22 +429,71 @@ setTheme('system'); // Follows OS dark/light mode
 
 ### Theme CSS Variables
 
-All themes use CSS variables for consistency:
+All themes provide a complete color system using CSS variables:
 
+**Background Colors:**
 ```css
-/* Available in all components */
 --color-bg              /* Main background */
---color-bg-secondary    /* Secondary background */
---color-bg-tertiary     /* Tertiary background */
---color-text            /* Primary text */
---color-text-secondary  /* Secondary text */
---color-text-muted      /* Muted text */
---color-border          /* Border color */
---color-brand           /* Brand/primary color */
+--color-bg-secondary    /* Elevated surfaces (cards, panels) */
+--color-bg-tertiary     /* Higher elevation surfaces */
+--color-surface         /* Dropdown/popover backgrounds */
+--color-surface-hover   /* Hover state for menu items */
+```
+
+**Text Colors:**
+```css
+--color-text            /* Primary text (highest contrast) */
+--color-text-secondary  /* Secondary text (labels, captions) */
+--color-text-muted      /* Muted text (disabled, placeholders) */
+```
+
+**Border Colors:**
+```css
+--color-border          /* Standard borders */
+--color-border-light    /* Subtle borders (dividers) */
+```
+
+**Brand Colors:**
+```css
+--color-brand           /* Primary brand color */
 --color-brand-hover     /* Brand hover state */
---color-success         /* Success color */
---color-warning         /* Warning color */
---color-error           /* Error color */
+--color-brand-active    /* Brand active/pressed state */
+--color-brand-light     /* Brand background (10-15% opacity) */
+--color-brand-foreground /* Text on brand background */
+```
+
+**Secondary & Accent:**
+```css
+--color-secondary       /* Secondary actions */
+--color-secondary-hover /* Secondary hover */
+--color-accent          /* Accent highlights */
+--color-accent-hover    /* Accent hover */
+```
+
+**Status Colors (each has matching variants):**
+```css
+--color-success         /* Success states */
+--color-success-light   /* Success background */
+--color-warning         /* Warning states */
+--color-warning-light   /* Warning background */
+--color-error           /* Error states */
+--color-error-light     /* Error background */
+--color-info            /* Info states */
+--color-info-light      /* Info background */
+```
+
+**Glass Effects:**
+```css
+--glass-bg              /* Glass background with blur */
+--glass-border          /* Glass border */
+--glass-shadow          /* Glass shadow */
+--glass-blur            /* Blur amount (px) */
+```
+
+**Glow Effects:**
+```css
+--glow-primary          /* Primary color glow */
+--glow-accent           /* Accent color glow */
 ```
 
 ### Using Theme Variables

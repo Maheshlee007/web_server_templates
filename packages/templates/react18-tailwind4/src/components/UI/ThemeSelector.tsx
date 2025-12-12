@@ -5,39 +5,39 @@ import { Dropdown, SelectOption } from './radix';
 const themeOptions: SelectOption[] = [
   { 
     value: 'light', 
-    label: 'Light', 
-    description: 'Clean white',
-    colorPalette: ['#ffffff', '#0f172a', '#3b82f6', '#f43f5e']
+    label: 'Ocean Light', 
+    description: 'Professional blue - Clean & modern',
+    colorPalette: ['#ffffff', '#2563eb', '#e11d48', '#16a34a']
   },
   { 
     value: 'dark', 
-    label: 'Dark', 
-    description: 'Professional solid dark',
-    colorPalette: ['#0f172a', '#f1f5f9', '#60a5fa', '#fb7185']
-  },
-  { 
-    value: 'glass-dark', 
-    label: 'Glass Dark', 
-    description: 'Blue-black glassmorphism',
-    colorPalette: ['#0a0e1a', '#f1f5f9', '#60a5fa', '#fb7185']
+    label: 'Ocean Deep', 
+    description: 'Deep blue-gray - Eye comfort dark',
+    colorPalette: ['#0f172a', '#60a5fa', '#fb7185', '#4ade80']
   },
   { 
     value: 'glass-light', 
-    label: 'Glass Light', 
-    description: 'Light glassmorphism',
-    colorPalette: ['#f8fafc', '#0f172a', '#2563eb', '#e11d48']
+    label: 'Crystal Clear', 
+    description: 'Crisp modern light with violet branding',
+    colorPalette: ['#fbfbfe', '#8b5cf6', '#ec4899', '#f4f4f7']
   },
   { 
-    value: 'midnight', 
-    label: 'Midnight', 
-    description: 'OLED black with purple',
-    colorPalette: ['#000000', '#e5e7eb', '#a78bfa', '#22d3ee']
+    value: 'glass-dark', 
+    label: 'Cosmic', 
+    description: 'Deep space with purple accents - Dark',
+    colorPalette: ['#0f172a', '#a78bfa', '#22d3ee', '#94a3b8']
   },
   { 
     value: 'slate', 
-    label: 'Slate', 
-    description: 'Warm gray with amber',
-    colorPalette: ['#1c1917', '#fafaf9', '#fbbf24', '#2dd4bf']
+    label: 'Citrus White', 
+    description: 'Pure white with vibrant orange accents',
+    colorPalette: ['#ffffff', '#ea580c', '#f97316', '#f1f5f9']
+  },
+  { 
+    value: 'midnight', 
+    label: 'Midnight Pro', 
+    description: 'Ultimate dark mode - Deep indigo-slate',
+    colorPalette: ['#0b0e16', '#a78bfa', '#22d3ee', '#151926']
   },
   { 
     value: 'system', 

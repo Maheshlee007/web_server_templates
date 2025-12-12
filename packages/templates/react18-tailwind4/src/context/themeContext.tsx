@@ -21,7 +21,9 @@
 
         const resolvedTheme = theme === 'system' ? systemTheme : theme;
 
-        const isDarkMode = resolvedTheme !== 'light' && resolvedTheme !== 'glass-light';
+        // Light themes: light (Ocean), slate (Milky Mist)
+        // Dark themes: dark (Ocean Deep), glass-light (Forest), glass-dark (Cosmic), midnight (Midnight)
+        const isDarkMode = resolvedTheme === 'dark' || resolvedTheme === 'glass-light' || resolvedTheme === 'glass-dark' || resolvedTheme === 'midnight';
          // Apply theme to document
 
         useEffect(() => {
@@ -54,17 +56,17 @@ const setTheme = (newTheme: Theme) => {
   };
   
   const toggleTheme = () => {
-    // Cycle through: dark -> light -> glass-dark -> dark
+    // Cycle through: Ocean Light -> Ocean Deep -> Forest -> Cosmic -> Milky Mist -> Midnight -> repeat
     setThemeState((prevTheme) => {
       const resolved = prevTheme === 'system' ? systemTheme : prevTheme;
       switch (resolved) {
-        case 'dark': return 'light';
-        case 'light': return 'glass-dark';
-        case 'glass-dark': return 'glass-light';
-        case 'glass-light': return 'midnight';
-        case 'midnight': return 'slate';
-        case 'slate': return 'dark';
-        default: return 'dark';
+        case 'light': return 'dark';         // Ocean Light -> Ocean Deep
+        case 'dark': return 'glass-light';   // Ocean Deep -> Forest
+        case 'glass-light': return 'glass-dark'; // Forest -> Cosmic
+        case 'glass-dark': return 'slate';   // Cosmic -> Sunset
+        case 'slate': return 'midnight';     // Sunset -> Midnight
+        case 'midnight': return 'light';     // Midnight -> Ocean Light
+        default: return 'light';
       }
     });
   };

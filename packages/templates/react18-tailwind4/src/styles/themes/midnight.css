@@ -1,63 +1,68 @@
-/* ========== MIDNIGHT THEME ========== */
-/* True black OLED-friendly with purple accent */
+/* ========== MIDNIGHT PRO (The Ultimate Dark Mode) ========== */
+/* Best for: Coding at night, Bedside usage, Modern SaaS apps */
 [data-theme="midnight"] {
-  /* Backgrounds - Pure black for OLED */
-  --color-bg: #000000;
-  --color-bg-secondary: #0a0a0a;
-  --color-bg-tertiary: #141414;
+  /* ===== BACKGROUNDS (Deep Indigo-Slate) ===== */
+  /* We use a specific hue (275) that feels "deep space" rather than "dead gray" */
+  --color-bg: oklch(0.14 0.03 275);              /* #0b0e16 - Deepest Indigo Base */
+  --color-bg-secondary: oklch(0.18 0.04 275);    /* #151926 - Cards/Panels */
+  --color-bg-tertiary: oklch(0.22 0.05 275);     /* #1e2334 - Inputs/Nested */
+  --color-surface: oklch(0.18 0.04 275);         /* #151926 - Dropdowns */
+  --color-surface-hover: oklch(0.26 0.06 275);   /* #2a3147 - Interactive Hover */
 
-  /* Text - Soft white/gray */
-  --color-text: #e5e7eb; /* gray-200 */
-  --color-text-secondary: #9ca3af; /* gray-400 */
-  --color-text-muted: #6b7280; /* gray-500 */
+  /* ===== TEXT (Eye-Comfort Contrast) ===== */
+  --color-text: oklch(0.94 0.01 270);            /* #eff1f5 - Soft White (not harsh 100% white) */
+  --color-text-secondary: oklch(0.70 0.04 270);  /* #9aa1b5 - Cool Gray */
+  --color-text-muted: oklch(0.50 0.04 270);      /* #63697e - Subtile details */
 
-  /* Borders */
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-light: rgba(255, 255, 255, 0.05);
+  /* ===== BORDERS (Subtle Separation) ===== */
+  --color-border: oklch(0.25 0.05 275);          /* #282e42 */
+  --color-border-light: oklch(0.20 0.04 275);    /* #1f2436 */
 
-  /* Brand Colors - Purple/Violet instead of blue */
-  --color-brand: #a78bfa; /* violet-400 */
-  --color-brand-hover: #8b5cf6; /* violet-500 */
-  --color-brand-active: #7c3aed; /* violet-600 */
-  --color-brand-light: rgba(167, 139, 250, 0.15);
-  --color-brand-foreground: #ffffff;
+  /* ===== BRAND (Electric Cyan - The "Vibe") ===== */
+  /* High chroma (0.16) makes it pop, but the hue (210) is calming */
+  --color-brand: oklch(0.72 0.16 210);           /* #38bdf8 - Electric Sky */
+  --color-brand-hover: oklch(0.65 0.16 210);     /* #0ea5e9 */
+  --color-brand-active: oklch(0.58 0.16 210);    /* #0284c7 */
+  --color-brand-light: oklch(0.20 0.08 210);     /* #0c4a6e - Glowy background */
+  --color-brand-foreground: oklch(0.12 0.03 275);/* #05070a - Contrast text */
 
-  /* Secondary */
-  --color-secondary: #6b7280; /* gray-500 */
-  --color-secondary-hover: #9ca3af; /* gray-400 */
-  --color-secondary-light: rgba(107, 114, 128, 0.15);
-  --color-secondary-foreground: #ffffff;
---color-surface: rgba(30, 41, 59, 0.95); /* Dropdown/popover background with slight transparency */
-  --color-surface-hover: #334155; /* slate-700 - hover state for menu items */
+  /* ===== SECONDARY (Cool Slate) ===== */
+  --color-secondary: oklch(0.65 0.04 260);       /* #7e8aa6 */
+  --color-secondary-hover: oklch(0.75 0.04 260); /* #aeb6cc */
+  --color-secondary-light: oklch(0.25 0.04 260); /* #2d3447 */
+  --color-secondary-foreground: oklch(0.98 0 0); /* #ffffff */
 
+  /* ===== ACCENT (Neon Violet) ===== */
+  --color-accent: oklch(0.70 0.20 290);          /* #d8b4fe - Soft Neon Purple */
+  --color-accent-hover: oklch(0.60 0.20 290);    /* #c084fc */
+  --color-accent-light: oklch(0.25 0.10 290);    /* #4c1d95 */
+  --color-accent-foreground: oklch(0.12 0.03 275);
 
-  /* Accent - Cyan */
-  --color-accent: #22d3ee; /* cyan-400 */
-  --color-accent-hover: #06b6d4; /* cyan-500 */
-  --color-accent-light: rgba(34, 211, 238, 0.15);
-  --color-accent-foreground: #000000;
+  /* ===== STATUS COLORS (Vibrant but legible) ===== */
+  --color-success: oklch(0.75 0.18 150);         /* #4ade80 - Pop Green */
+  --color-success-light: oklch(0.22 0.08 150);   /* #14532d */
+  --color-success-foreground: oklch(0.12 0.03 275);
+  
+  --color-warning: oklch(0.80 0.16 70);          /* #fdba74 - Soft Orange */
+  --color-warning-light: oklch(0.22 0.08 70);    /* #431407 */
+  --color-warning-foreground: oklch(0.12 0.03 275);
+  
+  --color-error: oklch(0.70 0.20 25);            /* #f87171 - Soft Red */
+  --color-error-light: oklch(0.25 0.10 25);      /* #450a0a */
+  --color-error-foreground: oklch(1.0 0 0);      /* #ffffff */
+  
+  --color-info: oklch(0.75 0.15 230);            /* #67e8f9 - Cyan */
+  --color-info-light: oklch(0.22 0.08 230);
+  --color-info-foreground: oklch(0.12 0.03 275);
 
-  /* Status Colors */
-  --color-success: #34d399; /* emerald-400 */
-  --color-success-light: rgba(52, 211, 153, 0.15);
-  --color-success-foreground: #000000;
-  --color-warning: #fbbf24; /* amber-400 */
-  --color-warning-light: rgba(251, 191, 36, 0.15);
-  --color-warning-foreground: #000000;
-  --color-error: #f87171; /* red-400 */
-  --color-error-light: rgba(248, 113, 113, 0.15);
-  --color-error-foreground: #ffffff;
-  --color-info: #38bdf8; /* sky-400 */
-  --color-info-light: rgba(56, 189, 248, 0.15);
-  --color-info-foreground: #000000;
-
-  /* Glass Effect - Minimal (not main feature) */
-  --glass-bg: rgba(20, 20, 20, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  /* ===== GLASS EFFECT (Deep Space Glass) ===== */
+  /* This creates a dark, blurry, slightly blue-tinted glass */
+  --glass-bg: rgba(11, 14, 22, 0.75);            /* Matches bg-base but transparent */
+  --glass-border: rgba(56, 189, 248, 0.15);      /* Subtle Brand Color Rim */
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-  --glass-blur: 12px;
+  --glass-blur: 24px;                            /* Heavy premium blur */
 
-  /* Glow colors - Purple/Cyan */
-  --glow-primary: rgba(167, 139, 250, 0.6);
-  --glow-accent: rgba(34, 211, 238, 0.6);
+  /* ===== GLOW EFFECTS (Neon ambiance) ===== */
+  --glow-primary: rgba(56, 189, 248, 0.25);      /* Blue glow */
+  --glow-accent: rgba(216, 180, 254, 0.25);      /* Purple glow */
 }

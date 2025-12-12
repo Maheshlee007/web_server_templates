@@ -1,60 +1,65 @@
-/* ========== GLASS LIGHT THEME ========== */
-/* Light glassmorphism with soft transparency */
+/* ========== CRYSTAL CLEAR (Modern Light) ========== */
+/* A crisp, airy theme with vibrant violet branding and strong glass effects */
 [data-theme="glass-light"] {
-  /* Backgrounds - Soft white with transparency */
-  --color-bg: rgba(255, 255, 255, 0.7);
-  --color-bg-secondary: rgba(248, 250, 252, 0.8);
-  --color-bg-tertiary: rgba(241, 245, 249, 0.85);
+  /* ===== BACKGROUNDS (Cool tinted whites) ===== */
+  --color-bg: oklch(0.99 0.005 260);             /* #fbfbfe - Hint of blue */
+  --color-bg-secondary: oklch(0.97 0.01 260);    /* #f4f4f7 - Light cool gray */
+  --color-bg-tertiary: oklch(0.95 0.015 260);    /* #eef0f5 */
+  --color-surface: oklch(1.0 0 0);               /* #ffffff - Pure White */
+  --color-surface-hover: oklch(0.96 0.01 260);   /* #f1f3f7 */
 
-  /* Text */
-  --color-text: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-muted: #94a3b8;
+  /* ===== TEXT (Deep Indigo-Grays for contrast) ===== */
+  --color-text: oklch(0.20 0.04 265);            /* #1e2030 - Deep Indigo/Black */
+  --color-text-secondary: oklch(0.45 0.04 265);  /* #585d75 */
+  --color-text-muted: oklch(0.70 0.03 265);      /* #9ca0b0 */
 
-  /* Borders */
-  --color-border: rgba(226, 232, 240, 0.6);
-  --color-border-light: rgba(241, 245, 249, 0.4);
+  /* ===== BORDERS ===== */
+  --color-border: oklch(0.90 0.02 265);          /* #dde0e8 */
+  --color-border-light: oklch(0.95 0.01 265);    /* #eff1f5 */
 
-  /* Brand Colors */
-  --color-brand: var(--color-primary-600);
-  --color-brand-hover: var(--color-primary-700);
-  --color-brand-active: var(--color-primary-800);
-  --color-brand-light: rgba(59, 130, 246, 0.1);
-  --color-brand-foreground: #ffffff;
+  /* ===== BRAND (Electric Violet) ===== */
+  --color-brand: oklch(0.55 0.22 280);           /* #7c3aed - Vibrant Violet */
+  --color-brand-hover: oklch(0.48 0.22 280);     /* #6d28d9 */
+  --color-brand-active: oklch(0.40 0.22 280);    /* #5b21b6 */
+  --color-brand-light: oklch(0.96 0.03 280);     /* #f5f3ff */
+  --color-brand-foreground: oklch(1.0 0 0);      /* #ffffff */
 
-  /* Secondary */
-  --color-secondary: var(--color-secondary-600);
-  --color-secondary-hover: var(--color-secondary-700);
-  --color-secondary-light: rgba(100, 116, 139, 0.1);
-  --color-secondary-foreground: #ffffff;
+  /* ===== SECONDARY (Cool Slate) ===== */
+  --color-secondary: oklch(0.55 0.03 260);       /* #64748b */
+  --color-secondary-hover: oklch(0.45 0.03 260); /* #475569 */
+  --color-secondary-light: oklch(0.96 0.01 260); /* #f1f5f9 */
+  --color-secondary-foreground: oklch(1.0 0 0);  /* #ffffff */
 
-  /* Accent */
-  --color-accent: var(--color-accent-600);
-  --color-accent-hover: var(--color-accent-700);
-  --color-accent-light: rgba(244, 63, 94, 0.1);
-  --color-accent-foreground: #ffffff;
+  /* ===== ACCENT (Hot Pink/Magenta) ===== */
+  --color-accent: oklch(0.60 0.20 330);          /* #db2777 - Pink */
+  --color-accent-hover: oklch(0.50 0.20 330);    /* #be185d */
+  --color-accent-light: oklch(0.96 0.02 330);    /* #fdf2f8 */
+  --color-accent-foreground: oklch(1.0 0 0);     /* #ffffff */
 
-  /* Status Colors */
-  --color-success: var(--color-success-600);
-  --color-success-light: rgba(22, 163, 74, 0.1);
-  --color-success-foreground: #ffffff;
-  --color-warning: var(--color-warning-600);
-  --color-warning-light: rgba(217, 119, 6, 0.1);
-  --color-warning-foreground: #ffffff;
-  --color-error: var(--color-error-600);
-  --color-error-light: rgba(220, 38, 38, 0.1);
-  --color-error-foreground: #ffffff;
-  --color-info: var(--color-info-600);
-  --color-info-light: rgba(2, 132, 199, 0.1);
-  --color-info-foreground: #ffffff;
+  /* ===== STATUS COLORS (Vibrant) ===== */
+  --color-success: oklch(0.65 0.18 150);         /* #16a34a - Green */
+  --color-success-light: oklch(0.97 0.03 150);   /* #dcfce7 */
+  --color-success-foreground: oklch(1.0 0 0);    /* #ffffff */
+  
+  --color-warning: oklch(0.75 0.16 70);          /* #ea580c - Orange/Amber */
+  --color-warning-light: oklch(0.98 0.03 70);    /* #ffedd5 */
+  --color-warning-foreground: oklch(1.0 0 0);    /* #ffffff */
+  
+  --color-error: oklch(0.60 0.22 25);            /* #dc2626 - Red */
+  --color-error-light: oklch(0.98 0.03 25);      /* #fee2e2 */
+  --color-error-foreground: oklch(1.0 0 0);      /* #ffffff */
+  
+  --color-info: oklch(0.65 0.15 240);            /* #0284c7 - Sky Blue */
+  --color-info-light: oklch(0.97 0.02 240);      /* #e0f2fe */
+  --color-info-foreground: oklch(1.0 0 0);       /* #ffffff */
 
-  /* Glass Effect - Strong blur */
-  --glass-bg: rgba(255, 255, 255, 0.6);
+  /* ===== GLASS EFFECT (Strong & Icy) ===== */
+  --glass-bg: rgba(255, 255, 255, 0.65);
   --glass-border: rgba(255, 255, 255, 0.4);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-  --glass-blur: 14px;
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --glass-blur: 16px;
 
-  /* Glow colors */
-  --glow-primary: rgba(37, 99, 235, 0.4);
-  --glow-accent: rgba(225, 29, 72, 0.4);
+  /* ===== GLOW EFFECTS ===== */
+  --glow-primary: rgba(124, 58, 237, 0.25);      /* Violet Glow */
+  --glow-accent: rgba(219, 39, 119, 0.25);       /* Pink Glow */
 }
