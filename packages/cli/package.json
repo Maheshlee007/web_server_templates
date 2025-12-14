@@ -1,19 +1,55 @@
 {
-  "name": "cli",
-  "version": "1.0.0",
-  "description": "",
+  "name": "create-webstack-app",
+  "version": "1.0.1",
+  "description": "A CLI tool to quickly scaffold modern web applications with React, TypeScript, and Tailwind CSS",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "create-ml-temp-app": "index.js"
+    "create-webstack-app": "index.js"
   },
   "scripts": {
     "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "mahesh",
-  "license": "ISC",
+  "keywords": [
+    "create-app",
+    "cli",
+    "react",
+    "typescript",
+    "tailwind",
+    "tailwindcss",
+    "vite",
+    "template",
+    "scaffold",
+    "boilerplate",
+    "starter",
+    "generator",
+    "web templates",
+    "react starter"
+  ],
+  "author": {
+    "name": "MaheshLee",
+    "url": "https://github.com/Maheshlee007"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Maheshlee007/web_server_templates.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/Maheshlee007/web_server_templates#readme",
+  "bugs": {
+    "url": "https://github.com/Maheshlee007/web_server_templates/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "templates/"
+  ],
   "packageManager": "pnpm@10.24.0",
   "dependencies": {
     "chalk": "^5.6.2",

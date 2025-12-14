@@ -1,6 +1,5 @@
 {
-  "name": "react18-tailwind3-template",
-  "private": true,
+  "name": "react18-tailwind3-template",  
   "version": "0.0.0",
   "type": "module",
   "scripts": {

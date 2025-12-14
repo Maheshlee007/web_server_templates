@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "workspaces": [
     "packages/cli/*",
-    "packages/templates/*"
+    "packages/cli/templates/*"
   ],
   "scripts": {
     "dev:cli":"pnpm --filter ./packages/cli dev",
-    "dev:tail3":"pnpm --filter ./packages/templates/react18-tailwind3 run  dev",
-    "dev:tail4":"pnpm --filter ./packages/templates/react18-tailwind4 run  dev",
-    "dev:react19":"pnpm --filter ./packages/templates/react19-ts-basic run dev"
+    "dev:tail3":"pnpm --filter ./packages/cli/templates/react18-tailwind3 run  dev",
+    "dev:tail4":"pnpm --filter ./packages/cli/templates/react18-tailwind4 run  dev",
+    "dev:react19":"pnpm --filter ./packages/cli/templates/react19-ts-basic run dev"
   }
 }

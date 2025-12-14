@@ -1,4 +1,5 @@
 # filepath: d:\web_server_templates\pnpm-workspace.yaml
 packages:
   - 'packages/*'
-  - 'packages/templates/*'
+  - 'packages/cli/*'
+  - 'packages/cli/templates/*'

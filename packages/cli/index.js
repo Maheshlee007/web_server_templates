@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Get templates from the templates directory
-const templatesPath = path.resolve(__dirname, '../templates');
+const templatesPath = path.resolve(__dirname, './templates');
 
 // Template descriptions and metadata
 const templateDescriptions = {
