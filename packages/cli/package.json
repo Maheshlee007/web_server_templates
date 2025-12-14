@@ -1,6 +1,6 @@
 {
   "name": "create-webstack-app",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "A CLI tool to quickly scaffold modern web applications with React, TypeScript, and Tailwind CSS",
   "main": "index.js",
   "type": "module",
@@ -48,7 +48,7 @@
   "files": [
     "index.js",
     "README.md",
-    "templates/"
+    "templates"
   ],
   "packageManager": "pnpm@10.24.0",
   "dependencies": {

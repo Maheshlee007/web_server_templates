@@ -7,19 +7,19 @@ A CLI tool to quickly scaffold modern web applications with React, TypeScript, a
 Create a new project with npx (no installation required):
 
 ```bash
-npx create-webstack-app
+npx create-webstack-app@latest
 ```
 
 Or with npm create:
 
 ```bash
-npm create webstack-app
+npm create webstack-app@latest
 ```
 
 Or install globally:
 
 ```bash
-npm install -g create-webstack-app
+npm install -g create-webstack-app@latest
 create-webstack-app
 ```
 

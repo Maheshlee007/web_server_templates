@@ -32,6 +32,17 @@ const templateDescriptions = {
     }
 };
 
+// console.log('Current script directory:', __dirname);
+// console.log('Looking for templates in:', templatesPath);
+
+// // Check if directory exists physically
+// if (fs.existsSync(templatesPath)) {
+//     console.log('Templates directory exists.');
+//     console.log('Contents:', fs.readdirSync(templatesPath));
+// } else {
+//     console.log('Templates directory MISSING at path!');
+// }
+
 async function getAvailableTemplates() {
     try {
         const items = await fs.readdir(templatesPath);
@@ -164,7 +175,14 @@ async function run() {
     try {
         await fs.ensureDir(projectDir);
         await fs.copy(templateDir, projectDir, {
-            filter: (src) => !src.includes('node_modules') && !src.includes('pnpm-lock.yaml'),
+            filter: (src) => {
+                // Get the relative path from the template directory
+                const relativePath = path.relative(templateDir, src);
+                // console.log('Copying:',src, relativePath);
+                // Check if the file is explicitly 'node_modules' or inside it
+                // We use path.sep to make sure we don't match 'my-node_modules-test'
+                return !relativePath.includes('.npmignore') && !relativePath.includes('node_modules') && !src.includes('pnpm-lock.yaml');
+            }
         });
         console.log(chalk.green('\nProject created successfully!'));
         console.log(chalk.bold('Next steps:'));
