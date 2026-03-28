@@ -1,0 +1,72 @@
+/* ╔══════════════════════════════════════════════╗
+   ║   CITRUS WHITE — Light Theme                  ║
+   ║   Pure white with vibrant orange accents       ║
+   ╚══════════════════════════════════════════════╝ */
+[data-theme="slate"] {
+  /* ── Backgrounds (Pure Neutral) ────────────── */
+  --color-bg:            oklch(1.00 0.000 0);       /* #ffffff */
+  --color-bg-secondary:  oklch(0.98 0.002 240);     /* #f8fafc */
+  --color-bg-tertiary:   oklch(0.96 0.006 240);     /* #f1f5f9 */
+  --color-surface:       oklch(1.00 0.000 0);       /* #ffffff */
+  --color-surface-hover: oklch(0.97 0.004 240);     /* #f4f6f8 */
+
+  /* ── Text (Deep Slate) ─────────────────────── */
+  --color-text:           oklch(0.20 0.030 240);    /* #1e293b */
+  --color-text-secondary: oklch(0.45 0.030 240);    /* #475569 */
+  --color-text-muted:     oklch(0.70 0.020 240);    /* #94a3b8 */
+
+  /* ── Borders ───────────────────────────────── */
+  --color-border:       oklch(0.92 0.010 240);      /* #e2e8f0 */
+  --color-border-light: oklch(0.96 0.005 240);      /* #f1f5f9 */
+
+  /* ── Brand (Vibrant Orange) ────────────────── */
+  --color-brand:            oklch(0.62 0.220 40);   /* #f97316 */
+  --color-brand-hover:      oklch(0.55 0.220 40);   /* #ea580c */
+  --color-brand-active:     oklch(0.48 0.220 40);   /* #c2410c */
+  --color-brand-light:      oklch(0.98 0.020 40);   /* #fff7ed */
+  --color-brand-foreground: oklch(1.00 0.000 0);
+
+  /* ── Secondary (Neutral) ───────────────────── */
+  --color-secondary:            oklch(0.60 0.020 240);
+  --color-secondary-hover:      oklch(0.40 0.020 240);
+  --color-secondary-light:      oklch(0.96 0.010 240);
+  --color-secondary-foreground: oklch(1.00 0.000 0);
+
+  /* ── Accent (Charcoal) ─────────────────────── */
+  --color-accent:            oklch(0.20 0.020 240);  /* #1e293b */
+  --color-accent-hover:      oklch(0.10 0.020 240);  /* #0f172a */
+  --color-accent-light:      oklch(0.96 0.010 240);  /* #f1f5f9 */
+  --color-accent-foreground: oklch(1.00 0.000 0);
+
+  /* ── Status ────────────────────────────────── */
+  --color-success:            oklch(0.65 0.180 150);
+  --color-success-light:      oklch(0.98 0.020 150);
+  --color-success-foreground: oklch(1.00 0.000 0);
+
+  --color-warning:            oklch(0.80 0.160 85);
+  --color-warning-light:      oklch(0.98 0.040 85);
+  --color-warning-foreground: oklch(0.18 0.014 240);
+
+  --color-error:              oklch(0.60 0.200 25);
+  --color-error-light:        oklch(0.98 0.020 25);
+  --color-error-foreground:   oklch(1.00 0.000 0);
+
+  --color-info:               oklch(0.60 0.150 240);
+  --color-info-light:         oklch(0.98 0.020 240);
+  --color-info-foreground:    oklch(1.00 0.000 0);
+
+  /* ── Glass (Crystal Clear) ─────────────────── */
+  --glass-bg:     rgba(255, 255, 255, 0.85);
+  --glass-border: oklch(0.92 0.010 240 / 0.60);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
+  --glass-blur:   12px;
+
+  /* ── Glow ──────────────────────────────────── */
+  --glow-primary: oklch(0.62 0.220 40 / 0.20);
+  --glow-accent:  oklch(0.20 0.020 240 / 0.10);
+
+  /* ── Scrollbar ─────────────────────────────── */
+  --scrollbar-thumb:       oklch(0.82 0.010 240);   /* neutral gray */
+  --scrollbar-thumb-hover: oklch(0.65 0.060 40);    /* orange hint */
+  --scrollbar-track:       oklch(0.97 0.004 240);
+}

@@ -1,0 +1,72 @@
+/* ╔══════════════════════════════════════════════╗
+   ║   CRYSTAL CLEAR — Light Theme                ║
+   ║   Crisp airy light with violet branding       ║
+   ╚══════════════════════════════════════════════╝ */
+[data-theme="glass-light"] {
+  /* ── Backgrounds (Cool-tinted whites) ──────── */
+  --color-bg:            oklch(0.99 0.005 260);     /* #fbfbfe */
+  --color-bg-secondary:  oklch(0.97 0.010 260);     /* #f4f4f7 */
+  --color-bg-tertiary:   oklch(0.95 0.015 260);     /* #eef0f5 */
+  --color-surface:       oklch(1.00 0.000 0);       /* #ffffff */
+  --color-surface-hover: oklch(0.96 0.010 260);     /* #f1f3f7 */
+
+  /* ── Text (Deep Indigo-Grays) ──────────────── */
+  --color-text:           oklch(0.20 0.040 265);    /* #1e2030 */
+  --color-text-secondary: oklch(0.45 0.040 265);    /* #585d75 */
+  --color-text-muted:     oklch(0.70 0.030 265);    /* #9ca0b0 */
+
+  /* ── Borders ───────────────────────────────── */
+  --color-border:       oklch(0.90 0.020 265);      /* #dde0e8 */
+  --color-border-light: oklch(0.95 0.010 265);      /* #eff1f5 */
+
+  /* ── Brand (Electric Violet) ───────────────── */
+  --color-brand:            oklch(0.55 0.220 280);  /* #7c3aed */
+  --color-brand-hover:      oklch(0.48 0.220 280);  /* #6d28d9 */
+  --color-brand-active:     oklch(0.40 0.220 280);  /* #5b21b6 */
+  --color-brand-light:      oklch(0.96 0.030 280);  /* #f5f3ff */
+  --color-brand-foreground: oklch(1.00 0.000 0);
+
+  /* ── Secondary (Cool Slate) ────────────────── */
+  --color-secondary:            oklch(0.55 0.030 260);
+  --color-secondary-hover:      oklch(0.45 0.030 260);
+  --color-secondary-light:      oklch(0.96 0.010 260);
+  --color-secondary-foreground: oklch(1.00 0.000 0);
+
+  /* ── Accent (Hot Pink) ─────────────────────── */
+  --color-accent:            oklch(0.60 0.200 330);  /* #db2777 */
+  --color-accent-hover:      oklch(0.50 0.200 330);  /* #be185d */
+  --color-accent-light:      oklch(0.96 0.020 330);  /* #fdf2f8 */
+  --color-accent-foreground: oklch(1.00 0.000 0);
+
+  /* ── Status ────────────────────────────────── */
+  --color-success:            oklch(0.65 0.180 150);
+  --color-success-light:      oklch(0.97 0.030 150);
+  --color-success-foreground: oklch(1.00 0.000 0);
+
+  --color-warning:            oklch(0.75 0.160 70);
+  --color-warning-light:      oklch(0.98 0.030 70);
+  --color-warning-foreground: oklch(1.00 0.000 0);
+
+  --color-error:              oklch(0.60 0.220 25);
+  --color-error-light:        oklch(0.98 0.030 25);
+  --color-error-foreground:   oklch(1.00 0.000 0);
+
+  --color-info:               oklch(0.65 0.150 240);
+  --color-info-light:         oklch(0.97 0.020 240);
+  --color-info-foreground:    oklch(1.00 0.000 0);
+
+  /* ── Glass (Icy Light) ─────────────────────── */
+  --glass-bg:     rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.40);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --glass-blur:   16px;
+
+  /* ── Glow ──────────────────────────────────── */
+  --glow-primary: oklch(0.55 0.220 280 / 0.25);
+  --glow-accent:  oklch(0.60 0.200 330 / 0.25);
+
+  /* ── Scrollbar ─────────────────────────────── */
+  --scrollbar-thumb:       oklch(0.82 0.025 265);   /* cool gray */
+  --scrollbar-thumb-hover: oklch(0.65 0.060 280);   /* violet hint */
+  --scrollbar-track:       oklch(0.96 0.010 260);
+}

@@ -3,3 +3,4 @@ packages:
   - 'packages/*'
   - 'packages/cli/*'
   - 'packages/cli/templates/*'
+  - 'packages/cli/templates/**/*'

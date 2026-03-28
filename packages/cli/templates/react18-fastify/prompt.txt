@@ -1,0 +1,191 @@
+
+```markdown
+# Fastify Backend Template with JWT Authentication & RBAC
+
+## Project Overview
+Create a production-ready, reusable Fastify backend application template with:
+- **JWT-based Authentication** for secure token management
+- **Role-Based Access Control (RBAC)** for fine-grained authorization
+- **SQL Server Integration** for persistent data storage
+- **Health Check Route** for monitoring application status
+- **Well-structured project layout** following best practices
+
+## Core Requirements
+
+### 1. Project Structure
+```
+fastify-backend-template/
+├── src/
+│   ├── config/
+│   │   ├── database.ts          # SQL Server connection config
+│   │   ├── jwt.ts              # JWT configuration
+│   │   └── environment.ts       # Environment variables
+│   ├── middleware/
+│   │   ├── authentication.ts    # JWT verification middleware
+│   │   ├── authorization.ts     # RBAC authorization middleware
+│   │   └── errorHandler.ts      # Global error handling
+│   ├── routes/
+│   │   ├── health.ts            # Health check endpoint
+│   │   ├── auth.ts              # Authentication endpoints
+│   │   └── index.ts             # Route registration
+│   ├── controllers/
+│   │   ├── authController.ts    # Auth business logic
+│   │   └── healthController.ts  # Health check logic
+│   ├── models/
+│   │   ├── User.ts              # User data model
+│   │   ├── Role.ts              # Role data model
+│   │   └── Permission.ts        # Permission data model
+│   ├── services/
+│   │   ├── authService.ts       # Auth service logic
+│   │   ├── userService.ts       # User service logic
+│   │   └── tokenService.ts      # Token generation/validation
+│   ├── utils/
+│   │   ├── logger.ts            # Logging utility
+│   │   ├── validators.ts        # Input validation
+│   │   └── decorators.ts        # Custom decorators
+│   ├── types/
+│   │   ├── index.ts             # TypeScript type definitions
+│   │   └── jwt.ts               # JWT payload types
+│   └── app.ts                   # Main application file
+├── migrations/
+│   └── init.sql                 # SQL Server schema
+├── .env.example                 # Environment template
+├── package.json
+├── tsconfig.json
+├── jest.config.js               # Testing configuration
+└── README.md
+```
+
+### 2. Authentication System (JWT)
+- **Token Generation**: Issue access tokens on successful login
+- **Token Validation**: Verify JWT signature and expiration
+- **Refresh Tokens**: Optional refresh token mechanism for extended sessions
+- **Token Payload**: Include user ID, email, roles, and permissions
+- **Security**: Use HS256 or RS256 algorithm with secure secret management
+
+### 3. Role-Based Access Control (RBAC)
+- **Roles**: Define roles (Admin, User, Manager, Guest, etc.)
+- **Permissions**: Fine-grained permissions tied to roles
+- **Role Assignment**: Users can have multiple roles
+- **Permission Checking**: Middleware to verify user has required permissions
+- **Protected Routes**: Ability to protect routes by role/permission
+
+### 4. SQL Server Database
+- **User Table**: Store user credentials, email, profile info
+- **Role Table**: Define available roles
+- **Permission Table**: Define available permissions
+- **RolePermission Table**: Map roles to permissions
+- **UserRole Table**: Map users to roles
+- **Connection Pool**: Efficient database connection management
+
+### 5. Endpoints
+
+#### Authentication Routes (`/auth`)
+- `POST /auth/register` - User registration
+- `POST /auth/login` - User login (returns JWT)
+- `POST /auth/refresh` - Refresh access token (optional)
+- `POST /auth/logout` - User logout
+- `GET /auth/me` - Get current user profile (protected)
+
+#### Health Check Routes (`/health`)
+- `GET /health` - Basic health check
+- `GET /health/db` - Database connectivity check
+
+#### Protected Route Example (`/users`)
+- `GET /users` - List users (Admin only)
+- `GET /users/:id` - Get user details (Owner or Admin)
+- `PUT /users/:id` - Update user (Owner or Admin)
+
+### 6. Middleware
+- **Authentication Middleware**: Verify JWT token on protected routes
+- **Authorization Middleware**: Check user roles and permissions
+- **Error Handler**: Centralized error handling with proper HTTP status codes
+- **Logging Middleware**: Request/response logging
+- **Validation Middleware**: Input validation and sanitization
+
+### 7. Error Handling
+- Proper HTTP status codes (400, 401, 403, 404, 500)
+- Consistent error response format
+- Validation error details
+- Unauthorized/Forbidden messages
+
+### 8. Configuration & Environment
+- Environment-based configuration (.env file)
+- Database connection strings
+- JWT secret key and expiration times
+- Logging levels
+- CORS settings
+
+### 9. Testing (Optional but Recommended)
+- Unit tests for services
+- Integration tests for routes
+- Authentication and authorization tests
+- Database connection tests
+
+### 10. Documentation
+- Comprehensive README with setup instructions
+- API endpoint documentation
+- Authentication flow diagram
+- RBAC structure explanation
+- Environment configuration guide
+- Database schema documentation
+
+## Technology Stack
+- **Framework**: Fastify (latest version)
+- **Language**: TypeScript
+- **Database**: SQL Server with mssql package
+- **Authentication**: JWT (jsonwebtoken)
+- **Validation**: Joi or Zod
+- **Logging**: Pino or Winston
+- **Hashing**: Bcrypt for password hashing
+- **Testing**: Jest or vitest or fastify based tests (optional)
+- **Environment**: dotenv
+
+## Key Features
+✅ Type-safe TypeScript implementation
+✅ Production-ready error handling
+✅ Secure password hashing with bcrypt
+✅ JWT token management
+✅ Flexible RBAC system
+✅ SQL Server integration with connection pooling
+✅ Comprehensive logging
+✅ Health check endpoints
+✅ Input validation
+✅ Reusable and scalable architecture
+✅ Clear code organization
+✅ Environment-based configuration
+
+## Deliverables
+1. Complete Fastify application with all folder structure
+2. Database schema with migrations
+3. Pre-configured authentication system
+4. RBAC implementation with example roles
+5. Health check endpoints
+6. Example protected routes
+7. Middleware setup
+8. Environment configuration template
+9. Comprehensive documentation
+10. Ready to deploy template for team reuse
+
+## Non-Functional Requirements
+- Clean, readable, and maintainable code
+- DRY (Don't Repeat Yourself) principles
+- Separation of concerns (Controllers, Services, Repositories)
+- Security best practices
+- Performance optimized
+- Easily extensible for future features
+```
+
+---
+
+## How to Use This Prompt
+
+This well-structured prompt is ready to use with the Fastify backend coding agent. It covers:
+
+1. **Clear Project Vision** - Exactly what needs to be built
+2. **Detailed Structure** - Precise folder organization
+3. **Complete Feature Set** - All components needed
+4. **Technical Specifications** - Technology choices and configurations
+5. **API Specifications** - Endpoint definitions
+6. **Best Practices** - Industry standards and patterns
+7. **Deliverables** - What you'll receive

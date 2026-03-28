@@ -1,0 +1,72 @@
+/* ╔══════════════════════════════════════════════╗
+   ║   COSMIC — Dark Theme                        ║
+   ║   Deep space with violet/cyan accents         ║
+   ╚══════════════════════════════════════════════╝ */
+[data-theme="glass-dark"] {
+  /* ── Backgrounds (Deep Slate) ──────────────── */
+  --color-bg:            oklch(0.18 0.014 240);     /* #0f172a */
+  --color-bg-secondary:  oklch(0.25 0.018 240);     /* #1e293b */
+  --color-bg-tertiary:   oklch(0.34 0.022 240);     /* #334155 */
+  --color-surface:       oklch(0.25 0.018 240);     /* #1e293b */
+  --color-surface-hover: oklch(0.34 0.022 240);     /* #334155 */
+
+  /* ── Text ──────────────────────────────────── */
+  --color-text:           oklch(0.96 0.006 240);    /* #f1f5f9 */
+  --color-text-secondary: oklch(0.86 0.018 240);    /* #cbd5e1 */
+  --color-text-muted:     oklch(0.68 0.024 240);    /* #94a3b8 */
+
+  /* ── Borders ───────────────────────────────── */
+  --color-border:       oklch(0.68 0.024 240 / 0.20);
+  --color-border-light: oklch(0.68 0.024 240 / 0.10);
+
+  /* ── Brand (Bright Violet) ─────────────────── */
+  --color-brand:            oklch(0.70 0.160 290);  /* #a78bfa */
+  --color-brand-hover:      oklch(0.60 0.200 290);  /* #8b5cf6 */
+  --color-brand-active:     oklch(0.55 0.220 280);  /* #7c3aed */
+  --color-brand-light:      oklch(0.70 0.160 290 / 0.15);
+  --color-brand-foreground: oklch(1.00 0.000 0);
+
+  /* ── Secondary (Neutral Slate) ─────────────── */
+  --color-secondary:            oklch(0.68 0.024 240);
+  --color-secondary-hover:      oklch(0.86 0.018 240);
+  --color-secondary-light:      oklch(0.68 0.024 240 / 0.15);
+  --color-secondary-foreground: oklch(0.18 0.014 240);
+
+  /* ── Accent (Electric Cyan) ────────────────── */
+  --color-accent:            oklch(0.75 0.145 195);  /* #22d3ee */
+  --color-accent-hover:      oklch(0.68 0.155 195);  /* #06b6d4 */
+  --color-accent-light:      oklch(0.75 0.145 195 / 0.15);
+  --color-accent-foreground: oklch(0.18 0.014 240);
+
+  /* ── Status ────────────────────────────────── */
+  --color-success:            oklch(0.72 0.168 155);
+  --color-success-light:      oklch(0.72 0.168 155 / 0.15);
+  --color-success-foreground: oklch(0.18 0.014 240);
+
+  --color-warning:            oklch(0.78 0.148 70);
+  --color-warning-light:      oklch(0.78 0.148 70 / 0.15);
+  --color-warning-foreground: oklch(0.18 0.014 240);
+
+  --color-error:              oklch(0.70 0.200 25);
+  --color-error-light:        oklch(0.70 0.200 25 / 0.15);
+  --color-error-foreground:   oklch(1.00 0.000 0);
+
+  --color-info:               oklch(0.68 0.142 250);
+  --color-info-light:         oklch(0.68 0.142 250 / 0.15);
+  --color-info-foreground:    oklch(0.18 0.014 240);
+
+  /* ── Glass (Violet-tinted) ─────────────────── */
+  --glass-bg:     rgba(30, 41, 59, 0.70);
+  --glass-border: oklch(0.70 0.160 290 / 0.20);
+  --glass-shadow: 0 8px 32px 0 oklch(0.60 0.200 290 / 0.30);
+  --glass-blur:   14px;
+
+  /* ── Glow ──────────────────────────────────── */
+  --glow-primary: oklch(0.70 0.160 290 / 0.70);
+  --glow-accent:  oklch(0.75 0.145 195 / 0.70);
+
+  /* ── Scrollbar ─────────────────────────────── */
+  --scrollbar-thumb:       oklch(0.40 0.060 290);   /* violet-tinted */
+  --scrollbar-thumb-hover: oklch(0.50 0.100 290);
+  --scrollbar-track:       oklch(0.22 0.016 240);
+}
