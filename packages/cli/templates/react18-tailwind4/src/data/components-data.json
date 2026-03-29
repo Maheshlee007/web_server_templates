@@ -188,5 +188,129 @@
       { "name": "variant", "type": "'grid' | 'swatches' | 'compact'", "default": "'grid'", "description": "Display style" },
       { "name": "showLabels", "type": "boolean", "default": "true", "description": "Show color names" }
     ]
+  },
+  "badge": {
+    "name": "Badge",
+    "description": "Status badges with variants, sizes, dot indicators, and removable option",
+    "category": "Display",
+    "variants": [
+      { "id": "all", "label": "All Variants", "description": "All badge color variants" },
+      { "id": "sizes", "label": "Sizes", "description": "Small, medium, and large sizes" },
+      { "id": "features", "label": "Features", "description": "Dot indicators and removable badges" }
+    ],
+    "props": [
+      { "name": "variant", "type": "'default' | 'secondary' | 'outline' | 'success' | 'warning' | 'error' | 'info'", "default": "'default'", "description": "Color variant" },
+      { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "description": "Badge size" },
+      { "name": "dot", "type": "boolean", "default": "false", "description": "Show dot indicator" },
+      { "name": "removable", "type": "boolean", "default": "false", "description": "Show remove (X) button" },
+      { "name": "onRemove", "type": "() => void", "default": "undefined", "description": "Callback when remove is clicked" }
+    ]
+  },
+  "alert": {
+    "name": "Alert",
+    "description": "Contextual alerts with auto icons, dismissible option, and title/description",
+    "category": "Feedback",
+    "variants": [
+      { "id": "all", "label": "All Variants", "description": "Info, success, warning, and error alerts" },
+      { "id": "dismissible", "label": "Dismissible", "description": "Alerts that can be dismissed" },
+      { "id": "with-title", "label": "With Title", "description": "Alerts with title and description" }
+    ],
+    "props": [
+      { "name": "variant", "type": "'info' | 'success' | 'warning' | 'error'", "default": "'info'", "description": "Alert type" },
+      { "name": "title", "type": "string", "default": "undefined", "description": "Alert title" },
+      { "name": "dismissible", "type": "boolean", "default": "false", "description": "Show dismiss button" },
+      { "name": "onDismiss", "type": "() => void", "default": "undefined", "description": "Callback when dismissed" },
+      { "name": "icon", "type": "ReactNode", "default": "auto", "description": "Custom icon (auto-detected from variant)" }
+    ]
+  },
+  "table": {
+    "name": "Table",
+    "description": "Compound table with striped, bordered variants and hover highlighting",
+    "category": "Data Display",
+    "variants": [
+      { "id": "default", "label": "Default", "description": "Clean table with hover rows" },
+      { "id": "striped", "label": "Striped", "description": "Alternating row backgrounds" },
+      { "id": "bordered", "label": "Bordered", "description": "Full border around the table" }
+    ],
+    "props": [
+      { "name": "variant", "type": "'default' | 'striped' | 'bordered'", "default": "'default'", "description": "Table style variant" }
+    ]
+  },
+  "tooltip": {
+    "name": "Tooltip",
+    "description": "Accessible tooltips with configurable position, delay, and arrow",
+    "category": "Overlay",
+    "variants": [
+      { "id": "positions", "label": "Positions", "description": "Top, bottom, left, and right tooltips" },
+      { "id": "delay", "label": "Custom Delay", "description": "Tooltips with different delay durations" }
+    ],
+    "props": [
+      { "name": "content", "type": "ReactNode", "default": "required", "description": "Tooltip content" },
+      { "name": "side", "type": "'top' | 'bottom' | 'left' | 'right'", "default": "'top'", "description": "Tooltip position" },
+      { "name": "align", "type": "'start' | 'center' | 'end'", "default": "'center'", "description": "Tooltip alignment" },
+      { "name": "delayDuration", "type": "number", "default": "300", "description": "Delay before showing (ms)" }
+    ]
+  },
+  "tabs": {
+    "name": "Tabs",
+    "description": "Tab navigation with underline, pills, and boxed variants",
+    "category": "Navigation",
+    "variants": [
+      { "id": "underline", "label": "Underline", "description": "Classic underline tab style" },
+      { "id": "pills", "label": "Pills", "description": "Rounded pill-style tabs" },
+      { "id": "boxed", "label": "Boxed", "description": "Boxed tabs with brand-colored active state" }
+    ],
+    "props": [
+      { "name": "variant", "type": "'underline' | 'pills' | 'boxed'", "default": "'underline'", "description": "Tab style variant" },
+      { "name": "defaultValue", "type": "string", "default": "required", "description": "Default active tab value" }
+    ]
+  },
+  "switch": {
+    "name": "Switch",
+    "description": "Toggle switches with labels, descriptions, and multiple sizes",
+    "category": "Form",
+    "variants": [
+      { "id": "sizes", "label": "Sizes", "description": "Small, medium, and large switch sizes" },
+      { "id": "with-labels", "label": "With Labels", "description": "Switches with label and description text" }
+    ],
+    "props": [
+      { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "description": "Switch size" },
+      { "name": "label", "type": "string", "default": "undefined", "description": "Label text" },
+      { "name": "description", "type": "string", "default": "undefined", "description": "Description below label" },
+      { "name": "checked", "type": "boolean", "default": "false", "description": "Controlled checked state" },
+      { "name": "onCheckedChange", "type": "(checked: boolean) => void", "default": "undefined", "description": "Callback when toggled" },
+      { "name": "disabled", "type": "boolean", "default": "false", "description": "Disable the switch" }
+    ]
+  },
+  "avatar": {
+    "name": "Avatar",
+    "description": "User avatars with image, fallback initials, status indicator, and multiple sizes",
+    "category": "Display",
+    "variants": [
+      { "id": "sizes", "label": "Sizes", "description": "XS through XL avatar sizes" },
+      { "id": "status", "label": "With Status", "description": "Avatars with online/offline/busy/away indicators" },
+      { "id": "fallback", "label": "Fallback", "description": "Avatars with initial fallbacks" }
+    ],
+    "props": [
+      { "name": "size", "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'", "default": "'md'", "description": "Avatar size" },
+      { "name": "src", "type": "string", "default": "undefined", "description": "Image source URL" },
+      { "name": "alt", "type": "string", "default": "undefined", "description": "Alt text for image" },
+      { "name": "fallback", "type": "string", "default": "undefined", "description": "Name for fallback initials" },
+      { "name": "status", "type": "'online' | 'offline' | 'busy' | 'away'", "default": "undefined", "description": "Status indicator dot" }
+    ]
+  },
+  "accordion": {
+    "name": "Accordion",
+    "description": "Expandable sections with single/multiple mode and animated chevron",
+    "category": "Display",
+    "variants": [
+      { "id": "single", "label": "Single", "description": "Only one item open at a time" },
+      { "id": "multiple", "label": "Multiple", "description": "Multiple items can be open simultaneously" }
+    ],
+    "props": [
+      { "name": "type", "type": "'single' | 'multiple'", "default": "'single'", "description": "Expand mode" },
+      { "name": "collapsible", "type": "boolean", "default": "true", "description": "Allow closing all items (single mode)" },
+      { "name": "defaultValue", "type": "string | string[]", "default": "undefined", "description": "Default open item(s)" }
+    ]
   }
 }

@@ -1,29 +1,37 @@
 import { useState } from 'react';
-import { 
-  Card, 
-  CardHeader, 
-  CardTitle, 
-  CardDescription, 
-  CardBody, 
-  CardFooter 
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardBody,
+  CardFooter
 } from '@/components/UI/Card';
 import { Carousel } from '@/components/UI/Carousel';
 import { Drawer } from '@/components/UI/Drawer';
 import { Button } from '@/components/UI/Buttons/Button';
 import { Input } from '@/components/UI/Input';
+import { Badge } from '@/components/UI/Badge';
+import { Alert } from '@/components/UI/Alert';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/UI/Table';
 import { Dialog } from '@/components/UI/radix/Dialog';
 import { Dropdown, type SelectOption, Combobox, type ComboboxOption } from '@/components/UI/radix';
 import { ContextMenu } from '@/components/UI/radix/ContextMenu';
+import { Tooltip } from '@/components/UI/radix/Tooltip';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/UI/radix/Tabs';
+import { Switch } from '@/components/UI/radix/Switch';
+import { Avatar } from '@/components/UI/radix/Avatar';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/UI/radix/Accordion';
 import { ColorPalette } from '@/components/UI/ColorPalette';
-import { 
-  Check, Copy, User, Settings, Edit, Trash, Mail, 
+import {
+  Check, Copy, User, Settings, Edit, Trash, Mail,
   FileText, Image as ImageIcon, Search, Heart, Star,
   Download, Upload, Plus, X as XIcon, Home, Bell, Shield,
   Zap, Bookmark, Globe, Palette
 } from 'lucide-react';
 import componentsData from '@/data/components-data.json';
 
-type ComponentType = 'carousel' | 'button' | 'card' | 'input' | 'drawer' | 'dialog' | 'combobox' | 'contextMenu' | 'colorPalette';
+type ComponentType = 'carousel' | 'button' | 'card' | 'input' | 'drawer' | 'dialog' | 'combobox' | 'contextMenu' | 'colorPalette' | 'badge' | 'alert' | 'table' | 'tooltip' | 'tabs' | 'switch' | 'avatar' | 'accordion';
 
 interface ComponentData {
   name: string;
@@ -131,6 +139,7 @@ export function ComponentsDemo() {
   const [dialogPosition, setDialogPosition] = useState<'center' | 'top' | 'bottom'>('center');
   const [dialogSize, setDialogSize] = useState<'sm' | 'md' | 'lg' | 'xl'>('md');
   const [comboboxValue, setComboboxValue] = useState('');
+  const [switchStates, setSwitchStates] = useState({ notifications: true, darkMode: false, autoSave: true });
 
   const currentComponentData = componentsData[selectedComponent] as any;
   const currentVariant = currentComponentData.variants[selectedVariant];
@@ -873,10 +882,382 @@ export function ComponentsDemo() {
       case 'colorPalette':
         const paletteVariant = currentVariant.id as 'grid' | 'swatches' | 'compact';
         return (
-          <ColorPalette 
-            variant={paletteVariant} 
+          <ColorPalette
+            variant={paletteVariant}
             showLabels={paletteVariant !== 'compact'}
           />
+        );
+
+      case 'badge':
+        return (
+          <div className="space-y-8">
+            {currentVariant.id === 'all' && (
+              <div>
+                <h3 className="text-lg font-semibold text-(--color-text) mb-4">All Variants</h3>
+                <div className="flex flex-wrap gap-3">
+                  <Badge>Default</Badge>
+                  <Badge variant="secondary">Secondary</Badge>
+                  <Badge variant="outline">Outline</Badge>
+                  <Badge variant="success">Success</Badge>
+                  <Badge variant="warning">Warning</Badge>
+                  <Badge variant="error">Error</Badge>
+                  <Badge variant="info">Info</Badge>
+                </div>
+              </div>
+            )}
+            {currentVariant.id === 'sizes' && (
+              <div>
+                <h3 className="text-lg font-semibold text-(--color-text) mb-4">Sizes</h3>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Badge size="sm">Small</Badge>
+                  <Badge size="md">Medium</Badge>
+                  <Badge size="lg">Large</Badge>
+                </div>
+              </div>
+            )}
+            {currentVariant.id === 'features' && (
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-(--color-text) mb-4">With Dot</h3>
+                  <div className="flex flex-wrap gap-3">
+                    <Badge dot variant="success">Active</Badge>
+                    <Badge dot variant="error">Offline</Badge>
+                    <Badge dot variant="warning">Pending</Badge>
+                    <Badge dot variant="info">Processing</Badge>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-(--color-text) mb-4">Removable</h3>
+                  <div className="flex flex-wrap gap-3">
+                    <Badge removable onRemove={() => {}}>React</Badge>
+                    <Badge removable onRemove={() => {}} variant="secondary">TypeScript</Badge>
+                    <Badge removable onRemove={() => {}} variant="info">Tailwind</Badge>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+
+      case 'alert':
+        return (
+          <div className="space-y-6 max-w-2xl mx-auto">
+            {currentVariant.id === 'all' && (
+              <>
+                <Alert variant="info">This is an informational message.</Alert>
+                <Alert variant="success">Operation completed successfully!</Alert>
+                <Alert variant="warning">Please review before proceeding.</Alert>
+                <Alert variant="error">Something went wrong. Please try again.</Alert>
+              </>
+            )}
+            {currentVariant.id === 'dismissible' && (
+              <>
+                <Alert variant="info" dismissible>This alert can be dismissed.</Alert>
+                <Alert variant="success" dismissible>Success! Click X to close.</Alert>
+                <Alert variant="warning" dismissible>Warning — dismiss when acknowledged.</Alert>
+              </>
+            )}
+            {currentVariant.id === 'with-title' && (
+              <>
+                <Alert variant="info" title="Heads up!">
+                  You can add components to your app using the CLI.
+                </Alert>
+                <Alert variant="success" title="All set!">
+                  Your changes have been saved and deployed.
+                </Alert>
+                <Alert variant="error" title="Error" dismissible>
+                  Your session has expired. Please log in again.
+                </Alert>
+              </>
+            )}
+          </div>
+        );
+
+      case 'table':
+        return (
+          <div className="max-w-3xl mx-auto">
+            <Table variant={currentVariant.id as 'default' | 'striped' | 'bordered'}>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Role</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {[
+                  { name: 'Alice Johnson', role: 'Admin', status: 'Active' },
+                  { name: 'Bob Smith', role: 'Editor', status: 'Active' },
+                  { name: 'Carol White', role: 'Viewer', status: 'Inactive' },
+                  { name: 'Dan Brown', role: 'Editor', status: 'Active' },
+                  { name: 'Eve Davis', role: 'Admin', status: 'Away' },
+                ].map((user) => (
+                  <TableRow key={user.name}>
+                    <TableCell className="font-medium">{user.name}</TableCell>
+                    <TableCell>{user.role}</TableCell>
+                    <TableCell>
+                      <Badge variant={user.status === 'Active' ? 'success' : user.status === 'Away' ? 'warning' : 'secondary'} size="sm" dot>
+                        {user.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button variant="ghost" size="xs">Edit</Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        );
+
+      case 'tooltip':
+        return (
+          <div className="space-y-8">
+            {currentVariant.id === 'positions' && (
+              <div>
+                <h3 className="text-lg font-semibold text-(--color-text) mb-4">Tooltip Positions</h3>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Tooltip content="I'm on top!" side="top">
+                    <Button variant="outline">Top</Button>
+                  </Tooltip>
+                  <Tooltip content="I'm on the bottom!" side="bottom">
+                    <Button variant="outline">Bottom</Button>
+                  </Tooltip>
+                  <Tooltip content="I'm on the left!" side="left">
+                    <Button variant="outline">Left</Button>
+                  </Tooltip>
+                  <Tooltip content="I'm on the right!" side="right">
+                    <Button variant="outline">Right</Button>
+                  </Tooltip>
+                </div>
+              </div>
+            )}
+            {currentVariant.id === 'delay' && (
+              <div>
+                <h3 className="text-lg font-semibold text-(--color-text) mb-4">Custom Delays</h3>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Tooltip content="Instant!" delayDuration={0}>
+                    <Button variant="secondary">No delay</Button>
+                  </Tooltip>
+                  <Tooltip content="Default 300ms" delayDuration={300}>
+                    <Button variant="secondary">300ms</Button>
+                  </Tooltip>
+                  <Tooltip content="Slow 800ms" delayDuration={800}>
+                    <Button variant="secondary">800ms</Button>
+                  </Tooltip>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+
+      case 'tabs':
+        return (
+          <div className="max-w-2xl mx-auto">
+            <Tabs defaultValue="tab1">
+              <TabsList variant={currentVariant.id as 'underline' | 'pills' | 'boxed'}>
+                <TabsTrigger value="tab1" variant={currentVariant.id as 'underline' | 'pills' | 'boxed'}>
+                  Account
+                </TabsTrigger>
+                <TabsTrigger value="tab2" variant={currentVariant.id as 'underline' | 'pills' | 'boxed'}>
+                  Password
+                </TabsTrigger>
+                <TabsTrigger value="tab3" variant={currentVariant.id as 'underline' | 'pills' | 'boxed'}>
+                  Notifications
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="tab1">
+                <Card className="p-4 mt-2">
+                  <p className="text-sm text-(--color-text-secondary)">
+                    Manage your account settings and preferences.
+                  </p>
+                  <div className="mt-3 space-y-3">
+                    <Input label="Display Name" placeholder="Your name" />
+                    <Input label="Email" type="email" placeholder="email@example.com" />
+                  </div>
+                </Card>
+              </TabsContent>
+              <TabsContent value="tab2">
+                <Card className="p-4 mt-2">
+                  <p className="text-sm text-(--color-text-secondary)">
+                    Change your password here.
+                  </p>
+                  <div className="mt-3 space-y-3">
+                    <Input label="Current Password" type="password" placeholder="Current password" />
+                    <Input label="New Password" type="password" placeholder="New password" />
+                  </div>
+                </Card>
+              </TabsContent>
+              <TabsContent value="tab3">
+                <Card className="p-4 mt-2">
+                  <p className="text-sm text-(--color-text-secondary) mb-4">
+                    Configure how you receive notifications.
+                  </p>
+                  <div className="space-y-4">
+                    <Switch label="Email notifications" description="Receive updates via email" defaultChecked />
+                    <Switch label="Push notifications" description="Browser push notifications" />
+                  </div>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
+        );
+
+      case 'switch':
+        return (
+          <div className="space-y-8 max-w-md mx-auto">
+            {currentVariant.id === 'sizes' && (
+              <div>
+                <h3 className="text-lg font-semibold text-(--color-text) mb-4">Sizes</h3>
+                <div className="flex flex-wrap items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <Switch size="sm" />
+                    <span className="text-sm text-(--color-text-secondary)">Small</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Switch size="md" defaultChecked />
+                    <span className="text-sm text-(--color-text-secondary)">Medium</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Switch size="lg" />
+                    <span className="text-sm text-(--color-text-secondary)">Large</span>
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <h3 className="text-lg font-semibold text-(--color-text) mb-4">Disabled</h3>
+                  <div className="flex items-center gap-6">
+                    <Switch size="md" disabled />
+                    <Switch size="md" disabled defaultChecked />
+                  </div>
+                </div>
+              </div>
+            )}
+            {currentVariant.id === 'with-labels' && (
+              <div className="space-y-5">
+                <Switch
+                  label="Notifications"
+                  description="Receive push notifications"
+                  checked={switchStates.notifications}
+                  onCheckedChange={(v) => setSwitchStates(s => ({ ...s, notifications: v }))}
+                />
+                <Switch
+                  label="Dark Mode"
+                  description="Use dark color scheme"
+                  checked={switchStates.darkMode}
+                  onCheckedChange={(v) => setSwitchStates(s => ({ ...s, darkMode: v }))}
+                />
+                <Switch
+                  label="Auto Save"
+                  description="Automatically save changes"
+                  checked={switchStates.autoSave}
+                  onCheckedChange={(v) => setSwitchStates(s => ({ ...s, autoSave: v }))}
+                />
+              </div>
+            )}
+          </div>
+        );
+
+      case 'avatar':
+        return (
+          <div className="space-y-8">
+            {currentVariant.id === 'sizes' && (
+              <div>
+                <h3 className="text-lg font-semibold text-(--color-text) mb-4">Sizes</h3>
+                <div className="flex flex-wrap items-end gap-4">
+                  <Avatar size="xs" fallback="AB" />
+                  <Avatar size="sm" fallback="CD" />
+                  <Avatar size="md" fallback="EF" />
+                  <Avatar size="lg" fallback="GH" />
+                  <Avatar size="xl" fallback="IJ" />
+                </div>
+              </div>
+            )}
+            {currentVariant.id === 'status' && (
+              <div>
+                <h3 className="text-lg font-semibold text-(--color-text) mb-4">Status Indicators</h3>
+                <div className="flex flex-wrap items-center gap-4">
+                  <Avatar fallback="AL" status="online" size="lg" />
+                  <Avatar fallback="BO" status="offline" size="lg" />
+                  <Avatar fallback="CA" status="busy" size="lg" />
+                  <Avatar fallback="DA" status="away" size="lg" />
+                </div>
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <Badge variant="success" size="sm" dot>Online</Badge>
+                  <Badge variant="secondary" size="sm" dot>Offline</Badge>
+                  <Badge variant="error" size="sm" dot>Busy</Badge>
+                  <Badge variant="warning" size="sm" dot>Away</Badge>
+                </div>
+              </div>
+            )}
+            {currentVariant.id === 'fallback' && (
+              <div>
+                <h3 className="text-lg font-semibold text-(--color-text) mb-4">Fallback Initials</h3>
+                <div className="flex flex-wrap items-center gap-4">
+                  <Avatar size="lg" fallback="John Doe" />
+                  <Avatar size="lg" fallback="Alice" />
+                  <Avatar size="lg" fallback="Bob Smith" />
+                  <Avatar size="lg" />
+                </div>
+                <p className="text-sm text-(--color-text-muted) mt-3">
+                  When no image is provided, initials are extracted from the fallback name. No name shows "?".
+                </p>
+              </div>
+            )}
+          </div>
+        );
+
+      case 'accordion':
+        return (
+          <div className="max-w-2xl mx-auto">
+            {currentVariant.id === 'single' && (
+              <Accordion type="single" collapsible defaultValue="item-1">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>What is this component library?</AccordionTrigger>
+                  <AccordionContent>
+                    A collection of reusable UI components built with React, Tailwind CSS v4,
+                    Radix UI primitives, and CVA for variant management.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>How do I use the theme system?</AccordionTrigger>
+                  <AccordionContent>
+                    The theme system uses CSS custom properties with OKLCH color spaces.
+                    Switch between 6 themes via the ThemeSelector component.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>Can I add custom components?</AccordionTrigger>
+                  <AccordionContent>
+                    Yes! Follow the existing patterns — use CVA for variants, cn() for class merging,
+                    and add exports to the barrel files.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            )}
+            {currentVariant.id === 'multiple' && (
+              <Accordion type="multiple" defaultValue={['item-1', 'item-2']}>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>React 18 Features</AccordionTrigger>
+                  <AccordionContent>
+                    Concurrent rendering, automatic batching, transitions API, and Suspense improvements.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>Tailwind CSS v4</AccordionTrigger>
+                  <AccordionContent>
+                    Native @theme configuration, OKLCH colors, container queries, and improved performance.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>Radix UI</AccordionTrigger>
+                  <AccordionContent>
+                    Unstyled, accessible component primitives for building high-quality design systems.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            )}
+          </div>
         );
 
       default:
@@ -1097,10 +1478,157 @@ export function ComponentsDemo() {
 />`;
 
       case 'colorPalette':
-        return `<ColorPalette 
+        return `<ColorPalette
   variant="${currentVariant.id}" // grid | swatches | compact
   showLabels={${currentVariant.id !== 'compact'}}
 />`;
+
+      case 'badge':
+        return `// Variants
+<Badge>Default</Badge>
+<Badge variant="secondary">Secondary</Badge>
+<Badge variant="outline">Outline</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="warning">Warning</Badge>
+<Badge variant="error">Error</Badge>
+<Badge variant="info">Info</Badge>
+
+// Sizes
+<Badge size="sm">Small</Badge>
+<Badge size="md">Medium</Badge>
+<Badge size="lg">Large</Badge>
+
+// With Dot Indicator
+<Badge dot variant="success">Active</Badge>
+
+// Removable
+<Badge removable onRemove={() => {}}>Tag</Badge>`;
+
+      case 'alert':
+        return `// Variants
+<Alert variant="info">Informational message</Alert>
+<Alert variant="success">Operation completed!</Alert>
+<Alert variant="warning">Please review.</Alert>
+<Alert variant="error">Something went wrong.</Alert>
+
+// With Title
+<Alert variant="info" title="Heads up!">
+  Description text here.
+</Alert>
+
+// Dismissible
+<Alert variant="warning" dismissible onDismiss={() => {}}>
+  This can be dismissed.
+</Alert>`;
+
+      case 'table':
+        return `<Table variant="${currentVariant.id}">
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Role</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Alice</TableCell>
+      <TableCell>Admin</TableCell>
+      <TableCell>
+        <Badge variant="success" size="sm" dot>Active</Badge>
+      </TableCell>
+    </TableRow>
+  </TableBody>
+</Table>`;
+
+      case 'tooltip':
+        return `<Tooltip content="Tooltip text" side="top">
+  <Button>Hover me</Button>
+</Tooltip>
+
+// Positions
+<Tooltip content="Top" side="top">...</Tooltip>
+<Tooltip content="Bottom" side="bottom">...</Tooltip>
+<Tooltip content="Left" side="left">...</Tooltip>
+<Tooltip content="Right" side="right">...</Tooltip>
+
+// Custom Delay
+<Tooltip content="Instant!" delayDuration={0}>
+  <Button>No delay</Button>
+</Tooltip>`;
+
+      case 'tabs':
+        return `<Tabs defaultValue="tab1">
+  <TabsList variant="${currentVariant.id}">
+    <TabsTrigger value="tab1" variant="${currentVariant.id}">
+      Account
+    </TabsTrigger>
+    <TabsTrigger value="tab2" variant="${currentVariant.id}">
+      Settings
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">
+    Account content
+  </TabsContent>
+  <TabsContent value="tab2">
+    Settings content
+  </TabsContent>
+</Tabs>`;
+
+      case 'switch':
+        return `// Basic
+<Switch />
+
+// Sizes
+<Switch size="sm" />
+<Switch size="md" />
+<Switch size="lg" />
+
+// With Label & Description
+<Switch
+  label="Notifications"
+  description="Receive push notifications"
+  checked={checked}
+  onCheckedChange={setChecked}
+/>
+
+// Disabled
+<Switch disabled />`;
+
+      case 'avatar':
+        return `// Sizes
+<Avatar size="xs" fallback="AB" />
+<Avatar size="sm" fallback="CD" />
+<Avatar size="md" fallback="EF" />
+<Avatar size="lg" fallback="GH" />
+<Avatar size="xl" fallback="IJ" />
+
+// With Status
+<Avatar fallback="JD" status="online" />
+<Avatar fallback="AB" status="busy" />
+
+// With Image
+<Avatar src="/photo.jpg" alt="John" fallback="John Doe" />
+
+// Fallback Initials
+<Avatar fallback="John Doe" />  // Shows "JD"`;
+
+      case 'accordion':
+        return `// Single (one open at a time)
+<Accordion type="single" collapsible defaultValue="item-1">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Question?</AccordionTrigger>
+    <AccordionContent>Answer.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+// Multiple (many open)
+<Accordion type="multiple" defaultValue={['item-1']}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Section 1</AccordionTrigger>
+    <AccordionContent>Content 1</AccordionContent>
+  </AccordionItem>
+</Accordion>`;
 
       default:
         return '';
@@ -1137,6 +1665,14 @@ export function ComponentsDemo() {
           <option value="carousel">Carousel - Touch enabled, 4 variants</option>
           <option value="card">Card - 6 variants with compound components</option>
           <option value="input">Input - Labels, icons, validation states</option>
+          <option value="badge">Badge - 7 variants, dot indicator, removable</option>
+          <option value="alert">Alert - 4 types, dismissible, auto icons</option>
+          <option value="table">Table - Striped, bordered, hover rows</option>
+          <option value="tabs">Tabs - Underline, pills, boxed variants</option>
+          <option value="accordion">Accordion - Single/multiple, animated</option>
+          <option value="tooltip">Tooltip - 4 positions, custom delay</option>
+          <option value="switch">Switch - 3 sizes, labels, descriptions</option>
+          <option value="avatar">Avatar - 5 sizes, status, fallback initials</option>
           <option value="drawer">Drawer - 4 positions, 6 sizes</option>
           <option value="dialog">Dialog - 3 positions, 5 sizes</option>
           <option value="combobox">Combobox - Searchable with icons</option>
