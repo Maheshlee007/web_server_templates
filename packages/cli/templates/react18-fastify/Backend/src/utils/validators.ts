@@ -12,12 +12,12 @@ const SHA256_REGEX = /^[a-f0-9]{64}$/;
 
 // ============ Auth Schemas ============
 export const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.string().email('Invalid email address').trim().toLowerCase(),
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
 export const registerSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.string().email('Invalid email address').trim().toLowerCase(),
   password: z
     .string()
     .min(8, 'Password must be at least 8 characters')
@@ -31,8 +31,8 @@ export const registerSchema = z.object({
           'Password must contain at least one uppercase letter, one lowercase letter, and one number',
       }
     ),
-  firstName: z.string().min(1, 'First name is required').max(100),
-  lastName: z.string().min(1, 'Last name is required').max(100),
+  firstName: z.string().min(1, 'First name is required').max(100).trim(),
+  lastName: z.string().min(1, 'Last name is required').max(100).trim(),
 });
 
 export const refreshTokenSchema = z.object({

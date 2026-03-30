@@ -1,6 +1,8 @@
 import Fastify from 'fastify';
+import crypto from 'crypto';
 import fastifyJwt from '@fastify/jwt';
 import fastifyCors from '@fastify/cors';
+import fastifyHelmet from '@fastify/helmet';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import { loggerOptions } from './utils/logger.js';
@@ -12,20 +14,44 @@ import { errorHandler } from './middleware/errorHandler.js';
 import { registerRoutes } from './routes/index.js';
 
 /**
+ * Timing-safe string comparison to prevent timing attacks on secrets
+ */
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
+
+/**
  * Build and configure the Fastify application
  */
 export async function buildApp() {
   const app = Fastify({
     logger: loggerOptions,
+    bodyLimit: 1_048_576, // 1MB — prevent oversized payload attacks
   });
 
-  // ──── CORS — registered at root (NOT encapsulated) ────
+  // ──── Request ID for tracing ────
+  app.addHook('onRequest', async (request) => {
+    request.id = request.id || crypto.randomUUID();
+  });
+
+  // ──── CORS ────
+  const corsOrigins = env.CORS_ORIGIN.split(',').map((o) => o.trim());
+  if (env.NODE_ENV === 'production' && corsOrigins.includes('*')) {
+    app.log.warn('⚠ CORS_ORIGIN is set to "*" in production — this is insecure. Set specific origins.');
+  }
   await app.register(fastifyCors, {
-    origin: env.CORS_ORIGIN.split(',').map((o) => o.trim()),
+    origin: corsOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
     exposedHeaders: ['X-Total-Count'],
+    maxAge: 86400, // Cache preflight responses for 24 hours
+  });
+
+  // ──── Security Headers (Helmet) ────
+  await app.register(fastifyHelmet, {
+    contentSecurityPolicy: env.NODE_ENV === 'production',
   });
 
   // ──── Rate Limiting ────
@@ -39,97 +65,109 @@ export async function buildApp() {
     },
   });
 
-  // ──── Swagger — registered at root (NOT encapsulated) ────
-  await app.register(fastifySwagger, {
-    openapi: {
-      openapi: '3.1.0',
-      info: {
-        title: `${APP_CONFIG.name} API`,
-        description: APP_CONFIG.description,
-        version: APP_CONFIG.version,
-      },
-      servers: [
-        {
-          url: `http://localhost:${env.PORT}`,
-          description: 'Development server',
+  // ──── Swagger — disabled in production ────
+  if (env.NODE_ENV !== 'production') {
+    await app.register(fastifySwagger, {
+      openapi: {
+        openapi: '3.1.0',
+        info: {
+          title: `${APP_CONFIG.name} API`,
+          description: APP_CONFIG.description,
+          version: APP_CONFIG.version,
         },
-      ],
-      components: {
-        securitySchemes: {
-          BearerAuth: {
-            type: 'http',
-            scheme: 'bearer',
-            bearerFormat: 'JWT',
-            description: 'Enter your JWT access token',
+        servers: [
+          {
+            url: `http://localhost:${env.PORT}`,
+            description: 'Development server',
+          },
+        ],
+        components: {
+          securitySchemes: {
+            BearerAuth: {
+              type: 'http',
+              scheme: 'bearer',
+              bearerFormat: 'JWT',
+              description: 'Enter your JWT access token',
+            },
           },
         },
       },
-    },
-  });
+    });
 
-  await app.register(fastifySwaggerUi, {
-    routePrefix: '/docs',
-    uiConfig: {
-      docExpansion: 'list',
-      deepLinking: true,
-      persistAuthorization: true,
-    },
-  });
+    await app.register(fastifySwaggerUi, {
+      routePrefix: '/docs',
+      uiConfig: {
+        docExpansion: 'list',
+        deepLinking: true,
+        persistAuthorization: true,
+      },
+    });
 
-  // ──── Secret-protected Admin Swagger docs ────
-  // Access at /admin-docs?secret=<SWAGGER_ADMIN_SECRET>
-  // Shows ALL routes (including hidden admin endpoints)
-  app.get('/admin-docs', async (request, reply) => {
-    const { secret } = request.query as { secret?: string };
-    if (secret !== env.SWAGGER_ADMIN_SECRET) {
-      return reply.status(403).send({ error: 'Forbidden — invalid or missing secret' });
-    }
+    // ──── Secret-protected Admin Swagger docs ────
+    // Access via Authorization header: Authorization: Bearer <SWAGGER_ADMIN_SECRET>
+    app.get('/admin-docs', async (request, reply) => {
+      const authHeader = request.headers.authorization;
+      const secret = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null;
 
-    // Get the full OpenAPI spec and un-hide admin routes
-    // Re-inject admin routes that were hidden
-    // The spec already has all non-hidden routes; redirect to the swagger JSON with a flag
-    return reply.type('text/html').send(`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>React Fastify — Admin API Docs</title>
-        <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" />
-      </head>
-      <body>
-        <div id="swagger-ui"></div>
-        <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
-        <script>
-          SwaggerUIBundle({
-            url: '/admin-docs/json?secret=${encodeURIComponent(secret)}',
-            dom_id: '#swagger-ui',
-            deepLinking: true,
-            docExpansion: 'list',
-            persistAuthorization: true,
-          });
-        </script>
-      </body>
-      </html>
-    `);
-  });
+      // Also accept query param for browser access (dev convenience)
+      const querySecret = (request.query as { secret?: string }).secret;
+      const providedSecret = secret || querySecret || '';
 
-  // JSON endpoint for admin swagger spec (includes hidden routes)
-  app.get('/admin-docs/json', async (request, reply) => {
-    const { secret } = request.query as { secret?: string };
-    if (secret !== env.SWAGGER_ADMIN_SECRET) {
-      return reply.status(403).send({ error: 'Forbidden' });
-    }
+      if (!providedSecret || !safeCompare(providedSecret, env.SWAGGER_ADMIN_SECRET)) {
+        return reply.status(403).send({ error: 'Forbidden — invalid or missing secret' });
+      }
 
-    // Build a full spec that includes admin routes
-    const spec = JSON.parse(JSON.stringify(app.swagger()));
+      return reply.type('text/html').send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Fastify React App — Admin API Docs</title>
+          <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" />
+        </head>
+        <body>
+          <div id="swagger-ui"></div>
+          <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+          <script>
+            SwaggerUIBundle({
+              url: '/admin-docs/json',
+              dom_id: '#swagger-ui',
+              deepLinking: true,
+              docExpansion: 'list',
+              persistAuthorization: true,
+              requestInterceptor: (req) => {
+                req.headers['Authorization'] = 'Bearer ${providedSecret}';
+                return req;
+              },
+            });
+          </script>
+        </body>
+        </html>
+      `);
+    });
 
-    // Collect hidden admin route details from the registered admin routes
-    const adminPaths = buildAdminSwaggerPaths();
-    for (const [path, methods] of Object.entries(adminPaths)) {
-      spec.paths[path] = { ...(spec.paths[path] ?? {}), ...methods };
-    }
+    // JSON endpoint for admin swagger spec (includes hidden routes)
+    app.get('/admin-docs/json', async (request, reply) => {
+      const authHeader = request.headers.authorization;
+      const secret = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null;
+      const querySecret = (request.query as { secret?: string }).secret;
+      const providedSecret = secret || querySecret || '';
 
-    return reply.send(spec);
-  });
+      if (!providedSecret || !safeCompare(providedSecret, env.SWAGGER_ADMIN_SECRET)) {
+        return reply.status(403).send({ error: 'Forbidden' });
+      }
+
+      const spec = JSON.parse(JSON.stringify(app.swagger()));
+
+      const adminPaths = buildAdminSwaggerPaths();
+      for (const [path, methods] of Object.entries(adminPaths)) {
+        spec.paths[path] = { ...(spec.paths[path] ?? {}), ...methods };
+      }
+
+      return reply.send(spec);
+    });
+  } else {
+    app.log.info('Swagger/admin-docs disabled in production');
+  }
 
   // ──── Error Handling ────
   errorHandler(app);

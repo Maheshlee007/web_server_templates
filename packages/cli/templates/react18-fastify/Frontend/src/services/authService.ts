@@ -44,7 +44,7 @@ export const authApi = {
     const response = await api.post('/auth/register', {
       ...data,
       password: hashedPassword,
-      _hashed: true, // Signal to backend that password is pre-hashed
+      _hashed: true,
     });
     return response.data;
   },
